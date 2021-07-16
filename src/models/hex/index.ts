@@ -1,1 +1,1 @@
-export { hex2rgb } from "./convert";
+export { hex2rgb } from "./transform";
