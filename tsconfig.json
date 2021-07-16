@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "strict": true,
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": [ "./*" ],
+      "@models/*": [ "models/*" ],
+      "@manipulation": [ "manipulation/index.ts" ],
+      "@properties": [ "properties/index.ts" ],
+      "@util/*": [ "util/*" ],
+      "@types": [ "types/index.ts" ]
+    }
+  },
+  "include": [ "./src/**/*", "./tests/**/*" ]
+}
