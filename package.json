@@ -1,0 +1,42 @@
+{
+  "name": "blossom",
+  "version": "1.0.0",
+  "description": "Blossom is a JS library tool for colour manipulations and transformations.",
+  "main": "./index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "color",
+    "transform",
+    "convert",
+    "rgb",
+    "hex",
+    "hsl",
+    "hsv",
+    "cmyk"
+  ],
+  "repository": "ericrovell/blossom",
+  "author": "Eric Rovell",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.5",
+    "ts-jest": "^27.0.3",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.4"
+  },
+  "types": "index.d.ts",
+  "jest": {
+    "verbose": true,
+    "transform": { "^.+\\.ts$": "ts-jest" },
+    "moduleNameMapper": {
+      "^@/(.*)": "<rootDir>/src/$1",
+      "^@util/(.*)": "<rootDir>/src/util/$1",
+      "^@models/(.*)": "<rootDir>/src/models/$1",
+      "^@manipulation": "<rootDir>/src/manipulation/index.ts",
+      "^@properties": "<rootDir>/src/properties/index.ts"
+    },
+    "testEnvironment": "node"
+  }
+}
