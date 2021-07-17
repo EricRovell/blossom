@@ -1,4 +1,5 @@
 export type {
+  ColorModel,
   Color,
   ColorObject,
   ColorRGB,
