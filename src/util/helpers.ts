@@ -9,10 +9,15 @@ export function round(number: number, digits: number = 0) {
 }
 
 /**
- * Clamps the number between two values.
+ * Clamps a value between an upper and lower bound.
+ * NaN is clamped to the lower bound
  */
 export function clamp(number: number, min = 0, max = 1): number {
-  return Math.min(Math.max(Number(number), min), max)
+  return number > max
+    ? max
+    : number > min
+    ? number
+    : min;
 }
 
 /**
@@ -42,4 +47,15 @@ export function checkValue(value: unknown): boolean {
  */
 export function parseHue(value: string, unit = "deg"): number {
   return Number(value) * (ANGLE_UNITS[unit] ?? 1);
+}
+
+/**
+ * Transform decimal number in range [0, 255] to hexadecimal string.
+ */
+export function toHexString(number: number): string {
+  const decimal = clamp(number, 0, 255);
+  const hex = decimal.toString(16).toUpperCase();
+  return hex.length < 2
+    ? `0${hex}`
+    : hex;
 }
