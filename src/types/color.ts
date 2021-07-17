@@ -46,7 +46,7 @@ export interface ColorCMYK {
 export type ColorObject =
   | ColorRGB
   | ColorHSV
-  | ColorHSB
+  | ColorHSL
   | ColorCMYK;
   
 export type Color =
