@@ -21,7 +21,7 @@ export function hex2rgb(input: ColorHEX): ColorRGB | null {
       g: parseInt(value[1] + value[1], 16),
       b: parseInt(value[2] + value[2], 16),
       a: value.length === 4
-        ? round(parseInt(value[2] + value[2], 16) / 255, 2)
+        ? round(parseInt(value[3] + value[3], 16) / 255, 2)
         : 1,
     }
   }
