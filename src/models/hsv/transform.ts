@@ -5,44 +5,24 @@ import type { ColorHSV, ColorRGB, ColorHSL } from "@types";
  * Convert HSV color object to RGB.
  */
 export function hsv2rgb(color: ColorHSV): ColorRGB {
-  let h = color.h;
+  let h = (color.h / 360) * 6;
   let s = color.s / 100;
   let v = color.v / 100;
-  let a = color.a ? round(color.a, 2) : 1;
+  let a = color?.a ?? 1;
 
-  const chroma = v * s;
-  
-  // will be used as the middle (second-largest) component value
-  const middle = chroma * (1 - Math.abs((h / 60) % 2 - 1));
-  
-  // to adjust each of the values for lightness
-  const m = v - chroma;
-
-  let r: number = 0;
-  let g: number = 0;
-  let b: number = 0;
-  
-  if (h >= 0 && h < 60) {
-    [ r, g, b ] = [ chroma, middle, 0 ];
-  } else if (h >= 60 && h < 120) {
-    [ r, g, b ] = [ middle, chroma, 0 ];
-  } else if (h >= 120 && h < 180) {
-    [ r, g, b ] = [ 0, chroma, middle ];
-  } else if (h >= 180 && h < 240) {
-    [ r, g, b ] = [ 0, middle, chroma ];
-  } else if (h >= 240 && h < 300) {
-    [ r, g, b ] = [ middle, 0, chroma ];
-  } else if (h >= 300 && h < 360) {
-    [ r, g, b ] = [ chroma, 0, middle ];
-  }
+  const hh = Math.floor(h);
+  const b = v * (1 - s);
+  const c = v * (1 - (h - hh) * s);
+  const d = v * (1 - (1 - h + hh) * s);
+  const module = hh % 6;
 
   return {
-    r: round(255 * (r + m)),
-    g: round(255 * (g + m)),
-    b: round(255 * (b + m)),
-    a
+    r: [v, c, b, b, d, v][module] * 255,
+    g: [d, v, v, c, b, b][module] * 255,
+    b: [b, b, d, v, v, c][module] * 255,
+    a: a,
   };
-}
+};
 
 /**
  * Convert HSV color object to HSL.
