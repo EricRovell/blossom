@@ -1,38 +1,29 @@
-import { round } from "@util/helpers";
+import { round, toHexString } from "@util/helpers";
 import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK } from "@types";
+import { roundRGB } from "./util";
 
 /**
  * Convert RGB Color Model object to HSV.
  */
-export function rgb2hsv(rgb: ColorRGB): ColorHSV {
-  let { r, g, b, a = 1 } = rgb;
-  [ r, g, b ] = [ r, g, b ].map(value => value / 255);
+export function rgb2hsv({ r, g, b, a }: ColorRGB): ColorHSV {
+  const max = Math.max(r, g, b);
+  const delta = max - Math.min(r, g, b);
 
-  const [ min, max ] = [ Math.min(r, g, b), Math.max(r, g, b) ];
-  const chroma = max - min;
-
-  const hue = (() => {
-    if (chroma === 0) return 0;
-    switch(max) {
-      case (r): return 60 * (((g - b) / chroma) + (g < b ? 6 : 0));
-      case (g): return 60 * ((b - r) / chroma + 2);
-      case (b): return 60 * ((r - g) / chroma + 4);
-    }
-  })() as number;
-
-  const saturation = (max === 0)
-    ? 0
-    : chroma / max;
-    
-  const value = max;
+  const h = delta
+    ? max === r
+      ? (g - b) / delta
+      : max === g
+        ? 2 + (b - r) / delta
+        : 4 + (r - g) / delta
+    : 0;
 
   return {
-    h: round(hue),
-    s: round(saturation * 100),
-    v: round(value * 100),
-    a
+    h: 60 * (h < 0 ? h + 6 : h),
+    s: max ? (delta / max) * 100 : 0,
+    v: (max / 255) * 100,
+    a,
   };
-}
+};
 
 /**
  * Convert RGB Color Model object to HSL.
@@ -74,24 +65,13 @@ export function rgb2hsl(color: ColorRGB): ColorHSL {
  * Convert RGB Color Model object to HEX string.
  */
 export function rgb2hex(color: ColorRGB): ColorHEX {
-  const { r, g, b, a } = color;
-  
-  const hex = [ r, g, b ] 
-    .map(value => {
-      const hexValue = value.toString(16);
-      return (hexValue.length === 2)
-        ? hexValue
-        : hexValue + hexValue;
-    });
-  
-  if (a && a !== 1) {
-    let value = a.toString(16);
-    value.length === 1
-      ? hex.push(value + value)
-      : hex.push(value);
-  }
+  const { r, g, b, a } = roundRGB(color);
 
-  return `#${hex.join("").toUpperCase()}`;
+  const alpha = a < 1
+    ? toHexString(round(a * 255))
+    : "";
+
+  return `#${toHexString(r)}${toHexString(g)}${toHexString(b)}${alpha}`;
 }
 
 /**
