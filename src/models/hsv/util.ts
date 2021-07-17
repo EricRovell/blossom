@@ -19,8 +19,8 @@ export function clampHSV({ h, s, v, a = 1 }: ColorHSV): ColorHSV {
 export function roundHSV({ h, s, v, a = 1 }: ColorHSV): ColorHSV {
   return {
     h: round(h),
-    s: round(s, 1),
-    v: round(v, 1),
+    s: round(s),
+    v: round(v),
     a: round(a)
   };
 }
