@@ -33,6 +33,6 @@ export function roundHSL({ h, s, l, a = 1 }: ColorHSL): ColorHSL {
 export function rgb2hslString(rgb: ColorRGB): string {
   const { h, s, l, a = 1 } = roundHSL(rgb2hsl(rgb));
   return a < 1
-    ? `hsla(${h}deg ${s}% ${l}% / ${a})`
+    ? `hsl(${h}deg ${s}% ${l}% / ${a})`
     : `hsl(${h}deg ${s}% ${l}%)`;
 }
