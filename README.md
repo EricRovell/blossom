@@ -354,3 +354,147 @@ petal("#FF0000")
     .toStringHSL; // -> "hsl(270deg 50% 50%)"
   ```
 </details>
+
+### Color analysis
+
+<details>
+  <summary>
+    <code>.valid</code>
+  </summary>
+
+  Returns a boolean indicating whether or not an input has been parsed successfully.
+  On unsuccess, color value defaults to black without error.
+
+  ```js
+  petal("#FFF").valid; // -> true
+  petal("#NaN").valid; // -> false
+  petal("hello").valid; // -> false
+  petal({ r: 0, g: 0, b: 0 }).valid; // -> true
+  petal({ r: 0, g: 0, v: 0 }).valid; // -> false
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.alpha</code>
+  </summary>
+
+  Returns an alpha channel value of the color.
+
+  ```js
+  petal("#FFFFFF").alpha; // -> 1
+  petal("rgba(50 100 150 / 0.5)").alpha; // -> 0.5
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.opaque</code>
+  </summary>
+
+  Returns a boolean indicating whether or not a color is opaque.
+
+  ```js
+  petal("#FFFFFF").opaque; // -> true
+  petal("rgba(50 100 150 / 0.5)").opaque; // -> false
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.transparent</code>
+  </summary>
+
+  Returns a boolean indicating whether or not a color is transparent.
+
+  ```js
+  petal("#FFFFFF").transparent; // -> false
+  petal("rgba(50 100 150 / 0.5)").transparent; // -> true
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.hue</code>
+  </summary>
+
+  Returns the Hue value of the number on the color wheel.
+
+  ```js
+  petal("hsl(90deg 50% 50%)").hue; // -> 90
+  petal("hsl(-10deg 50% 50%)").hue; // -> 350
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.brightness</code>
+  </summary>
+
+  Returns the brightness of a color in range [0; 1].
+  The calculation logic is modified from [Web Content Accessibility Guidelines](https://www.w3.org/TR/AERT/#color-contrast).
+
+  ```js
+  petal("#000000").brightness; // -> 0
+  petal("#808080").brightness; // -> 0.5
+  petal("#FFFFFF").brightness; // -> 1
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.light</code>
+  </summary>
+
+  A Boolean indicator whether or not a color is light (brightness >= 0.5).
+
+  ```js
+  petal("#000000").light; // -> false
+  petal("#808080").light; // -> true
+  petal("#FFFFFF").light; // -> true
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.dark</code>
+  </summary>
+
+  A Boolean indicator whether or not a color is dark (brightness < 0.5).
+
+  ```js
+  petal("#000000").dark; // -> true
+  petal("#808080").dark; // -> false
+  petal("#FFFFFF").dark; // -> false
+  ```
+</details>
+
+### Color Utilities
+
+<details>
+  <summary>
+    <code>random()</code>
+  </summary>
+
+  Creates new instance with a random color.
+
+  ```js
+  import { random } from "colord";
+
+  random().hex; // -> "#01C8EC"
+  random().setAlpha(0.5).rgb; // -> { r: 13, g: 237, b: 162, a: 0.5 }
+  ```
+</details>
+
+## Types
+
+Blossom is written in strict TypeScript and ships with types in the library itself.
+
+While not only typing its own functions and variables, you can also type yours. Depending on the color space you are using, the types can be also imported and used to type the code.
+
+```js
+import type { ColorRGB, ColorHSL } from "blossom/types";
+
+const foo: ColorHSL = { h: 0, s: 0, l: 0 };
+const bar: ColorRGB = { r: 0, g: 0, v: 0 }; // type error!
+```
