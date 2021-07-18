@@ -20,9 +20,9 @@ npm i blossom
 ```
 
 ```
-import { petal } from "blossom";
+import { blossom } from "blossom";
 
-petal("#FF0000")
+blossom("#FF0000")
   .grayscale
   .setAlpha(0.25)
   .toStringRGB
@@ -44,34 +44,34 @@ petal("#FF0000")
 
 <details>
   <summary>
-    <code>petal</code>
+    <code>blossom</code>
   </summary>
   
   Parses the given input and creates a new Blossom instance.
 
   ```js
-  import { petal } from "blossom";
+  import { blossom } from "blossom";
 
   // string input
-  petal("#ABC");
-  petal("#AABBCC");
-  petal("#ADCDEF12");
-  petal("rgb(100, 200, 255)");
-  petal("rgba(100, 200, 255, 0.5)");
-  petal("rgba(10% 20% 30% / 35%)");
-  petal("hsl(180, 78%, 87%)");
-  petal("hsla(180, 78%, 87%, 0.5)");
-  petal("hsla(180deg 78% 87% / 50%)");
+  blossom("#ABC");
+  blossom("#AABBCC");
+  blossom("#ADCDEF12");
+  blossom("rgb(100, 200, 255)");
+  blossom("rgba(100, 200, 255, 0.5)");
+  blossom("rgba(10% 20% 30% / 35%)");
+  blossom("hsl(180, 78%, 87%)");
+  blossom("hsla(180, 78%, 87%, 0.5)");
+  blossom("hsla(180deg 78% 87% / 50%)");
 
   // object input
-  petal({ r: 12, g: 34, b: 56 });
-  petal({ r: 12, g: 34, b: 56, a: 1 });
-  petal({ h: 180, s: 50, l: 75 });
-  petal({ h: 180, s: 50, l: 75, a: 1 });
-  petal({ h: 180, s: 50, v: 65 });
-  petal({ h: 180, s: 50, v: 65, a: 1 });
-  petal({ c: 25, m: 50, k: 75, k: 100 });
-  petal({ c: 25, m: 50, k: 75, k: 100, a: 1 });
+  blossom({ r: 12, g: 34, b: 56 });
+  blossom({ r: 12, g: 34, b: 56, a: 1 });
+  blossom({ h: 180, s: 50, l: 75 });
+  blossom({ h: 180, s: 50, l: 75, a: 1 });
+  blossom({ h: 180, s: 50, v: 65 });
+  blossom({ h: 180, s: 50, v: 65, a: 1 });
+  blossom({ c: 25, m: 50, k: 75, k: 100 });
+  blossom({ c: 25, m: 50, k: 75, k: 100, a: 1 });
   ```
 </details>
 
@@ -103,9 +103,9 @@ petal("#FF0000")
   Outputs the modern `#RRGGBBAA` opacity syntax for transparent colors.
 
   ```js
-  petal("rgb(0, 255, 0)").hex; // -> "#00FF00"
-  petal({ h: 300, s: 100, l: 50 }).hex; // -> "#FF00FF"
-  petal({ r: 255, g: 255, b: 255, a: 0 }).hex; // -> "#FFFFFF00"
+  blossom("rgb(0, 255, 0)").hex; // -> "#00FF00"
+  blossom({ h: 300, s: 100, l: 50 }).hex; // -> "#FF00FF"
+  blossom({ r: 255, g: 255, b: 255, a: 0 }).hex; // -> "#FFFFFF00"
   ```
 </details>
 
@@ -117,8 +117,8 @@ petal("#FF0000")
   Returns the RGB color model object of a color.
 
   ```js
-  petal("#ff0000").rgb; // -> { r: 255, g: 0, b: 0, a: 1 }
-  petal({ h: 180, s: 100, l: 50, a: 0.5 }).rgb; // -> { r: 0, g: 255, b: 255, a: 0.5 }
+  blossom("#ff0000").rgb; // -> { r: 255, g: 0, b: 0, a: 1 }
+  blossom({ h: 180, s: 100, l: 50, a: 0.5 }).rgb; // -> { r: 0, g: 255, b: 255, a: 0.5 }
   ```
 </details>
 
@@ -131,8 +131,8 @@ petal("#FF0000")
   Outputs the modern whitespace syntax.
 
   ```js
-  petal("#ff0000").toStringRGB; // -> "rgb(255 0 0)"
-  petal({ h: 180, s: 100, l: 50, a: 0.5 }).toStringRGB; // -> "rgb(0 255 255 / 0.5)"
+  blossom("#ff0000").toStringRGB; // -> "rgb(255 0 0)"
+  blossom({ h: 180, s: 100, l: 50, a: 0.5 }).toStringRGB; // -> "rgb(0 255 255 / 0.5)"
   ```
 </details>
 
@@ -144,8 +144,8 @@ petal("#FF0000")
   Returns the HSL color space object of a color.
 
   ```js
-  petal("#ffff00").hsl; // -> { h: 60, s: 100, l: 50, a: 1 }
-  petal("rgba(0, 0, 255, 0.5)").hsl; // -> { h: 240, s: 100, l: 50, a: 0.5 }
+  blossom("#ffff00").hsl; // -> { h: 60, s: 100, l: 50, a: 1 }
+  blossom("rgba(0, 0, 255, 0.5)").hsl; // -> { h: 240, s: 100, l: 50, a: 0.5 }
   ```
 </details>
 
@@ -158,8 +158,8 @@ petal("#FF0000")
   Outputs the modern whitespace syntax.
 
   ```js
-  petal("#ffff00").toStringHSL; // -> "hsl(60deg 100% 50%)"
-  petal("rgba(0, 0, 255, 0.5)").toStringHSL; // -> "hsl(240deg 100% 50% / 0.5)"
+  blossom("#ffff00").toStringHSL; // -> "hsl(60deg 100% 50%)"
+  blossom("rgba(0, 0, 255, 0.5)").toStringHSL; // -> "hsl(240deg 100% 50% / 0.5)"
   ```
 </details>
 
@@ -171,8 +171,8 @@ petal("#FF0000")
   Returns the HSV color space object of a color.
 
   ```js
-  petal("#ffff00").hsv; // -> { h: 60, s: 100, v: 100, a: 1 }
-  petal("rgba(0, 255, 255, 0.5)").hsv; // -> { h: 180, s: 100, v: 100, a: 1 }
+  blossom("#ffff00").hsv; // -> { h: 60, s: 100, v: 100, a: 1 }
+  blossom("rgba(0, 255, 255, 0.5)").hsv; // -> { h: 180, s: 100, v: 100, a: 1 }
   ```
 </details>
 
@@ -185,8 +185,8 @@ petal("#FF0000")
   Returns the CMYK color space object of a color.
 
   ```js
-  petal("#fffff").cmyk; // -> { c: 0, m: 0, y: 0, k: 0, a: 1 }
-  petal("#555aaa").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
+  blossom("#fffff").cmyk; // -> { c: 0, m: 0, y: 0, k: 0, a: 1 }
+  blossom("#555aaa").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
   ```
 </details>
 
@@ -200,7 +200,7 @@ petal("#FF0000")
   Changes the alpha channel value and returns a new `Blossom` instance.
 
   ```js
-  petal("rgb(0, 0, 0)")
+  blossom("rgb(0, 0, 0)")
     .setAlpha(0.5)
     .toStringRGB; // -> "rgb(0 0 0 / 0.5)"
   ```
@@ -214,7 +214,7 @@ petal("#FF0000")
   Creates a new `Blossom` instance with an inverted color.
 
   ```js
-  petal("#aabbcc")
+  blossom("#aabbcc")
     .inverted
     .hex; // -> "#554433"
   ```
@@ -228,11 +228,11 @@ petal("#FF0000")
   Increases the HSL saturation of a color by the given amount.
 
   ```js
-  petal("#bf4040")
+  blossom("#bf4040")
     .saturate(0.25)
     .hex; // -> "#df2020"
 
-  petal("hsl(0, 50%, 50%)")
+  blossom("hsl(0, 50%, 50%)")
     .saturate(0.5)
     .toStringHSL; // -> "hsl(0deg 100% 50%)"
   ```
@@ -246,11 +246,11 @@ petal("#FF0000")
   Decreases the HSL saturation of a color by the given amount.
 
   ```js
-  petal("#df2020")
+  blossom("#df2020")
     .saturate(0.25)
     .hex; // -> "#bf4040"
 
-  petal("hsl(0, 100%, 50%)")
+  blossom("hsl(0, 100%, 50%)")
     .saturate(0.5)
     .toStringHSL; // -> "hsl(0deg 50% 50%)"  
   ```
@@ -265,11 +265,11 @@ petal("#FF0000")
   Same result as `.desaturate(1)`.
 
   ```js
-  petal("#bf4040")
+  blossom("#bf4040")
     .grayscale
     .hex; // -> "#808080"
 
-  petal("hsl(0, 100%, 50%)")
+  blossom("hsl(0, 100%, 50%)")
     .grayscale
     .toStringHSL; // -> "hsl(0deg 0% 50%)"
   ```
@@ -283,15 +283,15 @@ petal("#FF0000")
   Increases the HSL lightness of a color by the given amount.
 
   ```js
-  petal("#000000")
+  blossom("#000000")
     .lighten(0.5)
     .hex; // -> "#808080"
 
-  petal("#223344")
+  blossom("#223344")
     .lighten(0.3)
     .hex; // -> "#5580aa"
 
-  petal("hsl(0, 50%, 50%)")
+  blossom("hsl(0, 50%, 50%)")
     .lighten(0.5)
     .toStringHSL; // -> "hsl(0deg 50% 100%)"
   ```
@@ -305,15 +305,15 @@ petal("#FF0000")
   Decreases the HSL lightness of a color by the given amount.
 
   ```js
-  petal("#ffffff")
+  blossom("#ffffff")
     .darken(0.5)
     .hex; // -> "#808080"
 
-  petal("#5580aa")
+  blossom("#5580aa")
     .darken(0.3)
     .hex; // -> "#223344"
 
-  petal("hsl(0, 50%, 100%)")
+  blossom("hsl(0, 50%, 100%)")
     .lighten(0.5)
     .toStringHSL; // -> "hsl(0, 50%, 50%)"
   ```
@@ -327,11 +327,11 @@ petal("#FF0000")
   Changes the hue value and returns a new `Blossom` instance.
 
   ```js
-  petal("hsl(90, 50%, 50%)")
+  blossom("hsl(90, 50%, 50%)")
     .setHue(180)
     .toStringHSL; // -> "hsl(180deg 50% 50%)"
 
-  petal("hsl(90, 50%, 50%)")
+  blossom("hsl(90, 50%, 50%)")
     .setHue(370)
     .toStringHSL; // -> "hsl(10deg 50% 50%)"
   ```
@@ -345,11 +345,11 @@ petal("#FF0000")
   Increases the HSL hue value of a color by the given amount.
 
   ```js
-  petal("hsl(90, 50%, 50%)")
+  blossom("hsl(90, 50%, 50%)")
     .rotate(90)
     .toStringHSL; // -> "hsl(180deg 50% 50%)"
 
-  petal("hsl(90, 50%, 50%)")
+  blossom("hsl(90, 50%, 50%)")
     .rotate(-180)
     .toStringHSL; // -> "hsl(270deg 50% 50%)"
   ```
@@ -366,11 +366,11 @@ petal("#FF0000")
   On unsuccess, color value defaults to black without error.
 
   ```js
-  petal("#FFF").valid; // -> true
-  petal("#NaN").valid; // -> false
-  petal("hello").valid; // -> false
-  petal({ r: 0, g: 0, b: 0 }).valid; // -> true
-  petal({ r: 0, g: 0, v: 0 }).valid; // -> false
+  blossom("#FFF").valid; // -> true
+  blossom("#NaN").valid; // -> false
+  blossom("hello").valid; // -> false
+  blossom({ r: 0, g: 0, b: 0 }).valid; // -> true
+  blossom({ r: 0, g: 0, v: 0 }).valid; // -> false
   ```
 </details>
 
@@ -382,8 +382,8 @@ petal("#FF0000")
   Returns an alpha channel value of the color.
 
   ```js
-  petal("#FFFFFF").alpha; // -> 1
-  petal("rgba(50 100 150 / 0.5)").alpha; // -> 0.5
+  blossom("#FFFFFF").alpha; // -> 1
+  blossom("rgba(50 100 150 / 0.5)").alpha; // -> 0.5
   ```
 </details>
 
@@ -395,8 +395,8 @@ petal("#FF0000")
   Returns a boolean indicating whether or not a color is opaque.
 
   ```js
-  petal("#FFFFFF").opaque; // -> true
-  petal("rgba(50 100 150 / 0.5)").opaque; // -> false
+  blossom("#FFFFFF").opaque; // -> true
+  blossom("rgba(50 100 150 / 0.5)").opaque; // -> false
   ```
 </details>
 
@@ -408,8 +408,8 @@ petal("#FF0000")
   Returns a boolean indicating whether or not a color is transparent.
 
   ```js
-  petal("#FFFFFF").transparent; // -> false
-  petal("rgba(50 100 150 / 0.5)").transparent; // -> true
+  blossom("#FFFFFF").transparent; // -> false
+  blossom("rgba(50 100 150 / 0.5)").transparent; // -> true
   ```
 </details>
 
@@ -421,8 +421,8 @@ petal("#FF0000")
   Returns the Hue value of the number on the color wheel.
 
   ```js
-  petal("hsl(90deg 50% 50%)").hue; // -> 90
-  petal("hsl(-10deg 50% 50%)").hue; // -> 350
+  blossom("hsl(90deg 50% 50%)").hue; // -> 90
+  blossom("hsl(-10deg 50% 50%)").hue; // -> 350
   ```
 </details>
 
@@ -435,9 +435,9 @@ petal("#FF0000")
   The calculation logic is modified from [Web Content Accessibility Guidelines](https://www.w3.org/TR/AERT/#color-contrast).
 
   ```js
-  petal("#000000").brightness; // -> 0
-  petal("#808080").brightness; // -> 0.5
-  petal("#FFFFFF").brightness; // -> 1
+  blossom("#000000").brightness; // -> 0
+  blossom("#808080").brightness; // -> 0.5
+  blossom("#FFFFFF").brightness; // -> 1
   ```
 </details>
 
@@ -449,9 +449,9 @@ petal("#FF0000")
   A Boolean indicator whether or not a color is light (brightness >= 0.5).
 
   ```js
-  petal("#000000").light; // -> false
-  petal("#808080").light; // -> true
-  petal("#FFFFFF").light; // -> true
+  blossom("#000000").light; // -> false
+  blossom("#808080").light; // -> true
+  blossom("#FFFFFF").light; // -> true
   ```
 </details>
 
@@ -463,9 +463,9 @@ petal("#FF0000")
   A Boolean indicator whether or not a color is dark (brightness < 0.5).
 
   ```js
-  petal("#000000").dark; // -> true
-  petal("#808080").dark; // -> false
-  petal("#FFFFFF").dark; // -> false
+  blossom("#000000").dark; // -> true
+  blossom("#808080").dark; // -> false
+  blossom("#FFFFFF").dark; // -> false
   ```
 </details>
 
