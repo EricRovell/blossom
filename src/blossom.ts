@@ -189,6 +189,9 @@ export class Blossom {
     return rgb2cmyk(this.color);
   }
 
+  /**
+   * Returns the Hue value of the number on the color wheel.
+   */
   get hue(): number {
     const { h } = rgb2hsl(this.color);
     return h;
@@ -211,7 +214,7 @@ export class Blossom {
 /**
  * Parses the given input color and creates a new `Blossom` instance.
  */
-export const petal = (input: Input | Color | Blossom): Blossom => {
+export const blossom = (input: Input | Color | Blossom): Blossom => {
   if (input instanceof Blossom) {
     return input;
   }
