@@ -62,7 +62,7 @@ export class Blossom {
   /**
    * Returns an inverted color.
    */
-  get invert(): Blossom {
+  get inverted(): Blossom {
     return new Blossom(invert(this.color));
   }
 

@@ -205,9 +205,9 @@ it("Makes a color lighter and darker properly", () => {
 });
 
 it("Inverts a color properly", () => {
-  expect(petal("#000").invert.hex).toBe("#FFFFFF");
-  expect(petal("#FFF").invert.hex).toBe("#000000");
-  expect(petal("#123").invert.hex).toBe("#EEDDCC");
+  expect(petal("#000").inverted.hex).toBe("#FFFFFF");
+  expect(petal("#FFF").inverted.hex).toBe("#000000");
+  expect(petal("#123").inverted.hex).toBe("#EEDDCC");
 });
 
 it("Gets color brightness", () => {
