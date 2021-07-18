@@ -92,3 +92,100 @@ petal("#FF0000")
   ```
 </details>
 
+### Color transformations
+
+<details>
+  <summary>
+    <code>.hex</code>
+  </summary>
+
+  Returns the hexadecimal representation of a color.
+  Outputs the modern `#RRGGBBAA` opacity syntax for transparent colors.
+
+  ```js
+  petal("rgb(0, 255, 0)").hex; // -> "#00FF00"
+  petal({ h: 300, s: 100, l: 50 }).hex; // -> "#FF00FF"
+  petal({ r: 255, g: 255, b: 255, a: 0 }).hex; // -> "#FFFFFF00"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.rgb</code>
+  </summary>
+
+  Returns the RGB color model object of a color.
+
+  ```js
+  petal("#ff0000").rgb; // -> { r: 255, g: 0, b: 0, a: 1 }
+  petal({ h: 180, s: 100, l: 50, a: 0.5 }).rgb; // -> { r: 0, g: 255, b: 255, a: 0.5 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toStringRGB</code>
+  </summary>
+
+  Returns the RGB color model string of a color.
+  Outputs the modern whitespace syntax.
+
+  ```js
+  petal("#ff0000").toStringRGB; // -> "rgb(255 0 0)"
+  petal({ h: 180, s: 100, l: 50, a: 0.5 }).toStringRGB; // -> "rgb(0 255 255 / 0.5)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.hsl</code>
+  </summary>
+
+  Returns the HSL color space object of a color.
+
+  ```js
+  petal("#ffff00").hsl; // -> { h: 60, s: 100, l: 50, a: 1 }
+  petal("rgba(0, 0, 255, 0.5)").hsl; // -> { h: 240, s: 100, l: 50, a: 0.5 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toStringHSL</code>
+  </summary>
+
+  Returns the HSL color space string of a color.
+  Outputs the modern whitespace syntax.
+
+  ```js
+  petal("#ffff00").toStringHSL; // -> "hsl(60deg 100% 50%)"
+  petal("rgba(0, 0, 255, 0.5)").toStringHSL; // -> "hsl(240deg 100% 50% / 0.5)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.hsv</code>
+  </summary>
+
+  Returns the HSV color space object of a color.
+
+  ```js
+  petal("#ffff00").hsv; // -> { h: 60, s: 100, v: 100, a: 1 }
+  petal("rgba(0, 255, 255, 0.5)").hsv; // -> { h: 180, s: 100, v: 100, a: 1 }
+  ```
+</details>
+
+
+<details>
+  <summary>
+    <code>.cmyk</code>
+  </summary>
+
+  Returns the CMYK color space object of a color.
+
+  ```js
+  petal("#fffff").cmyk; // -> { c: 0, m: 0, y: 0, k: 0, a: 1 }
+  petal("#555aaa").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
+  ```
+</details>
