@@ -189,3 +189,168 @@ petal("#FF0000")
   petal("#555aaa").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
   ```
 </details>
+
+### Color manipulation
+
+<details>
+  <summary>
+    <code>.setAlpha(value)</code>
+  </summary>
+
+  Changes the alpha channel value and returns a new `Blossom` instance.
+
+  ```js
+  petal("rgb(0, 0, 0)")
+    .setAlpha(0.5)
+    .toStringRGB; // -> "rgb(0 0 0 / 0.5)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.inverted</code>
+  </summary>
+
+  Creates a new `Blossom` instance with an inverted color.
+
+  ```js
+  petal("#aabbcc")
+    .inverted
+    .hex; // -> "#554433"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.saturate(amount = 0.1)</code>
+  </summary>
+
+  Increases the HSL saturation of a color by the given amount.
+
+  ```js
+  petal("#bf4040")
+    .saturate(0.25)
+    .hex; // -> "#df2020"
+
+  petal("hsl(0, 50%, 50%)")
+    .saturate(0.5)
+    .toStringHSL; // -> "hsl(0deg 100% 50%)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.desaturate(amount = 0.1)</code>
+  </summary>
+
+  Decreases the HSL saturation of a color by the given amount.
+
+  ```js
+  petal("#df2020")
+    .saturate(0.25)
+    .hex; // -> "#bf4040"
+
+  petal("hsl(0, 100%, 50%)")
+    .saturate(0.5)
+    .toStringHSL; // -> "hsl(0deg 50% 50%)"  
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.grayscale</code>
+  </summary>
+
+  Creates a gray color with the same lightness as a source color.
+  Same result as `.desaturate(1)`.
+
+  ```js
+  petal("#bf4040")
+    .grayscale
+    .hex; // -> "#808080"
+
+  petal("hsl(0, 100%, 50%)")
+    .grayscale
+    .toStringHSL; // -> "hsl(0deg 0% 50%)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.lighten(amount = 0.1)</code>
+  </summary>
+
+  Increases the HSL lightness of a color by the given amount.
+
+  ```js
+  petal("#000000")
+    .lighten(0.5)
+    .hex; // -> "#808080"
+
+  petal("#223344")
+    .lighten(0.3)
+    .hex; // -> "#5580aa"
+
+  petal("hsl(0, 50%, 50%)")
+    .lighten(0.5)
+    .toStringHSL; // -> "hsl(0deg 50% 100%)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.darken(amount = 0.1)</code>
+  </summary>
+
+  Decreases the HSL lightness of a color by the given amount.
+
+  ```js
+  petal("#ffffff")
+    .darken(0.5)
+    .hex; // -> "#808080"
+
+  petal("#5580aa")
+    .darken(0.3)
+    .hex; // -> "#223344"
+
+  petal("hsl(0, 50%, 100%)")
+    .lighten(0.5)
+    .toStringHSL; // -> "hsl(0, 50%, 50%)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setHue(value)</code>
+  </summary>
+
+  Changes the hue value and returns a new `Blossom` instance.
+
+  ```js
+  petal("hsl(90, 50%, 50%)")
+    .setHue(180)
+    .toStringHSL; // -> "hsl(180deg 50% 50%)"
+
+  petal("hsl(90, 50%, 50%)")
+    .setHue(370)
+    .toStringHSL; // -> "hsl(10deg 50% 50%)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.rotate(amout = 15)</code>
+  </summary>
+
+  Increases the HSL hue value of a color by the given amount.
+
+  ```js
+  petal("hsl(90, 50%, 50%)")
+    .rotate(90)
+    .toStringHSL; // -> "hsl(180deg 50% 50%)"
+
+  petal("hsl(90, 50%, 50%)")
+    .rotate(-180)
+    .toStringHSL; // -> "hsl(270deg 50% 50%)"
+  ```
+</details>
