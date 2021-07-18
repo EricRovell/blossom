@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
+  "module": "./index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage",
+    "build": "rm -rf ./dist/* && rollup --config"
   },
   "keywords": [
     "color",
@@ -19,17 +21,23 @@
   "repository": "ericrovell/blossom",
   "author": "Eric Rovell",
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "jest": "^27.0.5",
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
+    "rollup": "^2.53.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.3",
     "tslib": "^2.3.0",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.5"
   },
   "types": "index.d.ts",
   "jest": {
     "verbose": true,
-    "transform": { "^.+\\.ts$": "ts-jest" },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
     "moduleNameMapper": {
       "^@/(.*)": "<rootDir>/src/$1",
       "^@util/(.*)": "<rootDir>/src/util/$1",
