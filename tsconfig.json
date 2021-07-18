@@ -5,8 +5,9 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "declaration": true,
+    "declarationDir": "./dist",
     "strict": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
       "@/*": [ "./*" ],
@@ -17,5 +18,5 @@
       "@types": [ "types/index.ts" ]
     }
   },
-  "include": [ "./src/**/*", "./tests/**/*" ]
+  "include": [ "./src/**/*", "./test/**/*" ]
 }
