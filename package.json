@@ -1,5 +1,5 @@
 {
-  "name": "blossom",
+  "name": "@username/blossom",
   "version": "1.0.0",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
@@ -18,10 +18,12 @@
     "hsv",
     "cmyk"
   ],
-  "repository": "ericrovell/blossom",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericrovell/blossom.git"
+  },
   "author": "Eric Rovell",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "jest": "^27.0.6",
@@ -46,5 +48,15 @@
       "^@properties": "<rootDir>/src/properties/index.ts"
     },
     "testEnvironment": "node"
+  },
+  "bugs": {
+    "url": "https://github.com/ericrovell/blossom/issues"
+  },
+  "homepage": "https://github.com/ericrovell/blossom#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">=14.0"
   }
 }
