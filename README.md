@@ -16,7 +16,7 @@ Written for studying purposes and usage in pet projects.
 ## Getting started
 
 ```
-npm i blossom
+npm i @ericrovell/blossom
 ```
 
 ```
