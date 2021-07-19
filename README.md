@@ -1,7 +1,5 @@
 # Blossom
 
-![Blossom](assets/logo.svg)
-
 Blossom is a JS library tool for color manipulations and transformations.
 
 Inspired by [colord](https://github.com/omgovich/colord).
