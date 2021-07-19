@@ -1,4 +1,4 @@
-/node_modules
+/assets
 /coverage
 /dist
-.vscode
+/node_modules
