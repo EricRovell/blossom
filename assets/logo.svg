@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205 205">
-  <circle fill="#e30613" opacity="0.7" cx="102.45" cy="52.51" r="52.51"/>
-  <circle fill="#e6007e" opacity="0.7" cx="52.52" cy="88.79" r="52.51"/>
-  <circle fill="#009fe3" opacity="0.7" cx="71.59" cy="147.49" r="52.51"/>
-  <circle fill="#009640" opacity="0.7" cx="133.32" cy="147.49" r="52.51"/>
-  <circle fill="#e94e1b" opacity="0.7" cx="152.39" cy="88.79" r="52.51"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle fill="#e30613" opacity="0.7" cx="102.45" cy="52.51" r="25"/>
+  <circle fill="#e6007e" opacity="0.7" cx="52.52" cy="88.79" r="25"/>
+  <circle fill="#009fe3" opacity="0.7" cx="71.59" cy="147.49" r="25"/>
+  <circle fill="#009640" opacity="0.7" cx="133.32" cy="147.49" r="25"/>
+  <circle fill="#e94e1b" opacity="0.7" cx="152.39" cy="88.79" r="25"/>
 </svg>
