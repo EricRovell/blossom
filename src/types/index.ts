@@ -17,3 +17,8 @@ export {
   Parsers,
   ParseResult
 } from "./parser";
+
+export {
+  Plugin,
+  Plugins
+} from "./plugins";
