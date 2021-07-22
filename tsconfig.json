@@ -14,9 +14,10 @@
       "@models/*": [ "models/*" ],
       "@manipulation": [ "manipulation/index.ts" ],
       "@properties": [ "properties/index.ts" ],
+      "@plugins/*": [ "plugins/*" ],
       "@util/*": [ "util/*" ],
       "@types": [ "types/index.ts" ]
     }
   },
-  "include": [ "./src/**/*", "./test/**/*" ]
+  "include": [ "./src/**/*" ],
 }

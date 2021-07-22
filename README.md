@@ -486,6 +486,56 @@ blossom("#FF0000")
   ```
 </details>
 
+## Plugins
+
+### Usage
+
+To extend the functionality using plugins, the `extend` function should be used:
+
+```js
+import { blossom, extend } from "blossom";
+import { plugin1, plugin2 } from "plugin-path;
+
+extend([
+  plugin1,
+  plugin2
+]);
+```
+
+### Developing plugins
+
+To develop a custom plugin and extend library's functionality, the function should be created which integrates methods using prototype chain.
+
+```js
+export const plugin = (BaseClass) =>  {
+  BaseClass.prototype.newMethod = function() {
+    // ...
+  }
+}
+```
+
+After that it should be provided as the parameter for `extend` function.
+
+### Developing plugins with TypeScript
+
+To develop a plugin with TypeScript, module `blossom` should be declared with the `Blossom` interface described.
+
+```ts
+import { Plugin } from "@blossom/types";
+
+declare module "blossom" {
+  interface Blossom {
+    newMethod(): void;
+  }
+}
+
+export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
+  BaseClass.prototype.newMethod = function() {
+    // ...
+  }
+}
+```
+
 ## Types
 
 Blossom is written in strict TypeScript and ships with types in the library itself.

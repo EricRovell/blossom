@@ -1,4 +1,5 @@
 export { Blossom, blossom } from "./blossom";
+export { extend } from "./extend";
 export { getModel } from "./properties"
 export { random } from "./random";
 
