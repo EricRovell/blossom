@@ -2,17 +2,12 @@ import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
 
 /**
- * Bundle everything into ESM module.
+ * Generates Rollup Plugin Configuration.
  */
-export default {
-  input: "src/index.ts",
-  output: {
-    file: "dist/index.js",
-    format: "es"
-  },
-  plugins: [
+function getPluginsConfig(compilerOptions) {
+  return [
     typescript({
-      declaration: true,
+      tsconfigOverride: { compilerOptions }
     }),
     terser({
       ecma: 2018,
@@ -21,5 +16,19 @@ export default {
       compress: { pure_getters: true },
       format: { wrap_func_args: false }
     })
-  ]
-};
+  ];
+}
+
+/**
+ * Bundle everything into ESM module.
+ */
+export default [
+  {
+    input: "src/index.ts",
+    output: {
+      file: "dist/index.js",
+      format: "es"
+    },
+    plugins: getPluginsConfig({ declaration: true })
+  }
+];
