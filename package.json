@@ -1,6 +1,6 @@
 {
   "name": "@ericrovell/blossom",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
   "module": "./index.js",
@@ -48,7 +48,8 @@
       "^@util/(.*)": "<rootDir>/src/util/$1",
       "^@models/(.*)": "<rootDir>/src/models/$1",
       "^@manipulation": "<rootDir>/src/manipulation/index.ts",
-      "^@properties": "<rootDir>/src/properties/index.ts"
+      "^@properties": "<rootDir>/src/properties/index.ts",
+      "^@plugins/(.*)": "<rootDir>/src/plugins/$1"
     },
     "testEnvironment": "node"
   },
