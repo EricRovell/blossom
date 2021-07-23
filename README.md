@@ -566,6 +566,15 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   color.harmonies("splitcomplimentary")
     .map(color => color.hex); // -> [ "#FF0000", "#00FF80", "#0080FF" ]
   ```
+
+  Harmony color schemes is available as type:
+
+  ```ts
+  import type { Harmony } from "blossom/plugins/harmonies";
+  
+  const harmony: Harmony = "analogous";
+  const notHarmony: Harmony = "round"; // TypeError
+  ```
 </details>
 
 ## Types
