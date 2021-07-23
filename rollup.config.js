@@ -19,10 +19,17 @@ function getPluginsConfig(compilerOptions) {
   ];
 }
 
+const plugins = [
+  "harmonies"
+];
+
 /**
  * Bundle everything into ESM module.
  */
 export default [
+  /**
+   * Core bundle build in ESM
+   */
   {
     input: "src/index.ts",
     output: {
@@ -30,5 +37,16 @@ export default [
       format: "es"
     },
     plugins: getPluginsConfig({ declaration: true })
-  }
+  },
+  /**
+   * Plugins bundles build in ESM
+   */
+  ...plugins.map(name => ({
+    input: `src/plugins/${name}.ts`,
+    output: {
+      file: `dist/plugins/${name}.js`,
+      format: "es"
+    },
+    plugins: getPluginsConfig({ declaration: false })
+  }))
 ];
