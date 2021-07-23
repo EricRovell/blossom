@@ -536,6 +536,38 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 }
 ```
 
+### Included plugins
+
+<details>
+  <summary>
+    <code>
+      Harmonies
+    </code>
+  </summary>
+
+  Provides functionatity to generate [harmony colors](https://en.wikipedia.org/wiki/Harmony_(color)).
+
+  ```js
+  import { blossom, extends } from "blossom";
+  import { harmonies } from "blossom/plugins/harmonies";
+
+  const color = blossom("FF0000");
+
+  color.harmonies("analogous")
+    .map(color => color.hex); // -> [ "#FF0080", "#FF0000", "#FF8000"]
+  color.harmonies("complimentary")
+    .map(color => color.hex); // -> [ "#FF0000", "#00FFFF" ]
+  color.harmonies("rectangle")
+    .map(color => color.hex); // -> [ "#FF0000", "#FFFF00", "#00FFFF", "#0000FF" ]
+  color.harmonies("tetradic")
+    .map(color => color.hex); // -> [ "#FF0000", "#80FF00", "#00FFFF", "#8000FF" ]
+  color.harmonies("triadic"  )
+    .map(color => color.hex); // -> [ "#FF0000", "#00FF00", "#0000FF" ]
+  color.harmonies("splitcomplimentary")
+    .map(color => color.hex); // -> [ "#FF0000", "#00FF80", "#0080FF" ]
+  ```
+</details>
+
 ## Types
 
 Blossom is written in strict TypeScript and ships with types in the library itself.
