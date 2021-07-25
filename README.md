@@ -2,34 +2,34 @@
 
 <div align="center">
   <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/npm/v/@ericrovell/blossom/" />
+    <img alt="npm package version" src="https://badgen.net/npm/v/@ericrovell/blossom/" />
   </a>
   <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/npm/types/@ericrovell/blossom/" />
+    <img alt="types included" src="https://badgen.net/npm/types/@ericrovell/blossom/" />
   </a>
   <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/npm/dt/@ericrovell/blossom/" />
+    <img alt="downloads count" src="https://badgen.net/npm/dt/@ericrovell/blossom/" />
   </a>
   <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/npm/node/@ericrovell/blossom/" />
+    <img alt="node version" src="https://badgen.net/npm/node/@ericrovell/blossom/" />
   </a>
   <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/npm/license/@ericrovell/blossom/" />
+    <img alt="licence" src="https://badgen.net/npm/license/@ericrovell/blossom/" />
   </a>
 </div>
 
 <div align="center">
-  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/bundlephobia/min/@ericrovell/blossom/" />
+  <a href="https://bundlephobia.com/package/@ericrovell/blossom">
+    <img alt="minified size" src="https://badgen.net/bundlephobia/min/@ericrovell/blossom/" />
   </a>
-  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/bundlephobia/minzip/@ericrovell/blossom/" />
+  <a href="https://bundlephobia.com/package/@ericrovell/blossom">
+    <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/@ericrovell/blossom/" />
   </a>
-  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/bundlephobia/dependency-count/@ericrovell/blossom/" />
+  <a href="https://bundlephobia.com/package/@ericrovell/blossom">
+    <img alt="dependency count" src="https://badgen.net/bundlephobia/dependency-count/@ericrovell/blossom/" />
   </a>
-  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
-    <img alt="npm" src="https://badgen.net/bundlephobia/tree-shaking/@ericrovell/blossom/" />
+  <a href="https://bundlephobia.com/package/@ericrovell/blossom">
+    <img alt="tree-shaking" src="https://badgen.net/bundlephobia/tree-shaking/@ericrovell/blossom/" />
   </a>
 </div>
 
