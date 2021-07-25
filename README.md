@@ -577,6 +577,34 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   ```
 </details>
 
+<details>
+  <summary>
+    <code>
+      Monochromatic
+    </code>
+  </summary>
+
+  Provides functionatity to generate [monochromatic colors](https://en.wikipedia.org/wiki/Monochromatic_color) as:
+
+  - Tints;
+  - Shades;
+  - Tones.
+
+  ```js
+  import { blossom, extends } from "blossom";
+  import { monochromatic } from "blossom/plugins/monochromatic";
+
+  const color = blossom("FF0000");
+
+  color.tints(4).map(tint => tint.hex); // -> [ "#FF0000", "#FF4242", "#FF8585", "#FFC7C7", "#FFFFFF" ]
+  color.shades(4).map(shade => shade.hex); // -> [ "#FF0000", "#BD0000", "#7A0000", "#380000", "#000000" ]
+  color.tones(4).map(tone => tone.hex); // -> [ "#FF0000", "#DF2020", "#BF4040", "#9F6060", "#808080" ]
+  ```
+
+  All results include the original color.
+
+</details>
+
 ## Types
 
 Blossom is written in strict TypeScript and ships with types in the library itself.
