@@ -67,6 +67,20 @@ export class Blossom {
   }
 
   /**
+   * Returns lightness value from HSL color model with more precision.
+  */
+  get lightness() {
+    return rgb2hsl(this.color).l;
+  }
+
+  /**
+   * Returns saturation value from HSL color model with more precision.
+  */
+  get saturation() {
+    return rgb2hsl(this.color).s;
+  }
+
+  /**
    * Calculate the brightness level of a color in range [0; 1].
    */
   get brightness(): number {
