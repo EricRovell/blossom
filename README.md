@@ -1,6 +1,41 @@
 # Blossom
 
+<div align="center">
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/npm/v/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/npm/types/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/npm/dt/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/npm/node/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/npm/license/@ericrovell/blossom/" />
+  </a>
+</div>
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/bundlephobia/min/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/bundlephobia/minzip/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/bundlephobia/dependency-count/@ericrovell/blossom/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/blossom">
+    <img alt="npm" src="https://badgen.net/bundlephobia/tree-shaking/@ericrovell/blossom/" />
+  </a>
+</div>
+
+<p align="center">
 Blossom is a JS library tool for color manipulations and transformations.
+</p>
 
 Inspired by [colord](https://github.com/omgovich/colord).
 Written for studying purposes and usage in pet projects.
