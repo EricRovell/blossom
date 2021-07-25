@@ -55,8 +55,8 @@ export function rgb2hsl(color: ColorRGB): ColorHSL {
 
   return {
     h: round(hue),
-    s: round(saturation * 100),
-    l: round(lightness * 100),
+    s: saturation * 100,
+    l: lightness * 100,
     a
   };
 }
