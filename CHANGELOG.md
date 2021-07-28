@@ -1,12 +1,18 @@
 # Blossom Changelog
 
+## 1.3.0 (2021-07-28)
+
+- Feature: build-in *Monochromatic* that provides functionatity to generate [monochromatic color](https://en.wikipedia.org/wiki/Monochromatic_color) palletes (tints, shades, tones);
+- Feature: `.saturation` getter for more precise value of HSL color model saturation;
+- Feature: `.lightness` getter for more precise value of HSL color model lightness;
+
 ## 1.2.0 (2021-07-23)
 
-- *Harmonies* plugin implementation;
+- Feature: *Harmonies* plugin implementation;
 
 ## 1.1.0 (2021-07-22)
 
-- **Plugin API** implementation;
+- Feature: **Plugin API** implementation;
 
 ## 1.0.0 (2021-07-19)
 
