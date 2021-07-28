@@ -58,7 +58,6 @@ describe("Monochromatic colors plugin", () => {
       "#FFFFFF"
     ]);
   });
-
   it("Generates shades", () => {
     expect(blossom("#ff0000").shades(10).map(color => color.hex)).toEqual([
       "#FF0000",
@@ -74,9 +73,8 @@ describe("Monochromatic colors plugin", () => {
       "#000000"
     ]);
   });
-
   it("Generates tones", () => {
-    expect(blossom("#ff0000").tones(10).map(color => color.hex)).toEqual([
+    expect(blossom("#FF0000").tones(10).map(color => color.hex)).toEqual([
       "#FF0000",
       "#F20D0D",
       "#E61919",
@@ -90,16 +88,28 @@ describe("Monochromatic colors plugin", () => {
       "#808080"
     ]);
   });
-
   it("Won't generate tints for pure white color", () => {
     expect(blossom("#FFF").tints().map(color => color.hex)).toEqual([]);
   });
-
   it("Won't generate shades for pure black color", () => {
     expect(blossom("#000").shades().map(color => color.hex)).toEqual([]);
   });
-
   it("Won't generate tones for pure gray color", () => {
     expect(blossom("#808080").tones().map(color => color.hex)).toEqual([]);
+  });
+  it("Won't generate enought tints for color too close to pure white", () => {
+    expect(blossom("#FAFAFA").tints(10).map(color => color.hex)).toEqual([
+      "#FAFAFA", "#FDFDFD", "#FFFFFF"
+    ]);
+  });
+  it("Won't generate enought shades for color too close to pure black", () => {
+    expect(blossom("#050505").shades(10).map(color => color.hex)).toEqual([
+      "#050505", "#020202", "#000000"
+    ]);
+  });
+  it("Won't generate enought tones for color too close to pure gray", () => {
+    expect(blossom("#827D7D").tones(10).map(color => color.hex)).toEqual([
+      "#827D7D", "#817E7E", "#808080"
+    ]);
   });
 });
