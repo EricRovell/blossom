@@ -601,8 +601,18 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   color.tones(4).map(tone => tone.hex); // -> [ "#FF0000", "#DF2020", "#BF4040", "#9F6060", "#808080" ]
   ```
 
-  All results include the original color.
+  The original color is always included as first palette item.
 
+  If there is not enough space between colors to generate **required** number of colors, less number of colors will be generated. For example, generating 10 shades for `#050505` is not practical as `#000000` is too close and all shades will be indistinguishable:
+
+  ```js
+  import { blossom, extends } from "blossom";
+  import { monochromatic } from "blossom/plugins/monochromatic";
+
+  blossom("#FAFAFA").tints(10).map(tint => tint.hex); // -> [ "#FAFAFA", "#FDFDFD", "#FFFFFF" ]
+  blossom("#050505").shades(10).map(shade => shade.hex); // -> [ "#050505", "#020202", "#000000" ]
+  blossom("#827D7D").tones(10).map(tone => tone.hex); // -> [ "#827D7D", "#817E7E", "#808080" ]
+  ```
 </details>
 
 ## Types
