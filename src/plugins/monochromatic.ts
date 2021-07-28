@@ -20,31 +20,39 @@ declare module "blossom" {
   }
 }
 
+/**
+ * Provides functionatity to generate [monochromatic colors](https://en.wikipedia.org/wiki/Monochromatic_color) as:
+ * 
+ * - Tints;
+ * - Shades;
+ * - Tones.
+ */
 export const pluginMonochromatic: Plugin = (BaseClass): void => {
   /**
    * Generates an array of increments (decrements)
    */
-  function getIncrements(from: number, to: number, steps: number = 3): number[] {
+  function getIncrements(from: number, to: number, steps: number = 5): number[] {
+    const delta = round(Math.abs(from - to));
+
     /**
-     * Handle cases:
-     *  1. Pure colors (pure white etc.);
-     *  2. Too little step, less than 1% has no sense;
-     *  3. Too litle variations.
+     * Cannot generate pallete from pure colors and too close to them.
      */
-    if (Math.abs(from - to) < 1 || steps < 3) {
+    if (delta < 1) {
       return [];
     }
 
     /**
-     * As this function used to alter lightness and saturation increments,
-     * we will clamp the step at value = 1, as it depicts 1%.
+     * We consider an increments only as per 1% of lightness or saturation.
+     * User may specify too big palette for a color too close to pure.
+     * That's why the steps should be clamped.
      */
-    const delta = Math.abs(from - to);
-    const step = round(clamp(delta / steps, 1, delta) / 100, 2);
+    const stepsClamped = clamp(steps, 1, delta);
+    const step = round(clamp(delta / stepsClamped, 1, delta) / 100, 2);
     const shifts = [];
-    for (let i = 0; i <= steps; i++) {
+    for (let i = 0; i <= stepsClamped; i++) {
       shifts.push(step * i);
     }
+
     return shifts.map(val => round(val, 2));
   }
 
