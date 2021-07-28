@@ -5,7 +5,8 @@
   "main": "./index.js",
   "module": "./index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --config ./jest.config.json --coverage",
+    "check-types": "tsc --noEmit true",
     "build": "rm -rf ./dist/* && rollup --config",
     "build:post": "cp *.json dist && cp *.md dist",
     "npm:release": "cd dist && npm publish --access public",
@@ -39,21 +40,6 @@
     "typescript": "^4.3.5"
   },
   "types": "index.d.ts",
-  "jest": {
-    "verbose": true,
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "moduleNameMapper": {
-      "^@/(.*)": "<rootDir>/src/$1",
-      "^@util/(.*)": "<rootDir>/src/util/$1",
-      "^@models/(.*)": "<rootDir>/src/models/$1",
-      "^@manipulation": "<rootDir>/src/manipulation/index.ts",
-      "^@properties": "<rootDir>/src/properties/index.ts",
-      "^@plugins/(.*)": "<rootDir>/src/plugins/$1"
-    },
-    "testEnvironment": "node"
-  },
   "bugs": {
     "url": "https://github.com/ericrovell/blossom/issues"
   },
