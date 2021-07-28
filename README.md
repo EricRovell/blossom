@@ -612,6 +612,44 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   ```
 </details>
 
+<details>
+  <summary>
+    <code>
+      Monochromatic
+    </code>
+  </summary>
+
+  Provides functionatity to generate [monochromatic colors](https://en.wikipedia.org/wiki/Monochromatic_color) as:
+
+  - Tints;
+  - Shades;
+  - Tones.
+
+  ```js
+  import { blossom, extends } from "blossom";
+  import { monochromatic } from "blossom/plugins/monochromatic";
+
+  const color = blossom("FF0000");
+
+  color.tints(4).map(tint => tint.hex); // -> [ "#FF0000", "#FF4242", "#FF8585", "#FFC7C7", "#FFFFFF" ]
+  color.shades(4).map(shade => shade.hex); // -> [ "#FF0000", "#BD0000", "#7A0000", "#380000", "#000000" ]
+  color.tones(4).map(tone => tone.hex); // -> [ "#FF0000", "#DF2020", "#BF4040", "#9F6060", "#808080" ]
+  ```
+
+  The original color is always included as first palette item.
+
+  If there is not enough space between colors to generate **required** number of colors, less number of colors will be generated. For example, generating 10 shades for `#050505` is not practical as `#000000` is too close and all shades will be indistinguishable:
+
+  ```js
+  import { blossom, extends } from "blossom";
+  import { monochromatic } from "blossom/plugins/monochromatic";
+
+  blossom("#FAFAFA").tints(10).map(tint => tint.hex); // -> [ "#FAFAFA", "#FDFDFD", "#FFFFFF" ]
+  blossom("#050505").shades(10).map(shade => shade.hex); // -> [ "#050505", "#020202", "#000000" ]
+  blossom("#827D7D").tones(10).map(tone => tone.hex); // -> [ "#827D7D", "#817E7E", "#808080" ]
+  ```
+</details>
+
 ## Types
 
 Blossom is written in strict TypeScript and ships with types in the library itself.
