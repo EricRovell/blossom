@@ -18,19 +18,19 @@ declare module "blossom" {
 }
 
 export const pluginHarmonies: Plugin = (BaseClass): void =>  {
-  /**
+	/**
    * All harmony colors are just hue-shifted colors of particular angles.
    */
-  const hueShifts: Record<Harmony, number[]> = {
-    analogous: [ -30, 0, 30 ],
-    complimentary: [ 0, 180 ],
-    rectangle: [ 0, 60, 180, 240 ],
-    tetradic: [ 0, 90, 180, 270 ],
-    triadic: [ 0, 120, 240 ],
-    splitcomplimentary: [ 0, 150, 210 ]
-  };
+	const hueShifts: Record<Harmony, number[]> = {
+		analogous: [ -30, 0, 30 ],
+		complimentary: [ 0, 180 ],
+		rectangle: [ 0, 60, 180, 240 ],
+		tetradic: [ 0, 90, 180, 270 ],
+		triadic: [ 0, 120, 240 ],
+		splitcomplimentary: [ 0, 150, 210 ]
+	};
 
-  BaseClass.prototype.harmonies = function(type = "complimentary") {
-    return hueShifts[type].map(shift => this.rotate(shift))
-  }
-}
+	BaseClass.prototype.harmonies = function(type = "complimentary") {
+		return hueShifts[type].map(shift => this.rotate(shift));
+	};
+};

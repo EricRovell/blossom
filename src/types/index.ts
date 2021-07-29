@@ -1,24 +1,24 @@
 export type {
-  ColorModel,
-  Color,
-  ColorObject,
-  ColorRGB,
-  ColorHEX,
-  ColorHSL,
-  ColorHSV,
-  ColorHSB,
-  ColorCMYK
+	ColorModel,
+	Color,
+	ColorObject,
+	ColorRGB,
+	ColorHEX,
+	ColorHSL,
+	ColorHSV,
+	ColorHSB,
+	ColorCMYK
 } from "./color";
 
 export { 
-  InputObject,
-  Input,
-  Parser,
-  Parsers,
-  ParseResult
+	InputObject,
+	Input,
+	Parser,
+	Parsers,
+	ParseResult
 } from "./parser";
 
 export {
-  Plugin,
-  Plugins
+	Plugin,
+	Plugins
 } from "./plugins";

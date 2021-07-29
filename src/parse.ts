@@ -10,55 +10,55 @@ import type { Input, Parser, Parsers, ParseResult, InputObject } from "@types";
  * Parsers are broken into two groups: for string and object inputs.
  */
 export const parsers: Parsers = {
-  "string": [
-    {
-      model: "rgb",
-      parser: parseRGBString
-    },
-    {
-      model: "hex",
-      parser: hex2rgb
-    },
-    {
-      model: "hsl",
-      parser: parseHSLString
-    },
-  ],
-  "object": [
-    {
-      model: "rgb",
-      parser: parseRGBColor
-    },
-    {
-      model: "hsl",
-      parser: parseHSLColor
-    },
-    {
-      model: "hsv",
-      parser: parseHSVColor
-    },
-    {
-      model: "cmyk",
-      parser: parseCMYKColor
-    }
-  ]
+	"string": [
+		{
+			model: "rgb",
+			parser: parseRGBString
+		},
+		{
+			model: "hex",
+			parser: hex2rgb
+		},
+		{
+			model: "hsl",
+			parser: parseHSLString
+		},
+	],
+	"object": [
+		{
+			model: "rgb",
+			parser: parseRGBColor
+		},
+		{
+			model: "hsl",
+			parser: parseHSLColor
+		},
+		{
+			model: "hsv",
+			parser: parseHSVColor
+		},
+		{
+			model: "cmyk",
+			parser: parseCMYKColor
+		}
+	]
 };
 
 /**
  * Attempts to find the correct parser function for known type of input. 
  */
 function findValidColor<T extends Input>(input: T, parsers: Parser<T>[]): ParseResult | null {
-  for (let { model, parser } of parsers) {
-    const color = parser(input);
-    if (color) {
-      return {
-        color,
-        model
-      };
-    }
-  }
+	for (const { model, parser } of parsers) {
+		const color = parser(input);
+		if (color) {
+			return {
+				color,
+				model
+			};
+		}
+	}
 
-  return null;
+	return null;
 }
 
 /**
@@ -67,13 +67,13 @@ function findValidColor<T extends Input>(input: T, parsers: Parser<T>[]): ParseR
  * and the detected color model of the input.
  */
 export function parse(input: Input): ParseResult | null {
-  if (typeof input === "string") {
-    return findValidColor<string>(input.trim(), parsers.string);
-  }
+	if (typeof input === "string") {
+		return findValidColor<string>(input.trim(), parsers.string);
+	}
 
-  if (typeof input === "object" && input !== null) {
-    return findValidColor<InputObject>(input, parsers.object);
-  }
+	if (typeof input === "object" && input !== null) {
+		return findValidColor<InputObject>(input, parsers.object);
+	}
 
-  return null;
+	return null;
 }

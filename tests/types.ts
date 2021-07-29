@@ -1,10 +1,10 @@
 import type {
-  ColorCMYK,
-  ColorHEX,
-  ColorHSL,
-  ColorHSV,
-  ColorRGB,
-  Input
+	ColorCMYK,
+	ColorHEX,
+	ColorHSL,
+	ColorHSV,
+	ColorRGB,
+	Input
 } from "@types";
 
 export interface TestColor {

@@ -12,7 +12,7 @@ export interface Parser<T extends Input> {
 export interface Parsers {
   string: Parser<string>[];
   object: Parser<InputObject>[];
-};
+}
 
 export interface ParseResult {
   color: ColorRGB;

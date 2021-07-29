@@ -6,5 +6,5 @@ import { ColorRGB } from "@types";
  * https://en.wikipedia.org/wiki/YIQ
  */
 export function calcBrightness({ r, g, b }: ColorRGB): number {
-  return (r * 299 + g * 587 + b * 114) / 1000 / 255;
+	return (r * 299 + g * 587 + b * 114) / 1000 / 255;
 }
