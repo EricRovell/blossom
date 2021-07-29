@@ -66,7 +66,7 @@ export function rgb2hsl(color: ColorRGB): ColorHSL {
  * Convert RGB Color Model object to HEX string.
  */
 export function rgb2hex(color: ColorRGB): ColorHEX {
-	const { r, g, b, a } = roundRGB(color);
+	const { r, g, b, a = 1 } = roundRGB(color);
 
 	const alpha = a < 1
 		? toHexString(round(a * 255))
