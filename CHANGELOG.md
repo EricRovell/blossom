@@ -1,5 +1,9 @@
 # Blossom Changelog
 
+## 1.3.1 (2021-08-02)
+
+- Providing CommonJS build;
+
 ## 1.3.0 (2021-07-28)
 
 - Feature: build-in *Monochromatic* that provides functionatity to generate [monochromatic color](https://en.wikipedia.org/wiki/Monochromatic_color) palletes (tints, shades, tones);

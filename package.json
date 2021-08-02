@@ -1,9 +1,9 @@
 {
   "name": "@ericrovell/blossom",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
-  "module": "./index.js",
+  "module": "./index.mjs",
   "scripts": {
     "lint": "eslint src/**/*.ts tests/**/*.ts",
     "test": "jest --config ./jest.config.json --coverage",
@@ -12,6 +12,23 @@
     "build:post": "cp *.json dist && cp *.md dist",
     "npm:release": "cd dist && npm publish --access public",
     "release": "npm run build && npm run build:post && npm run npm:release"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.mjs"
+    },
+    "./plugins/harmonies": {
+      "import": "./plugins/harmonies.mjs",
+      "require": "./plugins/harmonies.js",
+      "default": "./plugins/harmonies.mjs"
+    },
+    "./plugins/monochromatic": {
+      "import": "./plugins/monochromatic.mjs",
+      "require": "./plugins/monochromatic.js",
+      "default": "./plugins/monochromatic.mjs"
+    }
   },
   "keywords": [
     "color",
