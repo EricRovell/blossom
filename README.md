@@ -56,7 +56,7 @@ npm i @ericrovell/blossom
 ```
 
 ```
-import { blossom } from "blossom";
+import { blossom } from "@ericrovell/blossom";
 
 blossom("#FF0000")
   .grayscale
@@ -86,7 +86,7 @@ blossom("#FF0000")
   Parses the given input and creates a new Blossom instance.
 
   ```js
-  import { blossom } from "blossom";
+  import { blossom } from "@ericrovell/blossom";
 
   // string input
   blossom("#ABC");
@@ -119,7 +119,7 @@ blossom("#FF0000")
   Parses a color and returns a color model name of the given input.
 
   ```js
-    import { getModel } from "blossom";
+    import { getModel } from "@ericrovell/blossom";
 
     getModel("#ADC123"); // -> "hex"
     getModel({ r: 13, g: 237, b: 162 }); // -> "rgb"
@@ -541,7 +541,7 @@ blossom("#FF0000")
   Creates new instance with a random color.
 
   ```js
-  import { random } from "colord";
+  import { random } from "@ericrovell/blossom";
 
   random().hex; // -> "#01C8EC"
   random().setAlpha(0.5).rgb; // -> { r: 13, g: 237, b: 162, a: 0.5 }
@@ -555,7 +555,7 @@ blossom("#FF0000")
 To extend the functionality using plugins, the `extend` function should be used:
 
 ```js
-import { blossom, extend } from "blossom";
+import { blossom, extend } from "@ericrovell/blossom";
 import { plugin1, plugin2 } from "plugin-path;
 
 extend([
@@ -610,7 +610,7 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   Provides functionatity to generate [harmony colors](https://en.wikipedia.org/wiki/Harmony_(color)).
 
   ```js
-  import { blossom, extends } from "blossom";
+  import { blossom, extends } from "@ericrovell/blossom";
   import { harmonies } from "blossom/plugins/harmonies";
 
   const color = blossom("FF0000");
@@ -653,7 +653,7 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   - Tones.
 
   ```js
-  import { blossom, extends } from "blossom";
+  import { blossom, extends } from "@ericrovell/blossom";
   import { monochromatic } from "blossom/plugins/monochromatic";
 
   const color = blossom("FF0000");
@@ -668,7 +668,7 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   If there is not enough space between colors to generate **required** number of colors, less number of colors will be generated. For example, generating 10 shades for `#050505` is not practical as `#000000` is too close and all shades will be indistinguishable:
 
   ```js
-  import { blossom, extends } from "blossom";
+  import { blossom, extends } from "@ericrovell/blossom";
   import { monochromatic } from "blossom/plugins/monochromatic";
 
   blossom("#FAFAFA").tints(10).map(tint => tint.hex); // -> [ "#FAFAFA", "#FDFDFD", "#FFFFFF" ]
