@@ -1,6 +1,10 @@
 # Blossom
 
 <div align="center">
+  <img src="./assets/logo.svg" alt="Flower" width="150px" style="padding: 1em">
+</div>
+
+<div align="center">
   <a href="https://www.npmjs.com/package/@ericrovell/blossom">
     <img alt="npm package version" src="https://badgen.net/npm/v/@ericrovell/blossom/" />
   </a>
@@ -36,9 +40,6 @@
 <p align="center">
 Blossom is a JS library tool for color manipulations and transformations.
 </p>
-
-Inspired by [colord](https://github.com/omgovich/colord).
-Written for studying purposes and usage in pet projects.
 
 ## Features:
 
@@ -463,6 +464,32 @@ blossom("#FF0000")
 
 <details>
   <summary>
+    <code>.saturation</code>
+  </summary>
+
+  Returns the saturation value of the number.
+
+  ```js
+  blossom("hsl(90deg 50% 50%)").saturation; // -> 0.5
+  blossom("hsl(-10deg 98% 50%)").saturation; // -> 0.98
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.lightness</code>
+  </summary>
+
+  Returns the lightness value of the number.
+
+  ```js
+  blossom("hsl(90deg 50% 50%)").lightness; // -> 0.5
+  blossom("hsl(-10deg 50% 46%)").lightness; // -> 0.46
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.brightness</code>
   </summary>
 
@@ -662,3 +689,9 @@ import type { ColorRGB, ColorHSL } from "blossom/types";
 const foo: ColorHSL = { h: 0, s: 0, l: 0 };
 const bar: ColorRGB = { r: 0, g: 0, v: 0 }; // type error!
 ```
+
+## Inspiration
+
+It was a long time I was thinking about this project. There were two unsuccessfull attemps, it was not thoughfull enough.
+
+This project is inspired by fantastic [colord](https://github.com/omgovich/colord) project, that gave me the idea about architecture and implementation.
