@@ -1,5 +1,9 @@
 # Blossom Changelog
 
+## 1.3.2 (2021-08-03):
+
+- Fixed `.saturation` and `.lightness` properties precision degree.
+
 ## 1.3.1 (2021-08-02)
 
 - Providing CommonJS build;

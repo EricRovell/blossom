@@ -70,14 +70,14 @@ export class Blossom {
 	 * Returns lightness value from HSL color model with more precision.
 	*/
 	get lightness(): number {
-		return rgb2hsl(this.color).l;
+		return round(rgb2hsl(this.color).l, 2);
 	}
 
 	/**
 	 * Returns saturation value from HSL color model with more precision.
 	*/
 	get saturation(): number {
-		return rgb2hsl(this.color).s;
+		return round(rgb2hsl(this.color).s, 2);
 	}
 
 	/**
