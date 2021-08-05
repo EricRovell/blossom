@@ -391,7 +391,7 @@ blossom("#FF0000")
   ```
 </details>
 
-### Color analysis
+### Color properties
 
 <details>
   <summary>
@@ -528,6 +528,54 @@ blossom("#FF0000")
   blossom("#000000").dark; // -> true
   blossom("#808080").dark; // -> false
   blossom("#FFFFFF").dark; // -> false
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.luminance</code>, available via <strong>a11y</strong> plugin
+  </summary>
+
+  Returns the relative luminance of a color, normalized to range [0, 1] as from pure black to pure white according to [WCAG 2.0](https://www.w3.org/TR/WCAG20/#relativeluminancedef).
+
+  ```js
+  blossom("#000000").luminance; // 0
+  blossom("#808080").luminance; // 0.22
+  blossom("#ffffff").luminance; // 1
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.contrast(color = "#FFF")</code>, available via <strong>a11y</strong> plugin
+  </summary>
+
+  Calculates a contrast ratio for a pair of colors.
+  
+  The luminance difference lies in range [1 (white on white), 21 (black on white)]. [WCAG](https://webaim.org/articles/contrast/) required a ratio at least 4.5 for normal text and 3:1 for large one.
+
+  ```js
+  blossom("#000000").contrast(); // 21 (black on white)
+  blossom("#ffffff").contrast("#000000"); // 21 (white on black)
+  blossom("#777777").contrast(); // 4.47 (gray on white)
+  blossom("#ff0000").contrast(); // 3.99 (red on white)
+  blossom("#0000ff").contrast("#ff000"); // 2.14 (blue on red)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.readable(color = "#FFF", options?)</code>, available via <strong>a11y</strong> plugin
+  </summary>
+
+  Checks that a background and text color pair is readable according to [WCAG 2.0 Contrast and Color Requirements](https://webaim.org/articles/contrast/).
+
+  ```js
+  blossom("#000000").isReadable(); // true (normal black text on white bg conforms to WCAG AA)
+  blossom("#777777").isReadable(); // false (normal gray text on white bg conforms to WCAG AA)
+  blossom("#ffffff").isReadable("#000000"); // true (normal white text on black bg conforms to WCAG AA)
+  blossom("#e60000").isReadable("#ffff47", { level: "AAA" }); // false (normal red text on yellow bg does not conform to WCAG AAA)
+  blossom("#e60000").isReadable("#ffff47", { level: "AAA", size: "large" }); // true (large red text on yellow bg conforms to WCAG AAA)
   ```
 </details>
 
@@ -675,6 +723,39 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   blossom("#050505").shades(10).map(shade => shade.hex); // -> [ "#050505", "#020202", "#000000" ]
   blossom("#827D7D").tones(10).map(tone => tone.hex); // -> [ "#827D7D", "#817E7E", "#808080" ]
   ```
+</details>
+
+<details>
+  <summary>
+    <code>
+      A11Y (Accessibility)
+    </code>
+  </summary>
+
+  Adds accessibility and color contrast utilities working according to [Web Content Accessibility Guidelines 2.0](https://www.w3.org/TR/WCAG20/).
+
+  ```js
+  import { blossom, extend } from "@ericrovell/blossom";
+  import a11yPlugin from "@ericrovell/blossom/plugins/a11y";
+
+  extend([a11yPlugin]);
+
+  blossom("#000000").luminance; // 0
+  blossom("#CCDDEE").luminance; // 0.71
+  blossom("#FFFFFF").luminance; // 1
+
+  blossom("#000000").contrast(); // 21 (black on white)
+  blossom("#FFFFFF").contrast("#000000"); // 21 (white on black)
+  blossom("#0000ff").contrast("#FF000"); // 2.14 (blue on red)
+
+  blossom("#000000").readable(); // true (black on white)
+  blossom("#FFFFFF").readable("#000000"); // true (white on black)
+  blossom("#777777").readable(); // false (gray on white)
+  blossom("#E60000").readable("#FFFF47"); // true (normal red text on yellow bg conforms to WCAG AA)
+  blossom("#E60000").readable("#FFFF47", { level: "AAA" }); // false (normal red text on yellow bg does not conform to WCAG AAA)
+  blossom("#E60000").readable("#FFFF47", { level: "AAA", size: "large" }); // true (large red text on yellow bg conforms to WCAG AAA)
+  ```
+
 </details>
 
 ## Types

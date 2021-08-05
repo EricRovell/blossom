@@ -1,6 +1,6 @@
 {
   "name": "@ericrovell/blossom",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
   "module": "./index.mjs",
@@ -10,8 +10,7 @@
     "check-types": "tsc --noEmit true",
     "build": "rm -rf ./dist/* && rollup --config",
     "build:post": "cp *.json dist && cp *.md dist",
-    "npm:release": "cd dist && npm publish --access public",
-    "release": "npm run build && npm run build:post && npm run npm:release"
+    "release": "cd dist && npm publish --access public"
   },
   "exports": {
     ".": {
@@ -28,6 +27,11 @@
       "import": "./plugins/monochromatic.mjs",
       "require": "./plugins/monochromatic.js",
       "default": "./plugins/monochromatic.mjs"
+    },
+    "./plugins/a11y": {
+      "import": "./plugins/a11y.mjs",
+      "require": "./plugins/a11y.js",
+      "default": "./plugins/a11y.mjs"
     }
   },
   "keywords": [
@@ -39,7 +43,9 @@
     "hex",
     "hsl",
     "hsv",
-    "cmyk"
+    "cmyk",
+    "monochromatic colors",
+    "a11y"
   ],
   "repository": {
     "type": "git",
@@ -69,6 +75,6 @@
     "test": "tests"
   },
   "engines": {
-    "node": ">=14.0"
+    "node": ">=12.0"
   }
 }
