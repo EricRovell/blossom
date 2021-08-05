@@ -9,6 +9,14 @@ export function round(number: number, digits = 0): number {
 }
 
 /**
+ * Round the number up to the desired precision.
+ */
+export function floor(number: number, digits = 0): number {
+	const multiplicator = Math.pow(10, digits);
+	return Math.floor(number * multiplicator) / multiplicator;
+}
+
+/**
  * Clamps a value between an upper and lower bound.
  * NaN is clamped to the lower bound
  */
