@@ -2,6 +2,7 @@ import { blossom } from "@/blossom";
 import { extend } from "@/extend";
 import { pluginHarmonies } from "@plugins/harmonies";
 import { pluginMonochromatic } from "@plugins/monochromatic";
+import { pluginA11Y } from "@plugins/a11y";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -111,5 +112,49 @@ describe("Monochromatic colors plugin", () => {
 		expect(blossom("#827D7D").tones(10).map(color => color.hex)).toEqual([
 			"#827D7D", "#817E7E", "#808080"
 		]);
+	});
+});
+
+describe("A11Y plugin", () => {
+	/**
+	 * Test results: // https://webaim.org/resources/contrastchecker/
+	 */
+	extend([ pluginA11Y ]);
+
+	it("Calculates the perceived luminance of a color", () => {
+		expect(blossom("#000000").luminance).toBe(0);
+		expect(blossom("#E42189").luminance).toBe(0.19);
+		expect(blossom("#FF0000").luminance).toBe(0.21);
+		expect(blossom("#808080").luminance).toBe(0.22);
+		expect(blossom("#AABBCC").luminance).toBe(0.48);
+		expect(blossom("#CCDDEE").luminance).toBe(0.71);
+		expect(blossom("#FFFFFF").luminance).toBe(1);
+	});
+	it("Calculates the contrast ratio between two colors", () => {
+		expect(blossom("#000000").contrast()).toBe(21);
+		expect(blossom("#FFFFFF").contrast("#000000")).toBe(21);
+		expect(blossom("#777777").contrast()).toBe(4.47);
+		expect(blossom("#FF0000").contrast()).toBe(3.99);
+		expect(blossom("#00FF00").contrast()).toBe(1.37);
+		expect(blossom("#2e2e2e").contrast()).toBe(13.57);
+		expect(blossom("#0079AD").contrast()).toBe(4.84);
+		expect(blossom("#0079AD").contrast("#2E2E2E")).toBe(2.8);
+		expect(blossom("#e42189").contrast("#0D0330")).toBe(4.54);
+		expect(blossom("#FFF4CC").contrast("#3A1209")).toBe(15);
+		expect(blossom("#FFF4CC").contrast(blossom("#3A1209"))).toBe(15);
+	});
+	it("Checks readability", () => {
+		expect(blossom("#000").readable()).toBe(true);
+		expect(blossom("#777777").readable()).toBe(false);
+		expect(blossom("#e60000").readable("#FFFF47")).toBe(true);
+		expect(blossom("#AF085C").readable("#000000")).toBe(false);
+		expect(blossom("#AF085C").readable("#000000", { size: "large" })).toBe(true);
+		expect(blossom("#D53987").readable("#000000")).toBe(true);
+		expect(blossom("#D53987").readable("#000000", { level: "AAA" })).toBe(false);
+		expect(blossom("#E9DDDD").readable("#864B7C", { level: "AA" })).toBe(true);
+		expect(blossom("#E9DDDD").readable("#864B7C", { level: "AAA" })).toBe(false);
+		expect(blossom("#E9DDDD").readable("#864B7C", { level: "AAA", size: "large" })).toBe(true);
+		expect(blossom("#E9DDDD").readable("#67325E", { level: "AAA" })).toBe(true);
+		expect(blossom("#E9DDDD").readable(blossom("#67325E"), { level: "AAA" })).toBe(true);
 	});
 });
