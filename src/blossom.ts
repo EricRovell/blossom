@@ -17,7 +17,7 @@ export class Blossom {
 	readonly parsed: ParseResult | null;
 	readonly color: ColorRGB;
 	
-	constructor(input: Input | Color) {
+	constructor(input?: Input | Color) {
 		this.parsed = parse(input as Input);
 		this.color = this.parsed?.color ?? { r: 0, g: 0, b: 0, a: 1 };
 	}
