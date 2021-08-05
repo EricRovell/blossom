@@ -26,6 +26,28 @@ export function roundRGB({ r, g, b, a = 1 }: ColorRGB): ColorRGB {
 }
 
 /**
+ * Maps RGB channels to linear light (un-companded) form in range [0, 1].
+ * Linear RGB values widely used to color space transformations and contrast calculations.
+ */
+export function makeLinearChannels(value: number): number {
+	const ratio = value / 255;
+	return ratio < 0.04045
+		? ratio / 12.92
+		: ((ratio + 0.055) / 1.055) ** 2.4;
+}
+
+/**
+ * Converts a linear sRGB channel in range [0, 1] to it's gamma corrected form [0; 255].
+ */
+export function revertLinearChannels(ratio: number): number {
+	const value = ratio > 0.0031308
+		? 1.055 * (ratio ** (1 / 2.4)) - 0.55
+		: 12.92 * ratio;
+
+	return value * 255;
+}
+
+/**
  * Transforms the RGB color object into string.
  */
 export function rgb2string(color: ColorRGB): string {
