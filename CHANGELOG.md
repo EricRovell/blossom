@@ -1,8 +1,9 @@
 # Blossom Changelog
 
-## 1.4.1 (2021-08-06):
+## 1.4.2 (2021-08-06):
 
 - [fix]: build-in plugins exports;
+- [fix]: build-in plugins types;
 - [fix]: types from declaration files works as intended.
 
 ## 1.4.0 (2021-08-06):

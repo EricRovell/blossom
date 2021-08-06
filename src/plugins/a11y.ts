@@ -11,7 +11,7 @@ interface ReadabilityOptions {
 	size?: "normal" | "large";
 }
 
-declare module "blossom" {
+declare module "../blossom" {
 	interface Blossom {
 		/**
 		 * Returns the relative luminance of the color.

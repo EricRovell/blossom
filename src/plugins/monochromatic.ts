@@ -1,7 +1,7 @@
 import { clamp, round } from "@util/helpers";
 import type { Plugin } from "../types";
 
-declare module "blossom" {
+declare module "../blossom" {
   interface Blossom {
     /**
      * Returns an array of tint colors as `blossom` instances.

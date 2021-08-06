@@ -8,7 +8,7 @@ export type Harmony =
   | "triadic"  
   | "splitcomplimentary";
 
-declare module "blossom" {
+declare module "../blossom" {
   interface Blossom {
     /**
      * Returns an array of harmony colors as `blossom` instances.
