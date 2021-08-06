@@ -2,7 +2,7 @@ name: Node.js CLI
 on: [ push, pull_request ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         node-version: [ 12.x, 14.x ]
