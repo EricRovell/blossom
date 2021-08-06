@@ -78,22 +78,16 @@ export function rgb2hex(color: ColorRGB): ColorHEX {
 /**
  * Convert RGB Color Model object to CMYK.
  */
-export function rgb2cmyk(color: ColorRGB): ColorCMYK {
-	const r = color.r / 255;
-	const g = color.g / 255;
-	const b = color.b / 255;
-	const a = color.a ?? 1;
-  
-	const k = 1 - Math.max(r, g, b);
-  
-	const c = (1 - r - k) / (1 - k);
-	const m = (1 - g - k) / (1 - k);
-	const y = (1 - b - k) / (1 - k);
+export function rgb2cmyk({ r, g, b, a = 1 }: ColorRGB): ColorCMYK {
+	const k = 1 - Math.max(r / 255, g / 255, b / 255);  
+	const c = (1 - r / 255 - k) / (1 - k);
+	const m = (1 - g / 255 - k) / (1 - k);
+	const y = (1 - b / 255 - k) / (1 - k);
   
 	return {
-		c: Number.isNaN(c) ? 0 : round(c * 100),
-		m: Number.isNaN(m) ? 0 : round(m * 100),
-		y: Number.isNaN(y) ? 0 : round(y * 100),
+		c: isNaN(c) ? 0 : round(c * 100),
+		m: isNaN(m) ? 0 : round(m * 100),
+		y: isNaN(y) ? 0 : round(y * 100),
 		k: round(k * 100),
 		a: round(a, 2)
 	};

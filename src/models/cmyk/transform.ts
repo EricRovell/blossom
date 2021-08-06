@@ -4,17 +4,11 @@ import type { ColorRGB, ColorCMYK } from "../../types";
 /**
  * Transforms the CMYK color object to RGB.
  */
-export function cmyk2rgb(color: ColorCMYK): ColorRGB {
-	const c = color.c / 100;
-	const m = color.m / 100;
-	const y = color.y / 100;
-	const k = color.k / 100;
-	const a = color?.a ?? 1;
-  
+export function cmyk2rgb({ c, m, y, k, a = 1 }: ColorCMYK): ColorRGB {
 	return {
-		r: round(255 * (1 - c) * (1 - k)),
-		g: round(255 * (1 - m) * (1 - k)),
-		b: round(255 * (1 - y) * (1 - k)),
+		r: round(255 * (1 - c / 100) * (1 - k / 100)),
+		g: round(255 * (1 - m / 100) * (1 - k / 100)),
+		b: round(255 * (1 - y / 100) * (1 - k / 100)),
 		a: a ? round(a, 2) : 1
 	};
 }
