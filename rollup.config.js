@@ -20,7 +20,9 @@ function getPluginsConfig(compilerOptions) {
 }
 
 const plugins = [
-	"harmonies"
+	"harmonies",
+	"monochromatic",
+	"a11y"
 ];
 
 /**
