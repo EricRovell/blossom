@@ -1,6 +1,6 @@
 {
   "name": "@ericrovell/blossom",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
   "module": "./index.mjs",
