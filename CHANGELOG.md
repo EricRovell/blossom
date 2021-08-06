@@ -5,6 +5,7 @@
 - [feature]: parsing CMYK strings;
 - [feature]: string output for CMYK Color models via `.toStringCMYK` property;
 - [feature]: string output for HSV Color models via `.toStringHSV` property;
+- [fix]: `.luminance` property valid type signature;
 
 ## 1.4.2 (2021-08-06):
 
