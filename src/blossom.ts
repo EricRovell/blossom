@@ -5,9 +5,10 @@ import { clamp, clampDegrees, round } from "@util/helpers";
 
 import { rgb2cmyk, rgb2hsl, rgb2hsv, rgb2string, roundRGB, rgb2hex } from "@models/rgb";
 import { rgb2hslString, roundHSL } from "@models/hsl";
-import { roundHSV } from "@models/hsv";
+import { rgb2hsvString, roundHSV } from "@models/hsv";
 
 import type { Color, ColorCMYK, ColorHSL, ColorHSV, ColorRGB, Input, ParseResult } from "@types";
+import { rgb2cmykString } from "./models/cmyk";
 
 /**
  * Blossom instance.
@@ -196,11 +197,25 @@ export class Blossom {
 	}
 
 	/**
+	 * Returns a string representation of a color in HSL color space.
+	 */
+	get toStringHSV(): string {
+		return rgb2hsvString(this.color);
+	}
+
+	/**
 	 * Transform a color to CMYK color space object.
 	 * Opacity channel value is included in range [0, 1].
 	 */
 	get cmyk(): ColorCMYK {
 		return rgb2cmyk(this.color);
+	}
+
+	/**
+	 * Returns a string representation of a color in CMYK color space.
+	 */
+	get toStringCMYK(): string {
+		return rgb2cmykString(this.color);
 	}
 
 	/**

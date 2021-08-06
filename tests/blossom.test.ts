@@ -141,6 +141,17 @@ describe("Parsing", () => {
 		expect(blossom({ w: 1, u: 2, t: 3 }).rgb).toMatchObject(fallbackRGB);
 		expect(blossom("BANANA").rgb).toMatchObject(fallbackRGB);
 	});
+	it("Parses CMYK color string", () => {
+		expect(blossom("device-cmyk(0% 0% 0% 100%)").hex).toBe("#000000");
+		expect(blossom("device-cmyk(0% 61% 72% 0% / 50%)").hex).toBe("#FF634780");
+		expect(blossom("device-cmyk(0 0.61 0.72 0 / 0.5)").hex).toBe("#FF634780");
+	});
+	it("Parses CMYK color object", () => {
+		expect(blossom({ c: 0, m: 0, y: 0, k: 100 }).hex).toBe("#000000");
+		expect(blossom({ c: 16, m: 8, y: 0, k: 20, a: 1 }).hex).toBe("#ABBCCC");
+		expect(blossom({ c: 51, m: 47, y: 0, k: 33, a: 0.5 }).hex).toBe("#545BAB80");
+		expect(blossom({ c: 0, m: 0, y: 0, k: 0, a: 1 }).hex).toBe("#FFFFFF");
+	});
 });
 
 describe("Color transformations", () => {
@@ -182,6 +193,19 @@ describe("Color transformations", () => {
 		expect(blossom("rgba(0, 0, 0, 0.5)").toStringRGB).toBe("rgb(0 0 0 / 0.5)");
 		expect(blossom("hsl(0deg 0% 0% / 0.5)").toStringHSL).toBe("hsl(0deg 0% 0% / 0.5)");
 		expect(blossom("hsla(0deg, 0%, 0%, 0.5)").toStringHSL).toBe("hsl(0deg 0% 0% / 0.5)");
+	});
+	it("Converts a color to CMYK object", () => {
+		expect(blossom("#000000").cmyk).toMatchObject({ c: 0, m: 0, y: 0, k: 100, a: 1 });
+		expect(blossom("#FF0000").cmyk).toMatchObject({ c: 0, m: 100, y: 100, k: 0, a: 1 });
+		expect(blossom("#00FFFF").cmyk).toMatchObject({ c: 100, m: 0, y: 0, k: 0, a: 1 });
+		expect(blossom("#665533").cmyk).toMatchObject({ c: 0, m: 17, y: 50, k: 60, a: 1 });
+		expect(blossom("#FEACFA").cmyk).toMatchObject({ c: 0, m: 32, y: 2, k: 0, a: 1 });
+		expect(blossom("#FFFFFF").cmyk).toMatchObject({ c: 0, m: 0, y: 0, k: 0, a: 1 });
+	});
+	it("Converts a color to CMYK string", () => {
+		expect(blossom("#999966").toStringCMYK).toBe("device-cmyk(0% 0% 33% 40%)");
+		expect(blossom("#99FFFF").toStringCMYK).toBe("device-cmyk(40% 0% 0% 0%)");
+		expect(blossom("#00336680").toStringCMYK).toBe("device-cmyk(100% 50% 0% 60% / 0.5)");
 	});
 });
 
