@@ -1,5 +1,11 @@
 # Blossom Changelog
 
+## Unreleased: 1.5.0 (2021-08-06):
+
+- [feature]: parsing CMYK strings;
+- [feature]: string output for CMYK Color models via `.toStringCMYK` property;
+- [feature]: string output for HSV Color models via `.toStringHSV` property;
+
 ## 1.4.2 (2021-08-06):
 
 - [fix]: build-in plugins exports;
