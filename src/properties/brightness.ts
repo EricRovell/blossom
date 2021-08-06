@@ -1,4 +1,4 @@
-import { ColorRGB } from "@types";
+import { ColorRGB } from "../types";
 
 /**
  * Calculate the brightness level of a color in range [0; 1].

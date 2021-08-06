@@ -1,6 +1,6 @@
 import { floor, round } from "@util/helpers";
 import { getLuminance, getContrast } from "@properties";
-import type { Plugin, Input } from "@types";
+import type { Plugin, Input } from "../types";
 
 /**
  * Defines Web Accessibility Contrast options.

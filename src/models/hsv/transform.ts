@@ -1,5 +1,5 @@
 import { round } from "@util/helpers";
-import type { ColorHSV, ColorRGB, ColorHSL } from "@types";
+import type { ColorHSV, ColorRGB, ColorHSL } from "../../types";
 
 /**
  * Convert HSV color object to RGB.

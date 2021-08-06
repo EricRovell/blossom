@@ -1,5 +1,5 @@
 import { round, toHexString } from "@util/helpers";
-import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK } from "@types";
+import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK } from "../../types";
 import { roundRGB } from "./util";
 
 /**

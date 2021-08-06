@@ -1,5 +1,5 @@
 import { makeLinearChannels } from "@models/rgb";
-import { ColorRGB } from "@/types";
+import { ColorRGB } from "../types";
 
 /**
  * Retuns the percieved luminance of a color in range [0, 1].

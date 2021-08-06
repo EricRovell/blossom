@@ -1,6 +1,6 @@
 import { rgb2hsl } from "../rgb";
 import { clamp, clampDegrees, round } from "@util/helpers";
-import type { ColorHSL, ColorRGB } from "@types";
+import type { ColorHSL, ColorRGB } from "../../types";
 
 /**
  * Clamps the HSL color object values.

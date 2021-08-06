@@ -1,5 +1,5 @@
 import { getLuminance } from "./luminance";
-import { ColorRGB } from "@/types";
+import { ColorRGB } from "../types";
 
 /**
  * Returns a contrast ration for a color pair in range [1, 21].

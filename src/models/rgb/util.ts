@@ -1,4 +1,4 @@
-import type { ColorRGB } from "@types";
+import type { ColorRGB } from "../../types";
 import { clamp, round } from "@util/helpers";
 
 /**

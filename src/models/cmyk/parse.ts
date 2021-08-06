@@ -1,7 +1,7 @@
 import { clampCMYK } from "./util";
 import { cmyk2rgb } from "./transform";
 import { checkValue } from "@util/helpers";
-import type { ColorRGB, InputObject } from "@types";
+import type { ColorRGB, InputObject } from "../../types";
 
 /**
  * Parses the CMYK color object into RGB.

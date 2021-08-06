@@ -1,5 +1,5 @@
 import { clamp, round } from "@util/helpers";
-import type { ColorCMYK } from "@types";
+import type { ColorCMYK } from "../../types";
 
 /**
  * Clamps the CMYK color object values.

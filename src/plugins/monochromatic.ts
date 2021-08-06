@@ -1,5 +1,5 @@
 import { clamp, round } from "@util/helpers";
-import type { Plugin } from "@types";
+import type { Plugin } from "../types";
 
 declare module "blossom" {
   interface Blossom {

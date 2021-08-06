@@ -1,6 +1,6 @@
 import { clamp } from "@util/helpers";
 import { rgb2hsl } from "@models/rgb";
-import type { ColorRGB, ColorHSL } from "@types";
+import type { ColorRGB, ColorHSL } from "../types";
 
 /**
  * Changes the lightness of a color by a given amount.

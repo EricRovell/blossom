@@ -1,6 +1,6 @@
 import { rgb2hsl } from "@models/rgb";
 import { clamp } from "@util/helpers";
-import type { ColorRGB, ColorHSL } from "@types";
+import type { ColorRGB, ColorHSL } from "../types";
 
 /**
  * Changes a saturation value of color by a given amount in range [0, 1].

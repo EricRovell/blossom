@@ -3,7 +3,7 @@ import { hsl2rgb } from "./transform";
 import { clampHSL } from "./util";
 import { matcherHSLComma, matcherHSLSpace } from "./matchers";
 import { checkValue, parseHue } from "@util/helpers";
-import type { ColorRGB, InputObject } from "@types";
+import type { ColorRGB, InputObject } from "../../types";
 
 /**
  * Parses the HSL color string into RGB color object.

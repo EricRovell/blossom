@@ -3,7 +3,7 @@ import { hex2rgb } from "@models/hex";
 import { parseHSLColor, parseHSLString } from "@models/hsl";
 import { parseHSVColor } from "@models/hsv";
 import { parseCMYKColor } from "@models/cmyk";
-import type { Input, Parser, Parsers, ParseResult, InputObject } from "@types";
+import type { Input, Parser, Parsers, ParseResult, InputObject } from "./types";
 
 /**
  * Parser store.

@@ -1,5 +1,5 @@
 import { clamp, clampDegrees, round } from "@util/helpers";
-import type { ColorHSV } from "@types";
+import type { ColorHSV } from "../../types";
 
 /**
  * Clamps the HSV color object values.

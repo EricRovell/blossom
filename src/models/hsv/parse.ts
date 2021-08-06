@@ -1,7 +1,7 @@
 import { hsv2rgb } from "./transform";
 import { clampHSV } from "./util";
 import { checkValue } from "@util/helpers";
-import { ColorRGB, InputObject } from "@types";
+import { ColorRGB, InputObject } from "../../types";
 
 /**
  * Parses the HSV color object into RGB.

@@ -1,4 +1,4 @@
-import { ColorRGB } from "@types";
+import { ColorRGB } from "../types";
 
 /**
  * Inverts a color defined in RGB color space.

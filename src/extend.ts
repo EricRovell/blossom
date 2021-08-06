@@ -1,6 +1,6 @@
 import { Blossom } from "@/blossom";
 import { parsers } from "./parse";
-import { Plugins } from "@types";
+import { Plugins } from "./types";
 
 const activePlugins: Plugins = [];
 

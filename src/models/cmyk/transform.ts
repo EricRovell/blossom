@@ -1,5 +1,5 @@
 import { round } from "@util/helpers";
-import type { ColorRGB, ColorCMYK } from "@types";
+import type { ColorRGB, ColorCMYK } from "../../types";
 
 /**
  * Transforms the CMYK color object to RGB.

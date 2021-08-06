@@ -1,6 +1,6 @@
 import { round } from "@util/helpers";
 import { matchHEX } from "./matchers";
-import type { ColorHEX, ColorRGB } from "@types";
+import type { ColorHEX, ColorRGB } from "../../types";
 
 /**
  * Parses HEX color string and converts it to RGB Color object.

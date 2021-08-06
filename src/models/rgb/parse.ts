@@ -1,7 +1,7 @@
 import { clampRGB } from "./util";
 import { matcherRGBComma, matcherRGBSpace } from "./matchers";
 import { checkValue } from "@util/helpers";
-import type { ColorRGB, InputObject } from "@types";
+import type { ColorRGB, InputObject } from "../../types";
 
 /**
  * Parses a valid RGB[A] CSS color string.
