@@ -19,6 +19,11 @@ describe("Harmony colors plugin", () => {
 			"#FF0000", "#00FFFF"
 		]);
 	});
+	it("Generates double-split-complementary colors", () => {
+		expect(color.harmonies("double-split-complementary").map(value => value.hex)).toEqual([
+			"#FF0080","#FF0000", "#FF8000", "#00FF80", "#0080FF"
+		]);
+	});
 	it("Generates rectangle colors", () => {
 		expect(color.harmonies("rectangle").map(value => value.hex)).toEqual([
 			"#FF0000", "#FFFF00", "#00FFFF", "#0000FF"
@@ -34,8 +39,8 @@ describe("Harmony colors plugin", () => {
 			"#FF0000", "#00FF00", "#0000FF"
 		]);
 	});
-	it("Generates splitcomplimentary colors", () => {
-		expect(color.harmonies("splitcomplimentary").map(value => value.hex)).toEqual([
+	it("Generates split-complimentary colors", () => {
+		expect(color.harmonies("split-complimentary").map(value => value.hex)).toEqual([
 			"#FF0000", "#00FF80", "#0080FF"
 		]);
 	});

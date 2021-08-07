@@ -1,6 +1,10 @@
 # Blossom Changelog
 
-## Unreleased: 1.5.0 (2021-08-06):
+## 1.6.0 (2021-08-07):
+
+- [feature]: new harmony pallete "double-split-complimentary" available via `Harmonies` plugin;
+
+## 1.5.0 (2021-08-06):
 
 - [feature]: parsing CMYK strings;
 - [feature]: string output for CMYK Color models via `.toStringCMYK` property;

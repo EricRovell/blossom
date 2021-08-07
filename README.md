@@ -657,6 +657,16 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   Provides functionatity to generate [harmony colors](https://en.wikipedia.org/wiki/Harmony_(color)).
 
+  Available harmony pallets:
+
+  - analogous;
+  - complimentary;
+  - double-split-comlimentary;
+  - rectangle;
+  - tetradic;
+  - triadic;
+  - split-complimentary;
+
   ```js
   import { blossom, extends } from "@ericrovell/blossom";
   import { harmonies } from "blossom/plugins/harmonies";
@@ -667,20 +677,22 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
     .map(color => color.hex); // -> [ "#FF0080", "#FF0000", "#FF8000"]
   color.harmonies("complimentary")
     .map(color => color.hex); // -> [ "#FF0000", "#00FFFF" ]
+  color.harmonies("double-split-complimentary")
+    .map(color => color.hex); // -> [ "#FF0080", "#FF0000", "#FF8000", "#00FF80", "#0080FF" ]
   color.harmonies("rectangle")
     .map(color => color.hex); // -> [ "#FF0000", "#FFFF00", "#00FFFF", "#0000FF" ]
   color.harmonies("tetradic")
     .map(color => color.hex); // -> [ "#FF0000", "#80FF00", "#00FFFF", "#8000FF" ]
   color.harmonies("triadic"  )
     .map(color => color.hex); // -> [ "#FF0000", "#00FF00", "#0000FF" ]
-  color.harmonies("splitcomplimentary")
+  color.harmonies("split-complimentary")
     .map(color => color.hex); // -> [ "#FF0000", "#00FF80", "#0080FF" ]
   ```
 
-  Harmony color schemes is available as type:
+  Harmony color schemes type is available for import:
 
   ```ts
-  import type { Harmony } from "blossom/plugins/harmonies";
+  import type { Harmony } from "@ericrovell/blossom/plugins/harmonies";
   
   const harmony: Harmony = "analogous";
   const notHarmony: Harmony = "round"; // TypeError

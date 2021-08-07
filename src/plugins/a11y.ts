@@ -20,7 +20,7 @@ declare module "../blossom" {
 		 * [Relative luminance](https://www.w3.org/TR/WCAG20/#relativeluminancedef),
 		 * [more about luminance](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_Colors_and_Luminance).
 		 */
-		luminance: () => number;
+		readonly luminance: number;
 
 		/**
 		 * Calculates a contrast ratio for a pair of colors.
