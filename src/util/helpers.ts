@@ -3,17 +3,15 @@ import { ANGLE_UNITS } from "./constants";
 /**
  * Round the number up to the desired precision.
  */
-export function round(number: number, digits = 0): number {
-	const multiplicator = Math.pow(10, digits);
-	return Math.round(number * multiplicator) / multiplicator;
+export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.round(number * base) / base + 0;
 }
 
 /**
  * Round the number up to the desired precision.
  */
-export function floor(number: number, digits = 0): number {
-	const multiplicator = Math.pow(10, digits);
-	return Math.floor(number * multiplicator) / multiplicator;
+export function floor(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.floor(number * base) / base + 0;
 }
 
 /**
