@@ -3,6 +3,7 @@ import { pluginHarmonies } from "@plugins/harmonies";
 import { pluginMonochromatic } from "@plugins/monochromatic";
 import { pluginA11Y } from "@plugins/a11y";
 import { pluginXYZ } from "@plugins/xyz";
+import { pluginLAB } from "@plugins/lab";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -188,5 +189,36 @@ describe("XYZ plugin", () => {
 
 	it("Supported by `getFormat`", () => {
 		expect(getModel({ x: 30, y: 20, z: 10 })).toBe("xyz");
+	});
+});
+
+describe("LAB plugin", () => {
+	/**
+	 * Test results: https://cielab.xyz/colorconv/
+	 */
+	extend([ pluginLAB ]);
+
+	it("Parses CIE LAB color object", () => {
+		expect(blossom({ l: 100, a: 0, b: 0 }).hex).toBe("#FFFFFF");
+		expect(blossom({ l: 0, a: 0, b: 0 }).hex).toBe("#000000");
+		expect(blossom({ l: 54.29, a: 80.81, b: 69.89 }).hex).toBe("#FF0000");
+		expect(blossom({ l: 15.05, a: 6.68, b: 14.59, alpha: 0.5 }).hex).toBe("#33221180");
+		expect(blossom({ l: 50.93, a: 64.96, b: -6.38, alpha: 1 }).hex).toBe("#D53987");
+	});
+
+	it("Converts a color to CIE LAB object", () => {
+		expect(blossom("#FFFFFF").lab).toMatchObject({ l: 100, a: 0, b: 0, alpha: 1 });
+		expect(blossom("#00000000").lab).toMatchObject({ l: 0, a: 0, b: 0, alpha: 0 });
+		expect(blossom("#FF0000").lab).toMatchObject({ l: 54.29, a: 80.81, b: 69.89, alpha: 1 });
+		expect(blossom("#00FF00").lab).toMatchObject({ l: 87.82, a: -79.29, b: 80.99, alpha: 1 });
+		expect(blossom("#FFFF00").lab).toMatchObject({ l: 97.61, a: -15.75, b: 93.39, alpha: 1 });
+		expect(blossom("#AABBCC").lab).toMatchObject({ l: 74.97, a: -3.4, b: -10.7, alpha: 1 });
+		expect(blossom("#33221180").lab).toMatchObject({ l: 15.05, a: 6.68, b: 14.59, alpha: 0.5 });
+		expect(blossom("#D53987").lab).toMatchObject({ l: 50.93, a: 64.96, b: -6.38, alpha: 1 });
+		expect(blossom("#123ABC").lab).toMatchObject({ l: 29.95, a: 29.48, b: -72.93, alpha: 1 });
+	});
+
+	it("Supported by `getFormat`", () => {
+		expect(getModel({ l: 50, a: 0, b: 0, alpha: 1 })).toBe("lab");
 	});
 });

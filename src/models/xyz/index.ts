@@ -4,5 +4,6 @@ export {
 	clampXYZ,
 	roundXYZ,
 	adaptXYZtoD50,
-	adaptXYZtoD65
+	adaptXYZtoD65,
+	D50
 } from "./util";

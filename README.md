@@ -73,7 +73,8 @@ blossom("#FF0000")
 - HSL (strings, objects);
 - HSV (objects);
 - CMYK (objects);
-- XYZ (objects).
+- XYZ (objects);
+- LAB (objects);
 
 ## API
 
@@ -237,6 +238,19 @@ blossom("#FF0000")
   ```js
   blossom("#FFFFFF").xyz; // -> { x: 95.047, y: 100, z: 108.883 a: 1 }
   blossom({ x: 0, y: 0, z: 0 }).hex; // -> "#000000"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.lab</code>, available via <strong>LAB</strong> plugin
+  </summary>
+
+  Returns the [CIE LAB](https://en.wikipedia.org/wiki/CIELAB_color_space) color space object of a color.
+
+  ```js
+  blossom("#FFFFFF").lab; // -> { l: 100, a: 0, b: 0, alpha: 1 }
+  blossom("#123ABC").lab; // -> { l: 29.95, a: 29.48, b: -72.93, alpha: 1 }
   ```
 </details>
 
@@ -807,6 +821,27 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   blossom("#FFFFFF").xyz; // -> { x: 95.047, y: 100, z: 108.883, a: 1 }
   blossom({ x: 0, y: 0, z: 0 }).hex; // -> "#000000"
+  ```
+
+</details>
+
+<details>
+  <summary>
+    <code>
+      LAB (CIE LAB Color space)
+    </code>
+  </summary>
+
+  Adds support of [CIE LAB](https://en.wikipedia.org/wiki/CIELAB_color_space) color model.
+
+  ```js
+  import { blossom, extend } from "@ericrovell/blossom";
+  import { pluginLAB } from "@ericrovell/blossom/plugins/lab";
+
+  extend([ pluginLAB ]);
+
+  blossom({ l: 29.95, a: 29.48, b: -72.93 }).hex; // "#123ABC"
+  blossom("#FFFFFF").lab; // { l: 100, a: 0, b: 0, alpha: 1 }
   ```
 
 </details>

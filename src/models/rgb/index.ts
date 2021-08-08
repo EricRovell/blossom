@@ -3,7 +3,8 @@ export {
 	rgb2hsl,
 	rgb2cmyk,
 	rgb2hsv,
-	rgb2xyz
+	rgb2xyz,
+	rgb2lab
 } from "./transform";
 
 export {

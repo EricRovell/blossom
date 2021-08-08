@@ -1,7 +1,8 @@
 import { round, toHexString } from "@util/helpers";
-import { clampXYZ, adaptXYZtoD50 } from "@models/xyz";
+import { clampXYZ, adaptXYZtoD50, D50 } from "@models/xyz";
+import { clampLAB, factors } from "@models/lab";
 import { makeLinearChannels, roundRGB } from "./util";
-import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ } from "../../types";
+import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ, ColorLAB } from "../../types";
 
 /**
  * Convert RGB Color Model object to HSV.
@@ -110,4 +111,29 @@ export function rgb2xyz({ r, g, b, a = 1 }: ColorRGB): ColorXYZ {
 	};
 
 	return clampXYZ(adaptXYZtoD50(xyz));
+}
+
+/**
+ * Convert RGB Color Model object to LAB.
+ */
+export function rgb2lab(color: ColorRGB): ColorLAB {
+	/**
+	 * Compute XYZ scaled relative to D50 reference white
+	 */
+	const xyz = rgb2xyz(color);
+	let x = xyz.x / D50.x;
+	let y = xyz.y / D50.y;
+	let z = xyz.z / D50.z;
+	const { e, k } = factors;
+
+	x = x > e ? Math.cbrt(x) : (k * x + 16) / 116;
+	y = y > e ? Math.cbrt(y) : (k * y + 16) / 116;
+	z = z > e ? Math.cbrt(z) : (k * z + 16) / 116;
+
+	return {
+		l: 116 * y - 16,
+		a: 500 * (x - y),
+		b: 200 * (y - z),
+		alpha: xyz.a,
+	};
 }

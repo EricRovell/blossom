@@ -3,6 +3,8 @@
 ## 1.6.0 (2021-08-07):
 
 - [feature]: new harmony pallete "double-split-complimentary" available via `Harmonies` plugin;
+- [feature]: new build-in plugin with [CIE XYZ](https://www.sttmedia.com/colormodel-xyz) color space support ❤️ [@omgovich](https://github.com/omgovich);
+- [feature]: new build-in plugin with [CIE LAB](https://en.wikipedia.org/wiki/Lab_color_space) color space support ❤️ [@omgovich](https://github.com/omgovich);
 
 ## 1.5.0 (2021-08-06):
 
@@ -19,7 +21,7 @@
 
 ## 1.4.0 (2021-08-06):
 
-- [feature]: new build-in `a11y` plugin.
+- [feature]: new build-in `a11y` plugin ❤️ [@omgovich](https://github.com/omgovich).
 
 ## 1.3.2 (2021-08-03):
 
