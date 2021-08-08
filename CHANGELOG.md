@@ -3,6 +3,7 @@
 ## 1.6.0 (2021-08-07):
 
 - [feature]: new harmony pallete "double-split-complimentary" available via `Harmonies` plugin;
+- [feature]: new build-in plugin with [CIE XYZ](https://www.sttmedia.com/colormodel-xyz) color space support;
 
 ## 1.5.0 (2021-08-06):
 
