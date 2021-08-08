@@ -7,7 +7,8 @@ export type {
 	ColorHSL,
 	ColorHSV,
 	ColorHSB,
-	ColorCMYK
+	ColorCMYK,
+	ColorXYZ
 } from "./color";
 
 export { 

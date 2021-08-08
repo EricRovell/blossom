@@ -41,7 +41,7 @@ export function makeLinearChannels(value: number): number {
  */
 export function revertLinearChannels(ratio: number): number {
 	const value = ratio > 0.0031308
-		? 1.055 * (ratio ** (1 / 2.4)) - 0.55
+		? 1.055 * Math.pow(ratio, 1 / 2.4) - 0.055
 		: 12.92 * ratio;
 
 	return value * 255;
