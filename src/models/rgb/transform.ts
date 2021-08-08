@@ -1,6 +1,6 @@
 import { round, toHexString } from "@util/helpers";
 import { clampXYZ, adaptXYZtoD50, D50 } from "@models/xyz";
-import { clampLAB, factors } from "@models/lab";
+import { factors } from "@models/lab";
 import { makeLinearChannels, roundRGB } from "./util";
 import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ, ColorLAB } from "../../types";
 
