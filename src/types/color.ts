@@ -3,7 +3,8 @@ export type ColorModel =
   | "hex"
   | "hsl"
   | "hsv"
-  | "cmyk";
+  | "cmyk"
+  | "xyz";
 
 export interface ColorRGB {
   r: number;
@@ -43,11 +44,19 @@ export interface ColorCMYK {
   a?: number;
 }
 
+export interface ColorXYZ {
+  x: number;
+  y: number;
+  z: number;
+  a?: number;
+}
+
 export type ColorObject =
   | ColorRGB
   | ColorHSV
   | ColorHSL
-  | ColorCMYK;
+  | ColorCMYK
+  | ColorXYZ;
   
 export type Color =
   | string

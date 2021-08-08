@@ -1,8 +1,8 @@
-import { blossom } from "@/blossom";
-import { extend } from "@/extend";
+import { blossom, extend, getModel } from "../src";
 import { pluginHarmonies } from "@plugins/harmonies";
 import { pluginMonochromatic } from "@plugins/monochromatic";
 import { pluginA11Y } from "@plugins/a11y";
+import { pluginXYZ } from "@plugins/xyz";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -161,5 +161,32 @@ describe("A11Y plugin", () => {
 		expect(blossom("#E9DDDD").readable("#864B7C", { level: "AAA", size: "large" })).toBe(true);
 		expect(blossom("#E9DDDD").readable("#67325E", { level: "AAA" })).toBe(true);
 		expect(blossom("#E9DDDD").readable(blossom("#67325E"), { level: "AAA" })).toBe(true);
+	});
+});
+
+describe("XYZ plugin", () => {
+	/**
+	 * Test results:
+	 * 
+	 * - https://www.nixsensor.com/free-color-converter/
+	 * - https://cielab.xyz/colorconv/
+	 * - https://www.easyrgb.com/en/convert.php
+	 */
+	extend([ pluginXYZ ]);
+
+	it("Parses XYZ color object", () => {
+		expect(blossom({ x: 0, y: 0, z: 0 }).hex).toBe("#000000");
+		expect(blossom({ x: 50, y: 50, z: 50 }).hex).toBe("#BEB9CF");
+		expect(blossom({ x: 96.42, y: 100, z: 82.52, a: 1 }).hex).toBe("#FFFFFF");
+	});
+
+	it("Converts a color to CIE XYZ object", () => {
+		expect(blossom("#FFFFFF").xyz).toMatchObject({ x: 96.42, y: 100, z: 82.52, a: 1 });
+		expect(blossom("#5CBF54").xyz).toMatchObject({ x: 26, y: 40.27, z: 11.54, a: 1 });
+		expect(blossom("#00000000").xyz).toMatchObject({ x: 0, y: 0, z: 0, a: 0 });
+	});
+
+	it("Supported by `getFormat`", () => {
+		expect(getModel({ x: 30, y: 20, z: 10 })).toBe("xyz");
 	});
 });

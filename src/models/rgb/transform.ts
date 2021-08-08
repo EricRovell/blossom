@@ -1,6 +1,7 @@
 import { round, toHexString } from "@util/helpers";
-import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK } from "../../types";
-import { roundRGB } from "./util";
+import { clampXYZ, adaptXYZtoD50 } from "@models/xyz";
+import { makeLinearChannels, roundRGB } from "./util";
+import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ } from "../../types";
 
 /**
  * Convert RGB Color Model object to HSV.
@@ -91,4 +92,22 @@ export function rgb2cmyk({ r, g, b, a = 1 }: ColorRGB): ColorCMYK {
 		k: round(k * 100),
 		a: round(a, 2)
 	};
+}
+
+/**
+ * Convert RGB Color Model object to XYZ.
+ */
+export function rgb2xyz({ r, g, b, a = 1 }: ColorRGB): ColorXYZ {
+	const linearR = makeLinearChannels(r);
+	const linearG = makeLinearChannels(g);
+	const linearB = makeLinearChannels(b);
+
+	const xyz: ColorXYZ = {
+		x: (linearR * 0.4124564 + linearG * 0.3575761 + linearB * 0.1804375) * 100,
+		y: (linearR * 0.2126729 + linearG * 0.7151522 + linearB * 0.072175) * 100,
+		z: (linearR * 0.0193339 + linearG * 0.119192 + linearB * 0.9503041) * 100,
+		a,
+	};
+
+	return clampXYZ(adaptXYZtoD50(xyz));
 }

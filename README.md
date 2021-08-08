@@ -72,7 +72,8 @@ blossom("#FF0000")
 - RGB (strings, objects);
 - HSL (strings, objects);
 - HSV (objects);
-- CMYK (objects).
+- CMYK (objects);
+- XYZ (objects).
 
 ## API
 
@@ -221,8 +222,21 @@ blossom("#FF0000")
   Returns the CMYK color space object of a color.
 
   ```js
-  blossom("#fffff").cmyk; // -> { c: 0, m: 0, y: 0, k: 0, a: 1 }
-  blossom("#555aaa").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
+  blossom("#FFFFFF").cmyk; // -> { c: 0, m: 0, y: 0, k: 0, a: 1 }
+  blossom("#555AAA").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.xyz</code>, available via <strong>XYZ</strong> plugin
+  </summary>
+
+  Returns the [CIE XYZ](https://www.sttmedia.com/colormodel-xyz) color space object of a color.
+
+  ```js
+  blossom("#FFFFFF").xyz; // -> { x: 95.047, y: 100, z: 108.883 a: 1 }
+  blossom({ x: 0, y: 0, z: 0 }).hex; // -> "#000000"
   ```
 </details>
 
@@ -669,7 +683,9 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   ```js
   import { blossom, extends } from "@ericrovell/blossom";
-  import { harmonies } from "blossom/plugins/harmonies";
+  import { pluginHarmonies } from "blossom/plugins/harmonies";
+
+  extend([ pluginHarmonies ]);
 
   const color = blossom("FF0000");
 
@@ -714,7 +730,9 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   ```js
   import { blossom, extends } from "@ericrovell/blossom";
-  import { monochromatic } from "blossom/plugins/monochromatic";
+  import { pluginMonochromatic } from "blossom/plugins/monochromatic";
+
+  extend([ pluginMonochromatic ]);
 
   const color = blossom("FF0000");
 
@@ -729,7 +747,9 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   ```js
   import { blossom, extends } from "@ericrovell/blossom";
-  import { monochromatic } from "blossom/plugins/monochromatic";
+  import { pluginMonochromatic } from "blossom/plugins/monochromatic";
+
+  extend([ pluginMonochromatic ]);
 
   blossom("#FAFAFA").tints(10).map(tint => tint.hex); // -> [ "#FAFAFA", "#FDFDFD", "#FFFFFF" ]
   blossom("#050505").shades(10).map(shade => shade.hex); // -> [ "#050505", "#020202", "#000000" ]
@@ -748,9 +768,9 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   ```js
   import { blossom, extend } from "@ericrovell/blossom";
-  import a11yPlugin from "@ericrovell/blossom/plugins/a11y";
+  import { pluginA11Y } from "@ericrovell/blossom/plugins/a11y";
 
-  extend([a11yPlugin]);
+  extend([ pluginA11Y ]);
 
   blossom("#000000").luminance; // 0
   blossom("#CCDDEE").luminance; // 0.71
@@ -766,6 +786,27 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
   blossom("#E60000").readable("#FFFF47"); // true (normal red text on yellow bg conforms to WCAG AA)
   blossom("#E60000").readable("#FFFF47", { level: "AAA" }); // false (normal red text on yellow bg does not conform to WCAG AAA)
   blossom("#E60000").readable("#FFFF47", { level: "AAA", size: "large" }); // true (large red text on yellow bg conforms to WCAG AAA)
+  ```
+
+</details>
+
+<details>
+  <summary>
+    <code>
+      XYZ (CIE XYZ Color space)
+    </code>
+  </summary>
+
+  Adds support of [CIE XYZ](https://www.sttmedia.com/colormodel-xyz) color model.
+
+  ```js
+  import { blossom, extend } from "@ericrovell/blossom";
+  import { pluginXYZ } from "@ericrovell/blossom/plugins/xyz";
+
+  extend([ pluginXYZ ]);
+
+  blossom("#FFFFFF").xyz; // -> { x: 95.047, y: 100, z: 108.883, a: 1 }
+  blossom({ x: 0, y: 0, z: 0 }).hex; // -> "#000000"
   ```
 
 </details>
