@@ -1,6 +1,6 @@
 import { adaptXYZtoD65 } from "./util";
-import { ColorRGB, ColorXYZ } from "@/types";
-import { clampRGB, revertLinearChannels } from "@models/rgb";
+import { clampRGB, revertLinearChannels } from "../rgb";
+import { ColorRGB, ColorXYZ } from "../../types";
 
 /**
  * Converts an CIE XYZ color (D50) to RGBA color space (D65)

@@ -1,6 +1,6 @@
 import { factors } from "./util";
-import { ColorRGB, ColorLAB } from "@/types";
 import { xyz2rgb, D50 } from "../xyz";
+import { ColorRGB, ColorLAB } from "../../types";
 
 /**
  * Transforms LAB color to RGB color object.
