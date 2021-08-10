@@ -1,14 +1,24 @@
+import {
+	roundRGB,
+	rgb2cmyk,
+	rgb2hsl,
+	rgb2hsv,
+	rgb2hex,
+	rgb2string,
+	rgb2hslString,
+	rgb2hsvString,
+	rgb2cmykString
+} from "@models/rgb";
+
 import { parse } from "./parse";
 import { invert, lighten, saturate } from "@manipulation";
 import { calcBrightness } from "@properties";
 import { clamp, clampDegrees, round } from "@util/helpers";
-
-import { rgb2cmyk, rgb2hsl, rgb2hsv, rgb2string, roundRGB, rgb2hex } from "@models/rgb";
-import { rgb2hslString, roundHSL } from "@models/hsl";
-import { rgb2hsvString, roundHSV } from "@models/hsv";
+import { roundHSL } from "@models/hsl";
+import { roundHSV } from "@models/hsv";
 
 import type { Color, ColorCMYK, ColorHSL, ColorHSV, ColorRGB, Input, ParseResult } from "@types";
-import { rgb2cmykString } from "./models/cmyk";
+
 
 /**
  * Blossom instance.
