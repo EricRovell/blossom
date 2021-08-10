@@ -1,5 +1,5 @@
-import { parseXYZColor, roundXYZ, rgb2xyzString } from "@models/xyz";
-import { rgb2xyz } from "@models/rgb";
+import { parseXYZColor, roundXYZ } from "@models/xyz";
+import { rgb2xyz, rgb2xyzString } from "@models/rgb";
 import type { ColorXYZ, Plugin } from "../types";
 
 declare module "../blossom" {
@@ -14,7 +14,7 @@ declare module "../blossom" {
 		 * 
 		 * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()
 		 */
-		toStringLAB: string;
+		toStringXYZ: string;
 	}
 }
 
@@ -32,8 +32,8 @@ export const pluginXYZ: Plugin = (BaseClass, parsers): void => {
 		}
 	});
 
-	Object.defineProperty(BaseClass.prototype, "toStringLAB", {
-		get: function toStringLAB() {
+	Object.defineProperty(BaseClass.prototype, "toStringXYZ", {
+		get: function toStringXYZ() {
 			return rgb2xyzString(this.color);
 		}
 	});
