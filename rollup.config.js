@@ -24,7 +24,8 @@ const plugins = [
 	"monochromatic",
 	"a11y",
 	"xyz",
-	"lab"
+	"lab",
+	"lch"
 ];
 
 /**

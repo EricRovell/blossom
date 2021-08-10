@@ -1,8 +1,9 @@
 import { round, toHexString } from "@util/helpers";
-import { clampXYZ, adaptXYZtoD50, D50 } from "../xyz/util";
+import { adaptXYZtoD50, D50 } from "../xyz/constants";
+import { clampXYZ } from "../xyz/util";
 import { factors } from "../lab/util";
 import { makeLinearChannels, roundRGB } from "./util";
-import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ, ColorLAB } from "../../types";
+import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ, ColorLAB, ColorLCH } from "../../types";
 
 /**
  * Convert RGB Color Model object to HSV.
@@ -135,5 +136,28 @@ export function rgb2lab(color: ColorRGB): ColorLAB {
 		a: 500 * (x - y),
 		b: 200 * (y - z),
 		alpha: xyz.a,
+	};
+}
+
+/**
+ * Convert RGB Color Model object to LCH.
+ * Flowchart: RGB -> CIE XYZ -> CIE LCH
+ * 
+ * https://www.w3.org/TR/css-color-4/#color-conversion-code
+ */
+export function rgb2lch(color: ColorRGB): ColorLCH {
+	const { l, alpha = 1, ...rest } = rgb2lab(color);
+
+	// round axis values to get proper grayscale values
+	const a = round(rest.a, 3);
+	const b = round(rest.b, 3);
+
+	const hue = 180 * (Math.atan2(b, a) / Math.PI);
+
+	return {
+		l: l,
+		c: Math.sqrt(a ** 2 + b ** 2),
+		h: hue < 0 ? hue + 360 : hue,
+		a: alpha
 	};
 }

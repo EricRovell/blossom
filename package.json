@@ -1,6 +1,6 @@
 {
   "name": "@ericrovell/blossom",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
   "module": "./index.mjs",
@@ -32,6 +32,21 @@
       "import": "./plugins/a11y.mjs",
       "require": "./plugins/a11y.js",
       "default": "./plugins/a11y.mjs"
+    },
+    "./plugins/xyz": {
+      "import": "./plugins/xyz.mjs",
+      "require": "./plugins/xyz.js",
+      "default": "./plugins/xyz.mjs"
+    },
+    "./plugins/lab": {
+      "import": "./plugins/lab.mjs",
+      "require": "./plugins/lab.js",
+      "default": "./plugins/lab.mjs"
+    },
+    "./plugins/lch": {
+      "import": "./plugins/lch.mjs",
+      "require": "./plugins/lch.js",
+      "default": "./plugins/lch.mjs"
     }
   },
   "keywords": [
@@ -44,6 +59,9 @@
     "hsl",
     "hsv",
     "cmyk",
+    "xyz",
+    "lab",
+    "lch",
     "monochromatic colors",
     "a11y"
   ],
@@ -54,12 +72,12 @@
   "author": "Eric Rovell",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "eslint": "^7.31.0",
+    "@types/jest": "^27.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
     "jest": "^27.0.6",
-    "rollup": "^2.54.0",
+    "rollup": "^2.56.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.4",

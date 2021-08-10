@@ -1,6 +1,5 @@
-import { rgb2hsl } from "../rgb";
 import { clamp, clampDegrees, round } from "@util/helpers";
-import type { ColorHSL, ColorRGB } from "../../types";
+import type { ColorHSL } from "../../types";
 
 /**
  * Clamps the HSL color object values.
@@ -24,15 +23,4 @@ export function roundHSL({ h, s, l, a = 1 }: ColorHSL): ColorHSL {
 		l: round(l),
 		a: round(a, 2)
 	};
-}
-
-/**
- * Transforms the RGB color object to HSL color string.
- * Functional whitespace syntax is used.
- */
-export function rgb2hslString(rgb: ColorRGB): string {
-	const { h, s, l, a = 1 } = roundHSL(rgb2hsl(rgb));
-	return a < 1
-		? `hsl(${h}deg ${s}% ${l}% / ${a})`
-		: `hsl(${h}deg ${s}% ${l}%)`;
 }

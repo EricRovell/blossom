@@ -46,13 +46,3 @@ export function revertLinearChannels(ratio: number): number {
 
 	return value * 255;
 }
-
-/**
- * Transforms the RGB color object into string.
- */
-export function rgb2string(color: ColorRGB): string {
-	const { r, g, b, a = 1 } = roundRGB(color);
-	return a < 1
-		? `rgb(${r} ${g} ${b} / ${a})`
-		: `rgb(${r} ${g} ${b})`;
-}

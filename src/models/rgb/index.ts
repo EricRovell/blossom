@@ -4,7 +4,8 @@ export {
 	rgb2cmyk,
 	rgb2hsv,
 	rgb2xyz,
-	rgb2lab
+	rgb2lab,
+	rgb2lch
 } from "./transform";
 
 export {
@@ -14,8 +15,17 @@ export {
 
 export {
 	clampRGB,
-	rgb2string,
 	roundRGB,
 	makeLinearChannels,
 	revertLinearChannels
 } from "./util";
+
+export {
+	rgb2string,
+	rgb2hslString,
+	rgb2hsvString,
+	rgb2cmykString,
+	rgb2xyzString,
+	rgb2labString,
+	rgb2lchString
+} from "./to-string";

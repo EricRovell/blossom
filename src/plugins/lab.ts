@@ -1,5 +1,6 @@
 import { rgb2lab } from "@models/rgb";
-import { parseLABColor, roundLAB, rgb2labString } from "@models/lab";
+import { parseLABColor, roundLAB } from "@models/lab";
+import { rgb2labString } from "@models/rgb";
 import type { ColorLAB, Plugin } from "../types";
 
 declare module "../blossom" {
