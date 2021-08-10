@@ -1,5 +1,5 @@
-import { adaptXYZtoD65 } from "./util";
-import { clampRGB, revertLinearChannels } from "../rgb";
+import { adaptXYZtoD65 } from "./constants";
+import { clampRGB, revertLinearChannels } from "../rgb/util";
 import { ColorRGB, ColorXYZ } from "../../types";
 
 /**

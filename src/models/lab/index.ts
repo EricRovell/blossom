@@ -4,5 +4,4 @@ export {
 	clampLAB,
 	roundLAB,
 	factors,
-	rgb2labString
 } from "./util";

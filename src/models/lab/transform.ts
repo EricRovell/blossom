@@ -1,5 +1,6 @@
 import { factors } from "./util";
-import { xyz2rgb, D50 } from "../xyz";
+import { D50 } from "../xyz/constants";
+import { xyz2rgb } from "../xyz/transform";
 import { ColorRGB, ColorLAB } from "../../types";
 
 /**
