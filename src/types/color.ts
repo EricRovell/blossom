@@ -5,7 +5,8 @@ export type ColorModel =
   | "hsv"
   | "cmyk"
   | "xyz"
-  | "lab";
+  | "lab"
+  | "lch";
 
 export interface ColorRGB {
   r: number;
@@ -59,13 +60,21 @@ export interface ColorLAB {
   alpha?: number;
 }
 
+export interface ColorLCH {
+  l: number;
+  c: number;
+  h: number;
+  a?: number;
+}
+
 export type ColorObject =
   | ColorRGB
   | ColorHSV
   | ColorHSL
   | ColorCMYK
   | ColorXYZ
-  | ColorLAB;
+  | ColorLAB
+  | ColorLCH;
   
 export type Color =
   | string
