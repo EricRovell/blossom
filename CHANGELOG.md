@@ -4,6 +4,7 @@
 
 - [feature]: `.toStringLAB` property for string representation of color;
 - [feature]: `.toStringXYZ` property for string representation of color;
+- [feature]: new build-in plugin with [CIE LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/) color space support ❤️ [@omgovich](https://github.com/omgovich);
 
 ## 1.6.0 (2021-08-08):
 

@@ -69,12 +69,13 @@ blossom("#FF0000")
 ## Supported color models
 
 - Hexadecimal strings;
-- RGB (strings, objects);
-- HSL (strings, objects);
+- RGB (objects, strings);
+- HSL (objects, strings);
 - HSV (objects);
 - CMYK (objects);
 - XYZ (objects);
 - LAB (objects);
+- LCH (objects, strings).
 
 ## API
 
@@ -214,6 +215,19 @@ blossom("#FF0000")
   ```
 </details>
 
+<details>
+  <summary>
+    <code>.toStringHSV</code>
+  </summary>
+
+  Returns the HSV color space string of a color.
+  Outputs the modern whitespace syntax.
+
+  ```js
+  blossom("#FFFF00").toStringHSV; // -> "hsc(60deg 100% 100%)"
+  blossom("rgba(0, 0, 255, 0.5)").toStringHSV; // -> "hsc(240deg 100% 100% / 0.5)"
+  ```
+</details>
 
 <details>
   <summary>
@@ -225,6 +239,19 @@ blossom("#FF0000")
   ```js
   blossom("#FFFFFF").cmyk; // -> { c: 0, m: 0, y: 0, k: 0, a: 1 }
   blossom("#555AAA").cmyk; // -> { c: 50, m: 47, y: 0, k: 33, a: 1 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toStringCMYK</code>
+  </summary>
+
+  Returns the CMYK color space string of a color.
+
+  ```js
+  blossom("#FFFFFF").toStringCMYK; // -> device-cmyk(0% 0% 0% 0%){ c: 0, m: 0, y: 0, k: 0, a: 1 }
+  blossom("#555AAA80").toStringCMYK; // -> device-cmyk(50% 47% 0 33% / 0.5)
   ```
 </details>
 
@@ -243,6 +270,19 @@ blossom("#FF0000")
 
 <details>
   <summary>
+    <code>.toStringXYZ</code>
+  </summary>
+
+  Returns the CIE XYZ color space string of a color.
+
+  ```js
+  blossom("#FFFFFF").toStringXYZ; // -> color(xyz 96.42 100 82.52)
+  blossom("#555AAA80").toStringXYZ; // -> color(xyz 13.65 11.79 29.83 / 0.5)
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.lab</code>, available via <strong>LAB</strong> plugin
   </summary>
 
@@ -251,6 +291,45 @@ blossom("#FF0000")
   ```js
   blossom("#FFFFFF").lab; // -> { l: 100, a: 0, b: 0, alpha: 1 }
   blossom("#123ABC").lab; // -> { l: 29.95, a: 29.48, b: -72.93, alpha: 1 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toStringLAB</code>
+  </summary>
+
+  Returns the CIE LAB color space string of a color.
+
+  ```js
+  blossom("#FFFFFF").toStringLAB; // -> lab(100% 0 0)
+  blossom("#555AAA80").toStringLAB; // -> lab(40.88% 15.43 -44.4)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.lch</code>, available via <strong>LCH</strong> plugin
+  </summary>
+
+  Returns the [CIE LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/) color space object of a color.
+
+  ```js
+  blossom("#FFFFFF").lch; // -> { l: 100, c: 0, h: 0, a: 1 }
+  blossom("#123ABC").lch; // -> { l: 29.95, c: 78.66, c: 292.01, alpha: 1 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toStringLCH</code>
+  </summary>
+
+  Returns the CIE LCH color space string of a color.
+
+  ```js
+  blossom("#FFFFFF").toStringLCH; // -> lch(100% 0 0)
+  blossom("#555AAA80").toStringLCH; // -> lch(40.88% 47.01 289.16 / 0.5)
   ```
 </details>
 
@@ -842,6 +921,27 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   blossom({ l: 29.95, a: 29.48, b: -72.93 }).hex; // "#123ABC"
   blossom("#FFFFFF").lab; // { l: 100, a: 0, b: 0, alpha: 1 }
+  ```
+
+</details>
+
+<details>
+  <summary>
+    <code>
+      LAB (CIE LCH Color space)
+    </code>
+  </summary>
+
+  Adds support of [CIE LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/) color model.
+
+  ```js
+  import { blossom, extend } from "@ericrovell/blossom";
+  import { pluginLCH } from "@ericrovell/blossom/plugins/lch";
+
+  extend([ pluginLCH ]);
+
+  blossom({ l: 29.95, a: 29.48, b: 40.21 }).hex; // "#6B372A"
+  blossom("#FFFFFF").lab; // { l: 100, c: 0, h: 0, a: 1 }
   ```
 
 </details>
