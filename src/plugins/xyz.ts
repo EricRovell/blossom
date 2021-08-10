@@ -32,8 +32,8 @@ export const pluginXYZ: Plugin = (BaseClass, parsers): void => {
 		}
 	});
 
-	Object.defineProperty(BaseClass.prototype, "toStringLAB", {
-		get: function toStringLAB() {
+	Object.defineProperty(BaseClass.prototype, "toStringXYZ", {
+		get: function toStringXYZ() {
 			return rgb2xyzString(this.color);
 		}
 	});
