@@ -4,6 +4,7 @@ import { pluginMonochromatic } from "@plugins/monochromatic";
 import { pluginA11Y } from "@plugins/a11y";
 import { pluginXYZ } from "@plugins/xyz";
 import { pluginLAB } from "@plugins/lab";
+import { pluginLCH } from "@plugins/lch";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -187,7 +188,14 @@ describe("XYZ plugin", () => {
 		expect(blossom("#00000000").xyz).toMatchObject({ x: 0, y: 0, z: 0, a: 0 });
 	});
 
-	it("Supported by `getFormat`", () => {
+	it("Converts a color to CIE XYZ string", () => {
+		expect(blossom("#00000080").toStringXYZ).toBe("color(xyz 0 0 0 / 0.5)");
+		expect(blossom("#FFFFFF").toStringXYZ).toBe("color(xyz 96.42 100 82.52)");
+		expect(blossom("#C65D06ED").toStringXYZ).toBe("color(xyz 28.87 20.42 1.98 / 0.93)");
+		expect(blossom("#ABCDEF").toStringXYZ).toBe("color(xyz 53.62 58.06 68.14)");
+	});
+
+	it("Supported by `getModel`", () => {
 		expect(getModel({ x: 30, y: 20, z: 10 })).toBe("xyz");
 	});
 });
@@ -218,7 +226,74 @@ describe("LAB plugin", () => {
 		expect(blossom("#123ABC").lab).toMatchObject({ l: 29.95, a: 29.48, b: -72.93, alpha: 1 });
 	});
 
-	it("Supported by `getFormat`", () => {
+	it("Converts a color to CIE LAB string", () => {
+		expect(blossom("#00000080").toStringLAB).toBe("lab(0% 0 0 / 0.5)");
+		expect(blossom("#FFFFFF").toStringLAB).toBe("lab(100% 0 0)");
+		expect(blossom("#C65D06ED").toStringLAB).toBe("lab(52.31% 40.04 60.1 / 0.93)");
+		expect(blossom("#ABCDEF").toStringLAB).toBe("lab(80.77% -5.96 -20.79)");
+	});
+
+	it("Supported by `getModel`", () => {
 		expect(getModel({ l: 50, a: 0, b: 0, alpha: 1 })).toBe("lab");
+	});
+});
+
+describe("lch", () => {
+	/**
+	 * Test results sources:
+	 * 
+	 * - https://www.w3.org/TR/css-color-4/#specifying-lab-lch
+	 * - https://cielab.xyz/colorconv/
+	 * - https://www.w3.org/TR/css-color-4/
+	 * - https://developer.mozilla.org/en-US/docs/Web/CSS/angle
+	 * 
+	 */
+	extend([ pluginLCH ]);
+
+	it("Parses CIE LCH color object", () => {
+		expect(blossom({ l: 0, c: 0, h: 0, a: 0 }).hex).toBe("#00000000");
+		expect(blossom({ l: 100, c: 0, h: 0 }).hex).toBe("#FFFFFF");
+		expect(blossom({ l: 29.2345, c: 44.2, h: 27 }).hex).toBe("#7D2329");
+		expect(blossom({ l: 52.2345, c: 72.2, h: 56.2 }).hex).toBe("#C65D06");
+		expect(blossom({ l: 60.2345, c: 59.2, h: 95.2 }).hex).toBe("#9D9318");
+		expect(blossom({ l: 62.2345, c: 59.2, h: 126.2 }).hex).toBe("#68A639");
+		expect(blossom({ l: 67.5345, c: 42.5, h: 258.2, a: 0.5 }).hex).toBe("#62ACEF80");
+	});
+
+	it("Parses CIE LCH color string", () => {
+		expect(blossom("lch(0% 0 0 / 0)").hex).toBe("#00000000");
+		expect(blossom("lch(100% 0 0)").hex).toBe("#FFFFFF");
+		expect(blossom("lch(52.2345% 72.2 56.2 / 1)").hex).toBe("#C65D06");
+		expect(blossom("lch(37% 105 305)").hex).toBe("#6A27E7");
+		expect(blossom("lch(56.2% 83.6 357.4 / 93%)").hex).toBe("#FE1091ED");
+	});
+
+	it("Converts a color to CIE LCH object", () => {
+		expect(blossom("#00000000").lch).toMatchObject({ l: 0, c: 0, h: 0, a: 0 });
+		expect(blossom("#ffffff").lch).toMatchObject({ l: 100, c: 0, h: 0, a: 1 });
+		expect(blossom("#7d2329").lch).toMatchObject({ l: 29.16, c: 44.14, h: 26.48, a: 1 });
+		expect(blossom("#c65d06").lch).toMatchObject({ l: 52.31, c: 72.21, h: 56.33, a: 1 });
+		expect(blossom("#9d9318").lch).toMatchObject({ l: 60.31, c: 59.2, h: 95.46, a: 1 });
+		expect(blossom("#68a639").lch).toMatchObject({ l: 62.22, c: 59.15, h: 126.15, a: 1 });
+		expect(blossom("#62acef80").lch).toMatchObject({ l: 67.67, c: 42.18, h: 257.79, a: 0.5 });
+	});
+
+	it("Converts a color to CIE LCH string (CSS functional notation)", () => {
+		expect(blossom("#00000080").toStringLCH).toBe("lch(0% 0 0 / 0.5)");
+		expect(blossom("#ffffff").toStringLCH).toBe("lch(100% 0 0)");
+		expect(blossom("#c65d06ed").toStringLCH).toBe("lch(52.31% 72.21 56.33 / 0.93)");
+		expect(blossom("#aabbcc").toStringLCH).toBe("lch(74.97% 11.22 252.37)");
+	});
+
+	it("Supports all valid CSS angle units", () => {
+		expect(blossom("lch(50% 50 90deg)").lch.h).toBe(90);
+		expect(blossom("lch(50% 50 100grad)").lch.h).toBe(90);
+		expect(blossom("lch(50% 50 0.25turn)").lch.h).toBe(90);
+		expect(blossom("lch(50% 50 1.5708rad)").lch.h).toBe(90);
+	});
+
+	it("Supported by `getModel`", () => {
+		expect(getModel("lch(50% 50 180deg)")).toBe("lch");
+		expect(getModel({ l: 50, c: 50, h: 180 })).toBe("lch");
 	});
 });
