@@ -3,5 +3,6 @@ export { parseLABColor } from "./parse";
 export {
 	clampLAB,
 	roundLAB,
-	factors
+	factors,
+	rgb2labString
 } from "./util";

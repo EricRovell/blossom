@@ -1,5 +1,6 @@
 import { clamp, round } from "@util/helpers";
-import type { ColorXYZ } from "../../types";
+import type { ColorRGB, ColorXYZ } from "../../types";
+import { rgb2xyz } from "../rgb";
 
 /**
  * Theoretical light source that approximates "warm daylight".
@@ -58,4 +59,16 @@ export function adaptXYZtoD50({ x, y, z, a = 1 }: ColorXYZ): ColorXYZ {
 		z: x * -0.0092345 + y * 0.0150436 + z * 0.7521316,
 		a
 	};
+}
+
+/**
+ * Transforms the RGB color object to CIE XYZ color string.
+ * 
+ * https://www.w3.org/TR/css-color-4/#valdef-color-xyz
+ */
+export function rgb2xyzString(rgb: ColorRGB): string {
+	const { x, y, z, a = 1 } = roundXYZ(rgb2xyz(rgb));
+	return a < 1
+		? `color(xyz ${x} ${y} ${z} / ${a})`
+		: `color(xyz ${x} ${y} ${z})`;
 }

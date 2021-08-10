@@ -5,5 +5,6 @@ export {
 	roundXYZ,
 	adaptXYZtoD50,
 	adaptXYZtoD65,
-	D50
+	D50,
+	rgb2xyzString
 } from "./util";

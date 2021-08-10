@@ -1,4 +1,4 @@
-import { parseXYZColor, roundXYZ } from "@models/xyz";
+import { parseXYZColor, roundXYZ, rgb2xyzString } from "@models/xyz";
 import { rgb2xyz } from "@models/rgb";
 import type { ColorXYZ, Plugin } from "../types";
 
@@ -8,6 +8,13 @@ declare module "../blossom" {
 		 * Returns color in CIE XYZ color space.
 		 */
 		xyz: ColorXYZ;
+
+		/**
+		 * Returns a CIE LAB color string.
+		 * 
+		 * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()
+		 */
+		toStringLAB: string;
 	}
 }
 
@@ -22,6 +29,12 @@ export const pluginXYZ: Plugin = (BaseClass, parsers): void => {
 	Object.defineProperty(BaseClass.prototype, "xyz", {
 		get: function xyz() {
 			return roundXYZ(rgb2xyz(this.color));
+		}
+	});
+
+	Object.defineProperty(BaseClass.prototype, "toStringLAB", {
+		get: function toStringLAB() {
+			return rgb2xyzString(this.color);
 		}
 	});
 

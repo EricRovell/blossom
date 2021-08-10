@@ -1,5 +1,6 @@
 import { clamp, round } from "@util/helpers";
-import type { ColorLAB } from "../../types";
+import type { ColorLAB, ColorRGB } from "../../types";
+import { rgb2lab } from "../rgb";
 
 /**
  * Convertion factors.
@@ -40,4 +41,16 @@ export function roundLAB({ l, a, b, alpha = 1 }: ColorLAB): ColorLAB {
 		b: round(b, 2),
 		alpha: round(alpha, 2)
 	};
+}
+
+/**
+ * Transforms the RGB color object to CIE LAB color string.
+ * 
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()
+ */
+export function rgb2labString(rgb: ColorRGB): string {
+	const { l, a, b, alpha = 1 } = roundLAB(rgb2lab(rgb));
+	return alpha < 1
+		? `lab(${l}% ${a} ${b} / ${alpha})`
+		: `lab(${l}% ${a} ${b})`;
 }

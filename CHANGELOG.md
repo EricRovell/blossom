@@ -1,6 +1,11 @@
 # Blossom Changelog
 
-## 1.6.0 (2021-08-07):
+## 1.7.0 (2021-08-08):
+
+- [feature]: `.toStringLAB` property for string representation of color;
+- [feature]: `.toStringXYZ` property for string representation of color;
+
+## 1.6.0 (2021-08-08):
 
 - [feature]: new harmony pallete "double-split-complimentary" available via `Harmonies` plugin;
 - [feature]: new build-in plugin with [CIE XYZ](https://www.sttmedia.com/colormodel-xyz) color space support ❤️ [@omgovich](https://github.com/omgovich);
