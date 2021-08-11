@@ -10,7 +10,8 @@ export type {
 	ColorCMYK,
 	ColorXYZ,
 	ColorLAB,
-	ColorLCH
+	ColorLCH,
+	ColorHWB
 } from "./color";
 
 export { 

@@ -1,4 +1,4 @@
-import { rgb2cmyk, rgb2hsl, rgb2hsv, rgb2lab, rgb2lch, rgb2xyz } from "./transform";
+import { rgb2cmyk, rgb2hsl, rgb2hsv, rgb2hwb, rgb2lab, rgb2lch, rgb2xyz } from "./transform";
 import { roundRGB } from "./util";
 import { roundCMYK } from "../cmyk/util";
 import { roundHSL } from "../hsl/util";
@@ -7,6 +7,7 @@ import { roundLAB } from "../lab/util";
 import { roundLCH } from "../lch/util";
 import { roundXYZ } from "../xyz/util";
 import type { ColorRGB } from "../../types";
+import { roundHWB } from "../hwb/util";
 
 /**
  * Transforms the RGB color object into string.
@@ -82,4 +83,14 @@ export function rgb2lchString(rgb: ColorRGB): string {
 	return a < 1
 		? `lch(${l}% ${c} ${h} / ${a})`
 		: `lch(${l}% ${c} ${h})`;
+}
+
+/**
+ * Transforms the RGB color object to CIE LCH color string.
+ */
+export function rgb2hwbString(rgb: ColorRGB): string {
+	const { h, w, b, a = 1 } = roundHWB(rgb2hwb(rgb));
+	return a < 1
+		? `hwb(${h} ${w}% ${b}% / ${a})`
+		: `hwb(${h} ${w}% ${b}%)`;
 }
