@@ -6,6 +6,7 @@ import { pluginXYZ } from "@plugins/xyz";
 import { pluginLAB } from "@plugins/lab";
 import { pluginLCH } from "@plugins/lch";
 import { pluginHWB } from "@plugins/hwb";
+import { pluginMix } from "@plugins/mix";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -355,5 +356,28 @@ describe("hwb", () => {
 	it("Supported by `getModel`", () => {
 		expect(getModel("hwb(180deg 50% 50%)")).toBe("hwb");
 		expect(getModel({ h: 0, w: 0, b: 100 })).toBe("hwb");
+	});
+});
+
+describe("mix", () => {
+	extend([ pluginMix ]);
+
+	it("Mixes two colors", () => {
+		expect(blossom("#000000").mix("#FFFFFF").hex).toBe("#777777");
+		expect(blossom("#DC143C").mix("#000000").hex).toBe("#6A1B21");
+		expect(blossom("#800080").mix("#DDA0DD").hex).toBe("#AF5CAE");
+		expect(blossom("#228B22").mix("#87CEFA").hex).toBe("#60AC8F");
+		expect(blossom("#CD853F").mix("#EEE8AA", 0.6).hex).toBe("#E3C07E");
+		expect(blossom("#483D8B").mix("#00BFFF", 0.35).hex).toBe("#4969B2");
+	});
+
+	it("Returns the same color if ratio is 0 or 1", () => {
+		expect(blossom("#CD853F").mix("#FFFFFF", 0).hex).toBe("#CD853F");
+		expect(blossom("#FFFFFF").mix("#CD853F", 1).hex).toBe("#CD853F");
+	});
+
+	it("Return the color if both values are equal", () => {
+		expect(blossom("#FFFFFF").mix("#FFFFFF").hex).toBe("#FFFFFF");
+		expect(blossom("#000000").mix("#000000").hex).toBe("#000000");
 	});
 });

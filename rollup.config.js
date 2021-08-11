@@ -26,7 +26,8 @@ const plugins = [
 	"xyz",
 	"lab",
 	"lch",
-	"hwb"
+	"hwb",
+	"mix"
 ];
 
 /**

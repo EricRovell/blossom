@@ -17,7 +17,7 @@ import { clamp, clampDegrees, round } from "@util/helpers";
 import { roundHSL } from "@models/hsl";
 import { roundHSV } from "@models/hsv";
 
-import type { Color, ColorCMYK, ColorHSL, ColorHSV, ColorRGB, Input, ParseResult } from "@types";
+import type { Color, ColorCMYK, ColorHSL, ColorHSV, ColorRGB, Input, ParseResult } from "./types";
 
 
 /**
