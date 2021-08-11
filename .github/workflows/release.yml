@@ -1,4 +1,4 @@
-name: Node.js CLI
+name: NPM Release
 on:
   release:
     types: [published]
