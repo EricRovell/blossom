@@ -27,5 +27,6 @@ export {
 	rgb2cmykString,
 	rgb2xyzString,
 	rgb2labString,
-	rgb2lchString
+	rgb2lchString,
+	rgb2hwbString
 } from "./to-string";

@@ -75,7 +75,8 @@ blossom("#FF0000")
 - CMYK (objects);
 - XYZ (objects);
 - LAB (objects);
-- LCH (objects, strings).
+- LCH (objects, strings);
+- HWB (objects, strings);
 
 ## API
 
@@ -330,6 +331,32 @@ blossom("#FF0000")
   ```js
   blossom("#FFFFFF").toStringLCH; // -> lch(100% 0 0)
   blossom("#555AAA80").toStringLCH; // -> lch(40.88% 47.01 289.16 / 0.5)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.hwb</code>, available via <strong>HWB</strong> plugin
+  </summary>
+
+  Returns the [HWB](https://en.wikipedia.org/wiki/HWB_color_model) color space object of a color.
+
+  ```js
+  blossom("#FFFFFF").hwb; // -> { h: 0, w: 100, b: 0, a: 1 }
+  blossom("#123ABC").hwb; // -> { h: 226, w: 7, b: 26, a: 1 }
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toStringHWB</code>
+  </summary>
+
+  Returns the HWB color space string of a color.
+
+  ```js
+  blossom("#FFFFFF").toStringHWB; // -> hwb(0 100% 0%)
+  blossom("#555AAA80").toStringHWB; // -> hwb(236 33% 33% / 0.5)
   ```
 </details>
 
@@ -942,6 +969,27 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   blossom({ l: 29.95, a: 29.48, b: 40.21 }).hex; // "#6B372A"
   blossom("#FFFFFF").lab; // { l: 100, c: 0, h: 0, a: 1 }
+  ```
+
+</details>
+
+<details>
+  <summary>
+    <code>
+      HWB
+    </code>
+  </summary>
+
+  Adds support of [HWB](https://en.wikipedia.org/wiki/HWB_color_model) color model.
+
+  ```js
+  import { blossom, extend } from "@ericrovell/blossom";
+  import { pluginHWB } from "@ericrovell/blossom/plugins/hwb";
+
+  extend([ pluginHWB ]);
+
+  blossom({h: 236, w: 33, b: 33 }).hex; // "#555AAA"
+  blossom("#FFFFFF").hwb; // { h: 0, w: 100, b: 0 }
   ```
 
 </details>

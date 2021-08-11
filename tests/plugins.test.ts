@@ -5,6 +5,7 @@ import { pluginA11Y } from "@plugins/a11y";
 import { pluginXYZ } from "@plugins/xyz";
 import { pluginLAB } from "@plugins/lab";
 import { pluginLCH } from "@plugins/lch";
+import { pluginHWB } from "@plugins/hwb";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -295,5 +296,64 @@ describe("lch", () => {
 	it("Supported by `getModel`", () => {
 		expect(getModel("lch(50% 50 180deg)")).toBe("lch");
 		expect(getModel({ l: 50, c: 50, h: 180 })).toBe("lch");
+	});
+});
+
+describe("hwb", () => {
+	/**
+	 * Test results:
+	 * 
+	 * - https://htmlcolors.com/color-converter
+	 * - https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb()
+	 * - https://en.wikipedia.org/wiki/HWB_color_model
+	 */
+	extend([ pluginHWB ]);
+
+	it("Parses HWB color object", () => {
+		expect(blossom({ h: 0, w: 0, b: 100 }).hex).toBe("#000000");
+		expect(blossom({ h: 210, w: 67, b: 20, a: 1 }).hex).toBe("#ABBBCC");
+		expect(blossom({ h: 236, w: 33, b: 33, a: 0.5 }).hex).toBe("#545AAB80");
+		expect(blossom({ h: 0, w: 100, b: 0, a: 1 }).hex).toBe("#FFFFFF");
+	});
+
+	it("Converts a color to HWB object", () => {
+		
+		expect(blossom("#000000").hwb).toMatchObject({ h: 0, w: 0, b: 100, a: 1 });
+		expect(blossom("#FF0000").hwb).toMatchObject({ h: 0, w: 0, b: 0, a: 1 });
+		expect(blossom("#00FFFF").hwb).toMatchObject({ h: 180, w: 0, b: 0, a: 1 });
+		expect(blossom("#665533").hwb).toMatchObject({ h: 40, w: 20, b: 60, a: 1 });
+		expect(blossom("#FEACFA").hwb).toMatchObject({ h: 303, w: 67, b: 0, a: 1 });
+		expect(blossom("#FFFFFF").hwb).toMatchObject({ h: 0, w: 100, b: 0, a: 1 });
+	});
+
+	it("Parses HWB color string", () => {
+		expect(blossom("hwb(194 0% 0%)").hex).toBe("#00C3FF");
+		expect(blossom("hwb(194 0% 0% / .5)").hex).toBe("#00C3FF80");
+		expect(blossom("hwb(-90deg 40% 40% / 50%)").hex).toBe("#7F669980");
+	});
+
+	it("Ignores invalid syntax", () => {
+		// comma syntax is not documented
+		expect(blossom("hwb(194, 0%, 0%, .5)").valid).toBe(false);
+		// missing percents
+		expect(blossom("hwb(-90deg 40 40)").valid).toBe(false);
+	});
+
+	it("Converts a color to HWB string", () => {
+		expect(blossom("#999966").toStringHWB).toBe("hwb(60 40% 40%)");
+		expect(blossom("#99FFFF").toStringHWB).toBe("hwb(180 60% 0%)");
+		expect(blossom("#00336680").toStringHWB).toBe("hwb(210 0% 60% / 0.5)");
+	});
+
+	it("Supports all valid CSS angle units", () => {
+		expect(blossom("hwb(90deg 20% 20%)").hwb.h).toBe(90);
+		expect(blossom("hwb(100grad 20% 20%)").hwb.h).toBe(90);
+		expect(blossom("hwb(1.25turn 20% 20%)").hwb.h).toBe(90);
+		expect(blossom("hwb(1.5708rad 20% 20%)").hwb.h).toBe(90);
+	});
+
+	it("Supported by `getModel`", () => {
+		expect(getModel("hwb(180deg 50% 50%)")).toBe("hwb");
+		expect(getModel({ h: 0, w: 0, b: 100 })).toBe("hwb");
 	});
 });

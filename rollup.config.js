@@ -25,7 +25,8 @@ const plugins = [
 	"a11y",
 	"xyz",
 	"lab",
-	"lch"
+	"lch",
+	"hwb"
 ];
 
 /**
