@@ -3,7 +3,7 @@ import { adaptXYZtoD50, D50 } from "../xyz/constants";
 import { clampXYZ } from "../xyz/util";
 import { factors } from "../lab/util";
 import { makeLinearChannels, roundRGB } from "./util";
-import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ, ColorLAB, ColorLCH } from "../../types";
+import type { ColorHSV, ColorRGB, ColorHSL, ColorHEX, ColorCMYK, ColorXYZ, ColorLAB, ColorLCH, ColorHWB } from "../../types";
 
 /**
  * Convert RGB Color Model object to HSV.
@@ -160,4 +160,18 @@ export function rgb2lch(color: ColorRGB): ColorLCH {
 		h: hue < 0 ? hue + 360 : hue,
 		a: alpha
 	};
+}
+
+/**
+ * Convert RGB Color Model object to LCH.
+ * Flowchart: RGB -> CIE XYZ -> CIE LCH
+ * 
+ * https://www.w3.org/TR/css-color-4/#color-conversion-code
+ */
+export function rgb2hwb({ r, g, b, a = 1 }: ColorRGB): ColorHWB {
+	const { h } = rgb2hsv({ r, g, b });
+	const w = (Math.min(r, g, b) / 255) * 100;
+	const b1 = 100 - (Math.max(r, g, b) / 255) * 100;
+
+	return { h,	w, b: b1, a };
 }
