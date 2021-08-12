@@ -24,8 +24,4 @@ jobs:
       - run: npm run build:post
       - run: npm run release
         env:
-<<<<<<< HEAD
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-=======
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
->>>>>>> 17d302700a8f45994b597259527ea238573a361c
