@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { blossom, extend } from "@/.";
-import type { Plugin } from "@types";
+import { blossom, extend } from "../src";
+import type { Plugin } from "../src/types";
 
 declare module "blossom" {
   interface Blossom {

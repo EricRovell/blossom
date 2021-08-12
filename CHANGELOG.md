@@ -1,8 +1,9 @@
 # Blossom Changelog
 
-# 1.8.0 (2021-08-11):
+# 1.8.0 (2021-08-12):
 
-- [feature]: new build-in plugin with HWB](https://en.wikipedia.org/wiki/HWB_color_model) color space support ❤️ [@omgovich](https://github.com/omgovich);
+- [feature]: new build-in plugin with [HWB](https://en.wikipedia.org/wiki/HWB_color_model) color space support ❤️ [@omgovich](https://github.com/omgovich);
+- [feature]: new build-in plugin `mix` with color mixing using [CIE LAB](https://en.wikipedia.org/wiki/Lab_color_space) color space for better results ❤️ [@omgovich](https://github.com/omgovich);
 
 ## 1.7.0 (2021-08-10):
 

@@ -5,7 +5,7 @@ import type {
 	ColorHSV,
 	ColorRGB,
 	Input
-} from "@types";
+} from "../src/types";
 
 export interface TestColor {
   [key: string]: Input;
