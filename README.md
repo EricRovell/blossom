@@ -713,6 +713,26 @@ blossom("#FF0000")
   ```
 </details>
 
+<details>
+  <summary>
+    <code>.mix(color, ratio = 0.5)</code>, available via <strong>mix</strong> plugin
+  </summary>
+
+  Produces a mixture of two colors and returns the result as new `Blossom` instance. Mix produced using [CIE LAB](https://en.wikipedia.org/wiki/CIELAB_color_space) color space.
+
+  ```js
+  import { colord, extend } from "blossom";
+  import pluginMix from "@ericrovell/blossom/plugins/mix";
+
+  extend([ mixPlugin ]);
+
+  blossom("#FFFFFF").mix("#000000").hex; // -> "#777777"
+  blossom("#800080").mix("#DDA0DD").hex; // -> "#AF5CAE"
+  blossom("#CD853F").mix("#EEE8AA", 0.6).hex; // -> "#E3C07E"
+  blossom("#008080").mix("#808000", 0.35).hex; // -> "#50805D"
+  ```
+</details>
+
 ### Color Utilities
 
 <details>
@@ -990,6 +1010,29 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
   blossom({h: 236, w: 33, b: 33 }).hex; // "#555AAA"
   blossom("#FFFFFF").hwb; // { h: 0, w: 100, b: 0 }
+  ```
+
+</details>
+
+<details>
+  <summary>
+    <code>
+      Mix
+    </code>
+  </summary>
+
+  Adds support for mixing colors. Mixture is produced using [CIE LAB](https://en.wikipedia.org/wiki/CIELAB_color_space) color space.
+
+  ```js
+  import { colord, extend } from "blossom";
+  import pluginMix from "@ericrovell/blossom/plugins/mix";
+
+  extend([ mixPlugin ]);
+
+  blossom("#FFFFFF").mix("#000000").hex; // -> "#777777"
+  blossom("#800080").mix("#DDA0DD").hex; // -> "#AF5CAE"
+  blossom("#CD853F").mix("#EEE8AA", 0.6).hex; // -> "#E3C07E"
+  blossom("#008080").mix("#808000", 0.35).hex; // -> "#50805D"
   ```
 
 </details>
