@@ -1,7 +1,17 @@
-# Blossom
+<div align="center">
+  <img
+    alt="Library logo as flower"
+    src="assets/logo.svg"
+    width="125px"
+    height="125px"
+    padding="25px"
+  />
+</div>
 
 <div align="center">
-  <img src="./assets/logo.svg" alt="Flower" width="150px" style="padding: 1em">
+  <a href="https://github.com/EricRovell/blossom/actions">
+    <img alt="build action status" src="https://github.com/EricRovell/blossom/workflows/build/badge.svg" />
+  </a>
 </div>
 
 <div align="center">
@@ -37,9 +47,9 @@
   </a>
 </div>
 
-<p align="center">
+# Blossom
+
 Blossom is a JS library tool for color manipulations and transformations.
-</p>
 
 ## Features:
 
@@ -1044,7 +1054,7 @@ Blossom is written in strict TypeScript and ships with types in the library itse
 While not only typing its own functions and variables, you can also type yours. Depending on the color space you are using, the types can be also imported and used to type the code.
 
 ```js
-import type { ColorRGB, ColorHSL } from "blossom/types";
+import type { ColorRGB, ColorHSL } from "@ericrovell/blossom";
 
 const foo: ColorHSL = { h: 0, s: 0, l: 0 };
 const bar: ColorRGB = { r: 0, g: 0, v: 0 }; // type error!
