@@ -1,5 +1,11 @@
-name: Node.js CLI
-on: [ push, pull_request ]
+name: build
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
 jobs:
   build:
     runs-on: windows-latest
