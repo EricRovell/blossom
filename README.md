@@ -12,6 +12,9 @@
   <a href="https://github.com/EricRovell/blossom/actions">
     <img alt="build action status" src="https://github.com/EricRovell/blossom/workflows/build/badge.svg" />
   </a>
+  <a href="https://codecov.io/gh/EricRovell/blossom">
+    <img src="https://codecov.io/gh/EricRovell/blossom/branch/main/graph/badge.svg?token=39QNLRFB05"/>
+  </a>
 </div>
 
 <div align="center">
