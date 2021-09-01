@@ -7,6 +7,7 @@ import { pluginLAB } from "@plugins/lab";
 import { pluginLCH } from "@plugins/lch";
 import { pluginHWB } from "@plugins/hwb";
 import { pluginMix } from "@plugins/mix";
+import { pluginNames } from "@plugins/names";
 
 describe("Harmony colors plugin", () => {
 	extend([ pluginHarmonies ]);
@@ -379,5 +380,41 @@ describe("mix", () => {
 	it("Return the color if both values are equal", () => {
 		expect(blossom("#FFFFFF").mix("#FFFFFF").hex).toBe("#FFFFFF");
 		expect(blossom("#000000").mix("#000000").hex).toBe("#000000");
+	});
+});
+
+describe("names", () => {
+	extend([ pluginNames ]);
+
+	it("Parses valid CSS color names", () => {
+		expect(blossom("white").hex).toBe("#FFFFFF");
+		expect(blossom("red").hex).toBe("#FF0000");
+		expect(blossom("cadetblue").hex).toBe("#5F9EA0");
+	});
+
+	it("Ignores the case and extra whitespaces", () => {
+		expect(blossom("RED ").hex).toBe("#FF0000");
+		expect(blossom(" yElLoW").hex).toBe("#FFFF00");
+		expect(blossom("  blue ").hex).toBe("#0000FF");
+	});
+
+	it("Does not crash when name is not found", () => {
+		expect(blossom("juicylemon").hex).toBe("#000000");
+	});
+
+	it("Processes `transparent` color", () => {
+		expect(blossom("transparent").alpha).toBe(0);
+		expect(blossom("transparent").hex).toBe("#00000000");
+	});
+
+	it("Works with input validation", () => {
+		expect(blossom("transparent").valid).toBe(true);
+		expect(blossom("cyan").valid).toBe(true);
+		expect(blossom("watermelon").valid).toBe(false);
+	});
+
+	it("Supported by `getModel`", () => {
+		expect(getModel("transparent")).toBe("name");
+		expect(getModel("black")).toBe("name");
 	});
 });
