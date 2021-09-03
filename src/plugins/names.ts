@@ -11,12 +11,8 @@ export const pluginNames: Plugin = (BaseClass, parsers) => {
 	function parseColorName(input: string): ColorRGB | null {
 		const name = input.toLowerCase();
 
-		const hex: string | undefined = (name === "transparent")
-			? "0000"
-			: cssColorNames[name];
-
-		if (typeof hex === "string") {
-			return new BaseClass(`#${hex}`).rgb;
+		if (cssColorNames.has(name)) {
+			return new BaseClass(`#${cssColorNames.get(name)}`).rgb;
 		}
 
 		return null;
