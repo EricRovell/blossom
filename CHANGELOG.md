@@ -1,5 +1,10 @@
 # Blossom Changelog
 
+# 1.9.0 (2021-09-04):
+
+- [feature]: new build-in plugin `names` plugin with [named colors](https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/) support;
+- [fix]: missing color models type exports;
+
 # 1.8.0 (2021-08-12):
 
 - [feature]: new build-in plugin with [HWB](https://en.wikipedia.org/wiki/HWB_color_model) color space support ❤️ [@omgovich](https://github.com/omgovich);
