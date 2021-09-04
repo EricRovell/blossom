@@ -10,10 +10,3 @@ export function getDistanceSq(color1: ColorRGB, color2: ColorRGB): number {
 	const { r: r2, g: g2, b: b2 } = color2;
 	return (r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2;
 }
-
-/**
- * Calculates the distance between two colors.
- */
-export function getDistance(color1: ColorRGB, color2: ColorRGB): number {
-	return getDistanceSq(color1, color2) ** 0.5;
-}
