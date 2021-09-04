@@ -414,11 +414,13 @@ describe("names", () => {
 	});
 
 	it("Converts a color to CSS name", () => {
+		expect(blossom("#FF000000").name).toBe("transparent");
 		expect(blossom("#F00").name).toBe("red");
 		expect(blossom("#663399").name).toBe("rebeccapurple");
 	});
 
 	it("Converts a color to CSS name approximately", () => {
+		expect(blossom("#FF0000").closestName).toBe("red");
 		expect(blossom("#FF0101").closestName).toBe("red");
 		expect(blossom("#66339A").closestName).toBe("rebeccapurple");
 	});
