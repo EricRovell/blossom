@@ -413,6 +413,16 @@ describe("names", () => {
 		expect(blossom("watermelon").valid).toBe(false);
 	});
 
+	it("Converts a color to CSS name", () => {
+		expect(blossom("#F00").name).toBe("red");
+		expect(blossom("#663399").name).toBe("rebeccapurple");
+	});
+
+	it("Converts a color to CSS name approximately", () => {
+		expect(blossom("#FF0101").closestName).toBe("red");
+		expect(blossom("#66339A").closestName).toBe("rebeccapurple");
+	});
+
 	it("Supported by `getModel`", () => {
 		expect(getModel("transparent")).toBe("name");
 		expect(getModel("black")).toBe("name");
