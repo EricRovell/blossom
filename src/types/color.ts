@@ -7,7 +7,8 @@ export type ColorModel =
   | "xyz"
   | "lab"
   | "lch"
-  | "hwb";
+  | "hwb"
+  | "name";
 
 export interface ColorRGB {
   r: number;

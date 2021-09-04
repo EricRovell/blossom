@@ -4,6 +4,7 @@ export { getModel } from "./properties";
 export { random } from "./random";
 
 export type {
+	Input,
 	ColorModel,
 	Color,
 	ColorRGB,
@@ -11,4 +12,9 @@ export type {
 	ColorHSL,
 	ColorHSV,
 	ColorCMYK,
-} from "./types/color";
+	ColorLCH,
+	ColorLAB,
+	ColorHSB,
+	ColorHWB,
+	ColorXYZ
+} from "./types";

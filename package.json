@@ -1,6 +1,6 @@
 {
   "name": "@ericrovell/blossom",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Blossom is a JS library tool for colour manipulations and transformations.",
   "main": "./index.js",
   "module": "./index.mjs",
@@ -57,10 +57,16 @@
       "import": "./plugins/mix.mjs",
       "require": "./plugins/mix.js",
       "default": "./plugins/mix.mjs"
+    },
+    "./plugins/names": {
+      "import": "./plugins/names.mjs",
+      "require": "./plugins/names.js",
+      "default": "./plugins/names.mjs"
     }
   },
   "keywords": [
     "color",
+    "color names",
     "transform",
     "convert",
     "harmony colors",
