@@ -90,6 +90,7 @@ blossom("#FF0000")
 - LAB (objects);
 - LCH (objects, strings);
 - HWB (objects, strings);
+- [Named colors](https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/)
 
 ## API
 
@@ -370,6 +371,32 @@ blossom("#FF0000")
   ```js
   blossom("#FFFFFF").toStringHWB; // -> hwb(0 100% 0%)
   blossom("#555AAA80").toStringHWB; // -> hwb(236 33% 33% / 0.5)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.name</code>, available via <strong>Names</strong> plugin
+  </summary>
+
+  Returns the name of the color as **exact** match of [browser supported list of 140 named colors](https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/). If the color has not an alias returns `null` instead.
+
+  ```js
+  blossom("#FF0000").name; // -> "red"
+  blossom("#123ABC").name; // -> null
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.closestName</code>, available via <strong>Names</strong> plugin
+  </summary>
+
+  Returns the closest named color from [browser supported list of 140 named colors](https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/) color.
+
+  ```js
+  blossom("#FF0001").closestName; // -> "red"
+  blossom("#66339A").closestName; // -> "rebeccapurple"
   ```
 </details>
 
@@ -779,40 +806,6 @@ extend([
 ]);
 ```
 
-### Developing plugins
-
-To develop a custom plugin and extend library's functionality, the function should be created which integrates methods using prototype chain.
-
-```js
-export const plugin = (BaseClass) =>  {
-  BaseClass.prototype.newMethod = function() {
-    // ...
-  }
-}
-```
-
-After that it should be provided as the parameter for `extend` function.
-
-### Developing plugins with TypeScript
-
-To develop a plugin with TypeScript, module `blossom` should be declared with the `Blossom` interface described.
-
-```ts
-import { Plugin } from "@blossom/types";
-
-declare module "blossom" {
-  interface Blossom {
-    newMethod(): void;
-  }
-}
-
-export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
-  BaseClass.prototype.newMethod = function() {
-    // ...
-  }
-}
-```
-
 ### Included plugins
 
 <details>
@@ -1050,6 +1043,31 @@ export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
 
 </details>
 
+<details>
+  <summary>
+    <code>
+      Names
+    </code>
+  </summary>
+
+  Adds support for a list of 140 named colors supported by all modern browsers.
+
+  ```js
+  import { colord, extend } from "blossom";
+  import pluginNames from "@ericrovell/blossom/plugins/names";
+
+  extend([ pluginNames ]);
+  
+  blossom("white").hex           // -> "#FFFFFF"
+  blossom("red").hex             // -> "#FF0000"
+  blossom("#FF0000").name        // -> "red"
+  blossom("#ABC123").name        // -> null
+  blossom("#FF0101").closestName // -> "red"
+  blossom("#66339A").closestName // -> "rebeccapurple"
+  ```
+
+</details>
+
 ## Types
 
 Blossom is written in strict TypeScript and ships with types in the library itself.
@@ -1061,6 +1079,61 @@ import type { ColorRGB, ColorHSL } from "@ericrovell/blossom";
 
 const foo: ColorHSL = { h: 0, s: 0, l: 0 };
 const bar: ColorRGB = { r: 0, g: 0, v: 0 }; // type error!
+```
+
+## Extending the functionality
+
+To extend functionality for your needs, just extend the `Blossom` class:
+
+```ts
+import { Blossom } from "@ericrovell/blossom";
+
+class BlossomExtended extends Blossom {
+  constructor(input?) {
+		super(input);
+	}
+
+  get red() {
+    return this.color.r;
+  }
+}
+
+const extended = new BlossomExtended("#FF0000");
+extended.red // -> 255;
+```
+
+## Developing plugins
+
+To develop a custom plugin and extend library's functionality, the function should be created which integrates methods using prototype chain. It is considered a bad practice, but while you know methods names and what you are overriding, everything will be fine.
+
+```js
+export const plugin = (BaseClass) =>  {
+  BaseClass.prototype.newMethod = function() {
+    // ...
+  }
+}
+```
+
+After that the `plugin` should be provided as the parameter for `extend` function.
+
+### Using TypeScript
+
+To develop a plugin with TypeScript, module `blossom` should be declared with the `Blossom` interface described.
+
+```ts
+import { Plugin } from "@blossom/types";
+
+declare module "blossom" {
+  interface Blossom {
+    newMethod(): void;
+  }
+}
+
+export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
+  BaseClass.prototype.newMethod = function() {
+    // ...
+  }
+}
 ```
 
 ## Inspiration
