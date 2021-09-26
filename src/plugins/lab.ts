@@ -1,7 +1,8 @@
 import { rgb2lab } from "@models/rgb";
 import { parseLABColor, roundLAB } from "@models/lab";
 import { rgb2labString } from "@models/rgb";
-import { deltaE2000 } from "@properties";
+import { calcDeltaE00 } from "@properties";
+import { round, clamp } from "@util/helpers";
 import type { Input, ColorLAB, Plugin } from "../types";
 
 declare module "../blossom" {
@@ -22,7 +23,7 @@ declare module "../blossom" {
 		 * Calculates the perceived color difference for two colors according to
 		 * [Delta E2000](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000).
 		 */
-		deltaE00(color: Blossom | Input): number;
+		delta(color?: Blossom | Input): number;
 	}
 }
 
@@ -44,12 +45,13 @@ export const pluginLAB: Plugin = (BaseClass, parsers) => {
 		}
 	});
 
-	BaseClass.prototype.deltaE00 = function(color) {
+	BaseClass.prototype.delta = function(color = "#FFF") {
 		const compared = color instanceof BaseClass
 			? color
 			: new BaseClass(color);
+		const value = calcDeltaE00(this.lab, compared.lab) / 100;
 
-		return deltaE2000(this.lab, compared.lab);
+		return clamp(round(value, 3));
 	};
 
 	parsers.object.push({
