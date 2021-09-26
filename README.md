@@ -773,6 +773,25 @@ blossom("#FF0000")
   ```
 </details>
 
+<details>
+  <summary>
+    <code>.delta(color = "#FFF")</code>, available via <strong>LAB</strong> plugin
+  </summary>
+
+  Calculates the perceived color difference between two colors.
+  The difference calculated according to [Delta E2000](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000).
+
+  Returns the normalized value in range from [0, 1], where 0 means the same colors and 1 are completely different ones.
+
+  ```js
+  colord("#3296fa").delta("#197dc8") // 0.099
+  colord("#faf0c8").delta("#fff") // 0.148
+  colord("#afafaf").delta("#b4b4b4") // 0.014
+  colord("#000").delta("#fff") // 1.0
+  ```
+
+</details>
+
 ### Color Utilities
 
 <details>
@@ -965,6 +984,7 @@ extend([
   </summary>
 
   Adds support of [CIE LAB](https://en.wikipedia.org/wiki/CIELAB_color_space) color model.
+  Plugin provides `.delta` method for perceived color difference calculations: 0 for same colors, 1 for completely different ones.
 
   ```js
   import { blossom, extend } from "@ericrovell/blossom";
@@ -974,6 +994,9 @@ extend([
 
   blossom({ l: 29.95, a: 29.48, b: -72.93 }).hex; // "#123ABC"
   blossom("#FFFFFF").lab; // { l: 100, a: 0, b: 0, alpha: 1 }
+  
+  blossom("#afafaf").delta("#b4b4b4") // 0.014
+  blossom("#000").delta("#fff") // 1.0
   ```
 
 </details>
@@ -981,7 +1004,7 @@ extend([
 <details>
   <summary>
     <code>
-      LAB (CIE LCH Color space)
+      LCH (CIE LCH Color space)
     </code>
   </summary>
 
@@ -1100,40 +1123,6 @@ class BlossomExtended extends Blossom {
 
 const extended = new BlossomExtended("#FF0000");
 extended.red // -> 255;
-```
-
-## Developing plugins
-
-To develop a custom plugin and extend library's functionality, the function should be created which integrates methods using prototype chain. It is considered a bad practice, but while you know methods names and what you are overriding, everything will be fine.
-
-```js
-export const plugin = (BaseClass) =>  {
-  BaseClass.prototype.newMethod = function() {
-    // ...
-  }
-}
-```
-
-After that the `plugin` should be provided as the parameter for `extend` function.
-
-### Using TypeScript
-
-To develop a plugin with TypeScript, module `blossom` should be declared with the `Blossom` interface described.
-
-```ts
-import { Plugin } from "@blossom/types";
-
-declare module "blossom" {
-  interface Blossom {
-    newMethod(): void;
-  }
-}
-
-export const pluginHarmonyColors: Plugin = (BaseClass): void =>  {
-  BaseClass.prototype.newMethod = function() {
-    // ...
-  }
-}
 ```
 
 ## Inspiration
