@@ -4,4 +4,4 @@ export { getLuminance } from "./luminance";
 export { getContrast } from "./contrast";
 export { cssColorNames } from "./css-color-names";
 export { getDistanceSq } from "./distance";
-export { deltaE2000 } from "./perceived-difference";
+export { calcDeltaE00 } from "./perceived-difference";

@@ -2,27 +2,16 @@ import { rad2deg, deg2rad } from "@util/constants";
 import { ColorLAB } from "../types";
 
 /**
- * Kl - grafic arts = 1; textiles = 2;
- * Kl - unity factor;
- * Kh - weighting factor;
- */
-interface Options {
-	kl: 1 | 2;
-	kc: number;
-	kh: number;
-}
-
-/**
  * Calculates the perceived color difference according to [Delta E2000](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000).
- * 
+ *
  * ΔE - (Delta E, dE) The measure of change in visual perception of two given colors.
- * 
+ *
  * Delta E is a metric for understanding how the human eye perceives color difference.
  * The term delta comes from mathematics, meaning change in a variable or function.
  * The suffix E references the German word Empfindung, which broadly means sensation.
- * 
+ *
  * On a typical scale, the Delta E value will range from 0 to 100.
- * 
+ *
  * | Delta E | Perception                             |
  * |---------|----------------------------------------|
  * | <= 1.0	 | Not perceptible by human eyes          |
@@ -30,12 +19,17 @@ interface Options {
  * | 2 - 10	 | Perceptible at a glance                |
  * | 11 - 49 | Colors are more similar than opposite  |
  * | 100	   | Colors are exact opposite              |
- * 
+ *
  * [Source](http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html)
  * [Read about Delta E](https://zschuessler.github.io/DeltaE/learn/#toc-delta-e-2000)
  */
-export function deltaE2000(color1: ColorLAB, color2: ColorLAB, options: Partial<Options> = {}): number {
-	const {	kl = 1,	kc = 1,	kh = 1 } = options;
+export function calcDeltaE00(color1: ColorLAB, color2: ColorLAB): number {
+	/**
+   * kl - grafic arts = 1; textiles = 2;
+   * kl - unity factor;
+   * kh - weighting factor;
+   */
+	const [ kl, kc, kh ] = [ 1, 1, 1 ];
 
 	const { l: l1, a: a1, b: b1 } = color1;
 	const { l: l2, a: a2, b: b2 } = color2;
@@ -83,37 +77,32 @@ export function deltaE2000(color1: ColorLAB, color2: ColorLAB, options: Partial<
 	if (dhAbs <= 180) {
 		H /= 2;
 	} else {
-		if (h1 + h2 < 360) {
-			H = (H + 360) / 2;
-		} else {
-			H = (H - 360) / 2;
-		}
+		H = (h1 + h2 < 360 ? H + 360 : H - 360) / 2;
 	}
 
-	const T = (
-		1 -
-		0.17 * Math.cos(deg2rad * (H - 30)) +
-		0.24 * Math.cos(deg2rad * 2 * H) +
-		0.32 * Math.cos(deg2rad * (3 * H + 6)) -
-		0.2 * Math.cos(deg2rad * (4 * H - 63))
-	);
+	const T =
+    1 -
+    0.17 * Math.cos(deg2rad * (H - 30)) +
+    0.24 * Math.cos(deg2rad * 2 * H) +
+    0.32 * Math.cos(deg2rad * (3 * H + 6)) -
+    0.2 * Math.cos(deg2rad * (4 * H - 63));
 
 	const dL = l2 - l1;
 	const dC = c22 - c11;
-	const dH = 2 * Math.sin(deg2rad * dh / 2) * ((c11 * c22) ** 0.5);
+	const dH = 2 * Math.sin((deg2rad * dh) / 2) * (c11 * c22) ** 0.5;
 
-	const sL = 1 + (0.015 * (ml - 50) ** 2) / (20 + (ml - 50) ** 2) ** 0.5;	
+	const sL = 1 + (0.015 * (ml - 50) ** 2) / (20 + (ml - 50) ** 2) ** 0.5;
 	const sC = 1 + 0.045 * mc1;
 	const sH = 1 + 0.015 * mc1 * T;
 
 	const dTheta = 30 * Math.exp(-1 * ((H - 275) / 25) ** 2);
 	const Rc = 2 * (c7 / (c7 + 25 ** 7)) ** 0.5;
 	const Rt = -Rc * Math.sin(deg2rad * 2 * dTheta);
-	
-	return (
+
+	return ((
 		(dL / kl / sL) ** 2 +
-		(dC / kc / sC) ** 2 +
-		(dH / kh / sH) ** 2 +
-		Rt * dC * dH / (kc * sC * kh * sH)
-	) ** 0.5;
+    (dC / kc / sC) ** 2 +
+    (dH / kh / sH) ** 2 +
+    (Rt * dC * dH) / (kc * sC * kh * sH)
+	) ** 0.5);
 }
