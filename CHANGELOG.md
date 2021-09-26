@@ -1,5 +1,9 @@
 # Blossom Changelog
 
+# 1.10.0 (2021-09-26):
+
+- [feature]: extended `LAB` plugin functionality with `.delta()` method for perceived color difference calculations using [Delta E2000](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000);
+
 # 1.9.0 (2021-09-04):
 
 - [feature]: new build-in plugin `names` plugin with [named colors](https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/) support;
