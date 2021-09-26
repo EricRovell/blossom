@@ -236,8 +236,24 @@ describe("LAB plugin", () => {
 		expect(blossom("#ABCDEF").toStringLAB).toBe("lab(80.77% -5.96 -20.79)");
 	});
 
-	it("Supported by `getModel`", () => {
-		expect(getModel({ l: 50, a: 0, b: 0, alpha: 1 })).toBe("lab");
+	it("Calculates the the perceived color difference", () => {
+		/**
+     * Test resuls: https://cielab.xyz/colordiff.php
+     *
+     * All tests done using RGB.
+     * Inner state is RGB, it is discrete thus all model transformations become discrete
+     * and some accuracy is lost.
+     *
+     * After migrating the state to XYZ or handling the rounding problem, tests using other color models should be added.
+     */
+		expect(blossom("#3296fa").delta("#197dc8")).toBe(0.099);
+		expect(blossom("#faf0c8").delta("#fff")).toBe(0.145);
+		expect(blossom("#afafaf").delta("#b4b4b4")).toBe(0.014);
+		expect(blossom("#000").delta("#fff")).toBe(1);
+		expect(blossom("#000").delta("#c8cdd7")).toBe(0.737);
+		expect(blossom("#c8cdd7").delta("#000")).toBe(0.737);
+		expect(blossom("#f4f4f4").delta("#fafafa")).toBe(0.012);
+		expect(blossom("#f4f4f4").delta("#f4f4f4")).toBe(0);
 	});
 });
 
