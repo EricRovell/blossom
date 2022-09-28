@@ -12,11 +12,6 @@ declare module "../blossom" {
 		 * https://en.wikipedia.org/wiki/CIELAB_color_space#Cylindrical_model
 		 */
 		lch: ColorLCH;
-
-		/**
-		 * 
-		 */
-		toStringLCH: string;
 	}
 }
 
@@ -26,18 +21,14 @@ declare module "../blossom" {
  * https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/
  * https://en.wikipedia.org/wiki/CIELAB_color_space#Cylindrical_model
  */
-export const pluginLCH: Plugin = (BaseClass, parsers) => {
+export const pluginLCH: Plugin = (BaseClass, { parsers, stringTransformers }) => {
 	Object.defineProperty(BaseClass.prototype, "lch", {
 		get: function lch() {
 			return roundLCH(rgb2lch(this.color));
 		}
 	});
 
-	Object.defineProperty(BaseClass.prototype, "toStringLCH", {
-		get: function toStringLCH() {
-			return rgb2lchString(this.color);
-		}
-	});
+	stringTransformers.set("lch", rgb2lchString);
 
 	parsers.object.push({
 		model: "lch",

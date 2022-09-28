@@ -13,13 +13,6 @@ declare module "../blossom" {
 		lab: ColorLAB;
 
 		/**
-		 * Returns a CIE LAB color string.
-		 * 
-		 * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()
-		 */
-		toStringLAB: string;
-
-		/**
 		 * Calculates the perceived color difference for two colors according to
 		 * [Delta E2000](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000).
 		 */
@@ -32,18 +25,14 @@ declare module "../blossom" {
  * 
  * https://en.wikipedia.org/wiki/CIELAB_color_space
  */
-export const pluginLAB: Plugin = (BaseClass, parsers) => {
+export const pluginLAB: Plugin = (BaseClass, { parsers, stringTransformers }) => {
 	Object.defineProperty(BaseClass.prototype, "lab", {
 		get: function lab() {
 			return roundLAB(rgb2lab(this.color));
 		}
 	});
 
-	Object.defineProperty(BaseClass.prototype, "toStringLAB", {
-		get: function toStringLAB() {
-			return rgb2labString(this.color);
-		}
-	});
+	stringTransformers.set("lab", rgb2labString);
 
 	BaseClass.prototype.delta = function(color = "#FFF") {
 		const compared = color instanceof BaseClass

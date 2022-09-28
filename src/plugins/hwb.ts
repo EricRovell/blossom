@@ -11,13 +11,6 @@ declare module "../blossom" {
 		 * https://en.wikipedia.org/wiki/HWB_color_model
 		 */
 		hwb: ColorHWB;
-
-		/**
-		 * Converts a color to HWB (Hue-Whiteness-Blackness) color space and returns a string.
-		 * 
-		 * https://www.w3.org/TR/css-color-4/#the-hwb-notation
-		 */
-		toStringHWB: string;
 	}
 }
 
@@ -27,18 +20,14 @@ declare module "../blossom" {
  * https://en.wikipedia.org/wiki/HWB_color_model
  * https://www.w3.org/TR/css-color-4/#the-hwb-notation
  */
-export const pluginHWB: Plugin = (BaseClass, parsers) => {
+export const pluginHWB: Plugin = (BaseClass, { parsers, stringTransformers }) => {
 	Object.defineProperty(BaseClass.prototype, "hwb", {
 		get: function hwb() {
 			return roundHWB(rgb2hwb(this.color));
 		}
 	});
 
-	Object.defineProperty(BaseClass.prototype, "toStringHWB", {
-		get: function toStringLCH() {
-			return rgb2hwbString(this.color);
-		}
-	});
+	stringTransformers.set("hwb", rgb2hwbString);
 
 	parsers.object.push({
 		model: "hwb",

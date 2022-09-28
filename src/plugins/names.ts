@@ -51,7 +51,7 @@ function createHexNamesCache(): HexNamesCache {
 /**
  * Adds support for [named CSS colors](https://www.w3.org/TR/css-color-4/#named-colors).
  */
-export const pluginNames: Plugin = (BaseClass, parsers) => {
+export const pluginNames: Plugin = (BaseClass, { parsers }) => {
 	let cacheRGB: NamesRGBCache;
 	let cacheHEX: HexNamesCache;
 

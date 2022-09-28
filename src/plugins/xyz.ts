@@ -8,13 +8,6 @@ declare module "../blossom" {
 		 * Returns color in CIE XYZ color space.
 		 */
 		xyz: ColorXYZ;
-
-		/**
-		 * Returns a CIE LAB color string.
-		 * 
-		 * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()
-		 */
-		toStringXYZ: string;
 	}
 }
 
@@ -25,18 +18,14 @@ declare module "../blossom" {
  * 
  * [More about XYZ]( https://www.sttmedia.com/colormodel-xyz)
  */
-export const pluginXYZ: Plugin = (BaseClass, parsers): void => {
+export const pluginXYZ: Plugin = (BaseClass, { parsers, stringTransformers }): void => {
 	Object.defineProperty(BaseClass.prototype, "xyz", {
 		get: function xyz() {
 			return roundXYZ(rgb2xyz(this.color));
 		}
 	});
 
-	Object.defineProperty(BaseClass.prototype, "toStringXYZ", {
-		get: function toStringXYZ() {
-			return rgb2xyzString(this.color);
-		}
-	});
+	stringTransformers.set("xyz", rgb2xyzString);
 
 	parsers.object.push({
 		model: "xyz",

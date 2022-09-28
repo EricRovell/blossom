@@ -24,5 +24,6 @@ export {
 
 export {
 	Plugin,
-	Plugins
+	Plugins,
+	ColorStringTransformer
 } from "./plugins";

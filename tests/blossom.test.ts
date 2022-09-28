@@ -41,9 +41,9 @@ describe("Parsing", () => {
   
 			expect(instance.hex).toBe(testColor.hex);
 			expect(instance.rgb).toEqual(expect.objectContaining(testColor.rgb));
-			expect(instance.toStringRGB).toBe(testColor.rgbStringWhitespace);
+			expect(instance.toString("rgb")).toBe(testColor.rgbStringWhitespace);
 			expect(instance.hsl).toEqual(expect.objectContaining(testColor.hsl));
-			expect(instance.toStringHSL).toBe(testColor.hslStringWhitespace);
+			expect(instance.toString("hsl")).toBe(testColor.hslStringWhitespace);
 			expect(instance.hsv).toEqual(expect.objectContaining(testColor.hsv));
 			expect(instance.cmyk).toEqual(expect.objectContaining(testColor.cmyk));
 		}
@@ -185,14 +185,14 @@ describe("Color transformations", () => {
 		}
 	});
 	it("Adds alpha value into string transformations only if needed", () => {
-		expect(blossom("rgb(0 0 0)").toStringRGB).toBe("rgb(0 0 0)");
-		expect(blossom("rgb(0, 0, 0)").toStringRGB).toBe("rgb(0 0 0)");
-		expect(blossom("hsl(0 0% 0%)").toStringHSL).toBe("hsl(0deg 0% 0%)");
-		expect(blossom("hsl(0, 0%, 0%)").toStringHSL).toBe("hsl(0deg 0% 0%)");
-		expect(blossom("rgb(0 0 0 / 0.5)").toStringRGB).toBe("rgb(0 0 0 / 0.5)");
-		expect(blossom("rgba(0, 0, 0, 0.5)").toStringRGB).toBe("rgb(0 0 0 / 0.5)");
-		expect(blossom("hsl(0deg 0% 0% / 0.5)").toStringHSL).toBe("hsl(0deg 0% 0% / 0.5)");
-		expect(blossom("hsla(0deg, 0%, 0%, 0.5)").toStringHSL).toBe("hsl(0deg 0% 0% / 0.5)");
+		expect(blossom("rgb(0 0 0)").toString("rgb")).toBe("rgb(0 0 0)");
+		expect(blossom("rgb(0, 0, 0)").toString("rgb")).toBe("rgb(0 0 0)");
+		expect(blossom("hsl(0 0% 0%)").toString("hsl")).toBe("hsl(0deg 0% 0%)");
+		expect(blossom("hsl(0, 0%, 0%)").toString("hsl")).toBe("hsl(0deg 0% 0%)");
+		expect(blossom("rgb(0 0 0 / 0.5)").toString("rgb")).toBe("rgb(0 0 0 / 0.5)");
+		expect(blossom("rgba(0, 0, 0, 0.5)").toString("rgb")).toBe("rgb(0 0 0 / 0.5)");
+		expect(blossom("hsl(0deg 0% 0% / 0.5)").toString("hsl")).toBe("hsl(0deg 0% 0% / 0.5)");
+		expect(blossom("hsla(0deg, 0%, 0%, 0.5)").toString("hsl")).toBe("hsl(0deg 0% 0% / 0.5)");
 	});
 	it("Converts a color to CMYK object", () => {
 		expect(blossom("#000000").cmyk).toMatchObject({ c: 0, m: 0, y: 0, k: 100, a: 1 });
@@ -203,9 +203,9 @@ describe("Color transformations", () => {
 		expect(blossom("#FFFFFF").cmyk).toMatchObject({ c: 0, m: 0, y: 0, k: 0, a: 1 });
 	});
 	it("Converts a color to CMYK string", () => {
-		expect(blossom("#999966").toStringCMYK).toBe("device-cmyk(0% 0% 33% 40%)");
-		expect(blossom("#99FFFF").toStringCMYK).toBe("device-cmyk(40% 0% 0% 0%)");
-		expect(blossom("#00336680").toStringCMYK).toBe("device-cmyk(100% 50% 0% 60% / 0.5)");
+		expect(blossom("#999966").toString("cmyk")).toBe("device-cmyk(0% 0% 33% 40%)");
+		expect(blossom("#99FFFF").toString("cmyk")).toBe("device-cmyk(40% 0% 0% 0%)");
+		expect(blossom("#00336680").toString("cmyk")).toBe("device-cmyk(100% 50% 0% 60% / 0.5)");
 	});
 });
 
@@ -221,9 +221,9 @@ describe("Color manipulation", () => {
 		expect(instance.grayscale.hex).toBe(saturationSteps[0]);
 	});  
 	it("Makes a color lighter and darker properly", () => {
-		expect(blossom("hsl(100, 50%, 50%)").lighten().toStringHSL).toBe("hsl(100deg 50% 60%)");
+		expect(blossom("hsl(100, 50%, 50%)").lighten().toString("hsl")).toBe("hsl(100deg 50% 60%)");
 		expect(blossom("hsl(100, 50%, 50%)").lighten(0.25).hsl.l).toBe(75);
-		expect(blossom("hsl(100, 50%, 50%)").darken().toStringHSL).toBe("hsl(100deg 50% 40%)");
+		expect(blossom("hsl(100, 50%, 50%)").darken().toString("hsl")).toBe("hsl(100deg 50% 40%)");
 		expect(blossom("hsl(100, 50%, 50%)").darken(0.25).hsl.l).toBe(25);
 		expect(blossom("#000").lighten(1).hex).toBe("#FFFFFF");
 		expect(blossom("#000").lighten(0.5).hex).toBe("#808080");
@@ -236,15 +236,15 @@ describe("Color manipulation", () => {
 		expect(blossom("#123").inverted.hex).toBe("#EEDDCC");
 	});
 	it("Changes a hue value", () => {
-		expect(blossom("hsl(90, 50%, 50%)").setHue(0).toStringHSL).toBe("hsl(0deg 50% 50%)");
-		expect(blossom("hsl(90, 50%, 50%)").setHue(180).toStringHSL).toBe("hsl(180deg 50% 50%)");
-		expect(blossom("hsl(90, 50%, 50%)").setHue(370).toStringHSL).toBe("hsl(10deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").setHue(0).toString("hsl")).toBe("hsl(0deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").setHue(180).toString("hsl")).toBe("hsl(180deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").setHue(370).toString("hsl")).toBe("hsl(10deg 50% 50%)");
 	});  
 	it("Rotates a hue circle", () => {
-		expect(blossom("hsl(90, 50%, 50%)").rotate(0).toStringHSL).toBe("hsl(90deg 50% 50%)");
-		expect(blossom("hsl(90, 50%, 50%)").rotate(360).toStringHSL).toBe("hsl(90deg 50% 50%)");
-		expect(blossom("hsl(90, 50%, 50%)").rotate(90).toStringHSL).toBe("hsl(180deg 50% 50%)");
-		expect(blossom("hsl(90, 50%, 50%)").rotate(-180).toStringHSL).toBe("hsl(270deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").rotate(0).toString("hsl")).toBe("hsl(90deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").rotate(360).toString("hsl")).toBe("hsl(90deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").rotate(90).toString("hsl")).toBe("hsl(180deg 50% 50%)");
+		expect(blossom("hsl(90, 50%, 50%)").rotate(-180).toString("hsl")).toBe("hsl(270deg 50% 50%)");
 	});
 	it("Changes an alpha channel value", () => {
 		expect(blossom("#000").setAlpha(0.25).alpha).toBe(0.25);

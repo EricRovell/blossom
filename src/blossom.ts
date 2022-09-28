@@ -2,23 +2,27 @@ import {
 	roundRGB,
 	rgb2cmyk,
 	rgb2hsl,
-	rgb2hsv,
-	rgb2hex,
-	rgb2string,
-	rgb2hslString,
-	rgb2hsvString,
-	rgb2cmykString
+	rgb2hsv
 } from "@models/rgb";
 
 import { parse } from "./parse";
+import { colorToString } from "./to-string";
 import { invert, lighten, saturate } from "@manipulation";
 import { calcBrightness } from "@properties";
 import { clamp, clampDegrees, round } from "@util/helpers";
 import { roundHSL } from "@models/hsl";
 import { roundHSV } from "@models/hsv";
 
-import type { Color, ColorCMYK, ColorHSL, ColorHSV, ColorRGB, Input, ParseResult } from "./types";
-
+import type { 
+	Color,
+	ColorModel,
+	ColorCMYK,
+	ColorHSL,
+	ColorHSV,
+	ColorRGB,
+	Input,
+	ParseResult
+} from "./types";
 
 /**
  * Blossom instance.
@@ -31,6 +35,10 @@ export class Blossom {
 	constructor(input?: Input | Color) {
 		this.parsed = parse(input as Input);
 		this.color = this.parsed?.color ?? { r: 0, g: 0, b: 0, a: 1 };
+	}
+
+	toString(model: ColorModel): string {
+		return colorToString(model)(this.color);
 	}
 
 	/**
@@ -165,7 +173,7 @@ export class Blossom {
 	 * Returns the Hexadecimal representation of a color.
 	 */
 	get hex(): string {
-		return rgb2hex(this.color);
+		return this.toString("hex");
 	}
 	
 	/**
@@ -177,25 +185,11 @@ export class Blossom {
 	}
 	
 	/**
-	 * Returns a string representation of a color in RGB color space.
-	 */
-	get toStringRGB(): string {
-		return rgb2string(this.color);
-	}
-	
-	/**
 	 * Transform a color to HSL color space object.
 	 * Opacity channel value is included in range [0, 1].
 	 */
 	get hsl(): ColorHSL {
 		return roundHSL(rgb2hsl(this.color));
-	}
-	
-	/**
-	 * Returns a string representation of a color in HSL color space.
-	 */
-	get toStringHSL(): string {
-		return rgb2hslString(this.color);
 	}
 	
 	/**
@@ -207,25 +201,11 @@ export class Blossom {
 	}
 
 	/**
-	 * Returns a string representation of a color in HSL color space.
-	 */
-	get toStringHSV(): string {
-		return rgb2hsvString(this.color);
-	}
-
-	/**
 	 * Transform a color to CMYK color space object.
 	 * Opacity channel value is included in range [0, 1].
 	 */
 	get cmyk(): ColorCMYK {
 		return rgb2cmyk(this.color);
-	}
-
-	/**
-	 * Returns a string representation of a color in CMYK color space.
-	 */
-	get toStringCMYK(): string {
-		return rgb2cmykString(this.color);
 	}
 
 	/**

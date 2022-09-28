@@ -192,10 +192,10 @@ describe("XYZ plugin", () => {
 	});
 
 	it("Converts a color to CIE XYZ string", () => {
-		expect(blossom("#00000080").toStringXYZ).toBe("color(xyz 0 0 0 / 0.5)");
-		expect(blossom("#FFFFFF").toStringXYZ).toBe("color(xyz 96.42 100 82.52)");
-		expect(blossom("#C65D06ED").toStringXYZ).toBe("color(xyz 28.87 20.42 1.98 / 0.93)");
-		expect(blossom("#ABCDEF").toStringXYZ).toBe("color(xyz 53.62 58.06 68.14)");
+		expect(blossom("#00000080").toString("xyz")).toBe("color(xyz 0 0 0 / 0.5)");
+		expect(blossom("#FFFFFF").toString("xyz")).toBe("color(xyz 96.42 100 82.52)");
+		expect(blossom("#C65D06ED").toString("xyz")).toBe("color(xyz 28.87 20.42 1.98 / 0.93)");
+		expect(blossom("#ABCDEF").toString("xyz")).toBe("color(xyz 53.62 58.06 68.14)");
 	});
 
 	it("Supported by `getModel`", () => {
@@ -230,10 +230,10 @@ describe("LAB plugin", () => {
 	});
 
 	it("Converts a color to CIE LAB string", () => {
-		expect(blossom("#00000080").toStringLAB).toBe("lab(0% 0 0 / 0.5)");
-		expect(blossom("#FFFFFF").toStringLAB).toBe("lab(100% 0 0)");
-		expect(blossom("#C65D06ED").toStringLAB).toBe("lab(52.31% 40.04 60.1 / 0.93)");
-		expect(blossom("#ABCDEF").toStringLAB).toBe("lab(80.77% -5.96 -20.79)");
+		expect(blossom("#00000080").toString("lab")).toBe("lab(0% 0 0 / 0.5)");
+		expect(blossom("#FFFFFF").toString("lab")).toBe("lab(100% 0 0)");
+		expect(blossom("#C65D06ED").toString("lab")).toBe("lab(52.31% 40.04 60.1 / 0.93)");
+		expect(blossom("#ABCDEF").toString("lab")).toBe("lab(80.77% -5.96 -20.79)");
 	});
 
 	it("Calculates the the perceived color difference", () => {
@@ -298,10 +298,10 @@ describe("lch", () => {
 	});
 
 	it("Converts a color to CIE LCH string (CSS functional notation)", () => {
-		expect(blossom("#00000080").toStringLCH).toBe("lch(0% 0 0 / 0.5)");
-		expect(blossom("#ffffff").toStringLCH).toBe("lch(100% 0 0)");
-		expect(blossom("#c65d06ed").toStringLCH).toBe("lch(52.31% 72.21 56.33 / 0.93)");
-		expect(blossom("#aabbcc").toStringLCH).toBe("lch(74.97% 11.22 252.37)");
+		expect(blossom("#00000080").toString("lch")).toBe("lch(0% 0 0 / 0.5)");
+		expect(blossom("#ffffff").toString("lch")).toBe("lch(100% 0 0)");
+		expect(blossom("#c65d06ed").toString("lch")).toBe("lch(52.31% 72.21 56.33 / 0.93)");
+		expect(blossom("#aabbcc").toString("lch")).toBe("lch(74.97% 11.22 252.37)");
 	});
 
 	it("Supports all valid CSS angle units", () => {
@@ -358,9 +358,9 @@ describe("hwb", () => {
 	});
 
 	it("Converts a color to HWB string", () => {
-		expect(blossom("#999966").toStringHWB).toBe("hwb(60 40% 40%)");
-		expect(blossom("#99FFFF").toStringHWB).toBe("hwb(180 60% 0%)");
-		expect(blossom("#00336680").toStringHWB).toBe("hwb(210 0% 60% / 0.5)");
+		expect(blossom("#999966").toString("hwb")).toBe("hwb(60 40% 40%)");
+		expect(blossom("#99FFFF").toString("hwb")).toBe("hwb(180 60% 0%)");
+		expect(blossom("#00336680").toString("hwb")).toBe("hwb(210 0% 60% / 0.5)");
 	});
 
 	it("Supports all valid CSS angle units", () => {
