@@ -1,116 +1,27 @@
 {
-  "name": "@ericrovell/blossom",
-  "version": "1.10.0",
-  "description": "Blossom is a JS library tool for colour manipulations and transformations.",
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "scripts": {
-    "lint": "eslint src/**/*.ts tests/**/*.ts",
-    "test": "jest --config ./jest.config.json --coverage",
-    "check-types": "tsc --noEmit true",
-    "build": "rm -rf ./dist/* && rollup --config",
-    "build:post": "cp *.json dist && cp *.md dist",
-    "release": "cd dist && npm publish --access public"
-  },
-  "exports": {
-    ".": {
-      "import": "./index.mjs",
-      "require": "./index.js",
-      "default": "./index.mjs"
-    },
-    "./plugins/harmonies": {
-      "import": "./plugins/harmonies.mjs",
-      "require": "./plugins/harmonies.js",
-      "default": "./plugins/harmonies.mjs"
-    },
-    "./plugins/monochromatic": {
-      "import": "./plugins/monochromatic.mjs",
-      "require": "./plugins/monochromatic.js",
-      "default": "./plugins/monochromatic.mjs"
-    },
-    "./plugins/a11y": {
-      "import": "./plugins/a11y.mjs",
-      "require": "./plugins/a11y.js",
-      "default": "./plugins/a11y.mjs"
-    },
-    "./plugins/xyz": {
-      "import": "./plugins/xyz.mjs",
-      "require": "./plugins/xyz.js",
-      "default": "./plugins/xyz.mjs"
-    },
-    "./plugins/lab": {
-      "import": "./plugins/lab.mjs",
-      "require": "./plugins/lab.js",
-      "default": "./plugins/lab.mjs"
-    },
-    "./plugins/lch": {
-      "import": "./plugins/lch.mjs",
-      "require": "./plugins/lch.js",
-      "default": "./plugins/lch.mjs"
-    },
-    "./plugins/hwb": {
-      "import": "./plugins/hwb.mjs",
-      "require": "./plugins/hwb.js",
-      "default": "./plugins/hwb.mjs"
-    },
-    "./plugins/mix": {
-      "import": "./plugins/mix.mjs",
-      "require": "./plugins/mix.js",
-      "default": "./plugins/mix.mjs"
-    },
-    "./plugins/names": {
-      "import": "./plugins/names.mjs",
-      "require": "./plugins/names.js",
-      "default": "./plugins/names.mjs"
-    }
-  },
-  "keywords": [
-    "color",
-    "color names",
-    "transform",
-    "convert",
-    "harmony colors",
-    "rgb",
-    "hex",
-    "hsl",
-    "hsv",
-    "cmyk",
-    "xyz",
-    "lab",
-    "lch",
-    "hwb",
-    "monochromatic colors",
-    "a11y",
-    "color mix"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ericrovell/blossom.git"
-  },
-  "author": "Eric Rovell",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^27.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
-    "eslint": "^7.32.0",
-    "jest": "^27.0.6",
-    "rollup": "^2.56.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "ts-jest": "^27.0.4",
-    "tslib": "^2.3.0",
-    "typescript": "^4.3.5"
-  },
-  "types": "index.d.ts",
-  "bugs": {
-    "url": "https://github.com/ericrovell/blossom/issues"
-  },
-  "homepage": "https://github.com/ericrovell/blossom#readme",
-  "directories": {
-    "test": "tests"
-  },
-  "engines": {
-    "node": ">=12.0"
-  }
+	"name": "blossom",
+	"version": "1.10.0",
+	"private": true,
+	"scripts": {
+		"build:package": "cd src/package && pnpm run build && pnpm run build:post",
+		"dev:app": "cd src/app && pnpm run dev",
+		"lint": "eslint src/**/*.ts",
+		"release": "cd dist && npm publish --access public",
+		"stylelint": "npx run stylelint src/**/*.css",
+		"test": "vitest run",
+		"test:package": "cd src/package && pnpm run test",
+		"test:watch": "vitest",
+		"typecheck": "tsc --noEmit true"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.38.1",
+		"@typescript-eslint/parser": "^5.38.1",
+		"eslint": "^8.24.0",
+		"stylelint": "^14.13.0",
+		"stylelint-config-standard": "^28.0.0",
+		"tslib": "^2.4.0",
+		"typescript": "^4.8.4",
+		"vite": "^3.1.4",
+		"vitest": "^0.23.4"
+	}
 }

@@ -1,0 +1,28 @@
+{
+	"name": "@blossom/app",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"dev:expose": "vite dev --host --port 5555",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ericrovell/blossom.git"
+	},
+	"devDependencies": {
+		"@rollup/plugin-replace": "^4.0.0",
+		"@sveltejs/adapter-static": "1.0.0-next.43",
+		"@sveltejs/kit": "1.0.0-next.504",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"svelte": "^3.50.1",
+		"svelte-preprocess": "^4.10.7",
+		"typescript": "^4.8.3",
+		"typescript-plugin-css-modules": "^3.4.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@blossom": "workspace:@ericrovell/blossom@*"
+	}
+}

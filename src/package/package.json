@@ -1,0 +1,103 @@
+{
+	"name": "@ericrovell/blossom",
+	"version": "1.10.0",
+	"description": "Blossom is a JS library tool for colour manipulations and transformations.",
+	"main": "./index.js",
+	"module": "./index.mjs",
+	"scripts": {
+		"test": "vitest",
+		"build": "rm -rf ./dist/* && rollup --config",
+		"build:post": "cp *.json dist && cp *.md dist",
+		"release": "cd dist && npm publish --access public"
+	},
+	"exports": {
+		".": {
+			"import": "./index.mjs",
+			"require": "./index.js",
+			"default": "./index.mjs"
+		},
+		"./plugins/harmonies": {
+			"import": "./plugins/harmonies.mjs",
+			"require": "./plugins/harmonies.js",
+			"default": "./plugins/harmonies.mjs"
+		},
+		"./plugins/monochromatic": {
+			"import": "./plugins/monochromatic.mjs",
+			"require": "./plugins/monochromatic.js",
+			"default": "./plugins/monochromatic.mjs"
+		},
+		"./plugins/a11y": {
+			"import": "./plugins/a11y.mjs",
+			"require": "./plugins/a11y.js",
+			"default": "./plugins/a11y.mjs"
+		},
+		"./plugins/xyz": {
+			"import": "./plugins/xyz.mjs",
+			"require": "./plugins/xyz.js",
+			"default": "./plugins/xyz.mjs"
+		},
+		"./plugins/lab": {
+			"import": "./plugins/lab.mjs",
+			"require": "./plugins/lab.js",
+			"default": "./plugins/lab.mjs"
+		},
+		"./plugins/lch": {
+			"import": "./plugins/lch.mjs",
+			"require": "./plugins/lch.js",
+			"default": "./plugins/lch.mjs"
+		},
+		"./plugins/hwb": {
+			"import": "./plugins/hwb.mjs",
+			"require": "./plugins/hwb.js",
+			"default": "./plugins/hwb.mjs"
+		},
+		"./plugins/mix": {
+			"import": "./plugins/mix.mjs",
+			"require": "./plugins/mix.js",
+			"default": "./plugins/mix.mjs"
+		},
+		"./plugins/names": {
+			"import": "./plugins/names.mjs",
+			"require": "./plugins/names.js",
+			"default": "./plugins/names.mjs"
+		}
+	},
+	"keywords": [
+		"color",
+		"color names",
+		"transform",
+		"convert",
+		"harmony colors",
+		"rgb",
+		"hex",
+		"hsl",
+		"hsv",
+		"cmyk",
+		"xyz",
+		"lab",
+		"lch",
+		"hwb",
+		"monochromatic colors",
+		"a11y",
+		"color mix"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ericrovell/blossom.git"
+	},
+	"author": "Eric Rovell",
+	"license": "MIT",
+	"devDependencies": {
+		"rollup": "^2.79.1",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.34.0"
+	},
+	"types": "index.d.ts",
+	"bugs": {
+		"url": "https://github.com/ericrovell/blossom/issues"
+	},
+	"homepage": "https://github.com/ericrovell/blossom#readme",
+	"directories": {
+		"test": "tests"
+	}
+}

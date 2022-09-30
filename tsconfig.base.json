@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"strict": true,
+		"target": "ESNext"
+	},
+	"exclude": [
+		"dist",
+		"node_modules/*"
+	]
+}
